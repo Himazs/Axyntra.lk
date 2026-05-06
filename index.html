@@ -551,7 +551,9 @@
     .svc-arrow { margin-top: 1rem; opacity: 0.4; transition: opacity 0.3s; }
     .svc-card:hover .svc-arrow { opacity: 1; }
 
-      /* ========= CAROUSEL CONTAINER (horizontal scroll with hidden overflow but arrow navigation) ========= */
+    /* =====================================================
+       PORTFOLIO CAROUSEL — FIX #1: Mobile centering
+       ===================================================== */
     .portfolio-carousel-wrapper {
       position: relative;
       margin-top: 3rem;
@@ -563,19 +565,17 @@
       gap: 1.8rem;
       overflow-x: hidden;
       scroll-behavior: smooth;
-      scrollbar-width: none;  /* hide scrollbar firefox */
-      -ms-overflow-style: none; /* IE/Edge */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      /* FIX: scroll-padding ensures the snapped card aligns flush left */
+      scroll-padding-left: 0;
       padding: 0.5rem 0 1rem;
       scroll-snap-type: x mandatory;
     }
+    .port-grid::-webkit-scrollbar { display: none; }
 
-    .port-grid::-webkit-scrollbar {
-      display: none;  /* hide scrollbar Chrome/Safari */
-    }
-
-    /* each card now has fixed width, maintaining 3 visible principle but actually we decide visible via hidden scroll */
     .port-card {
-      flex: 0 0 320px;          /* fixed width cards -> horizontal scroll */
+      flex: 0 0 320px;
       background: var(--card);
       backdrop-filter: blur(2px);
       border: 1px solid var(--border2);
@@ -583,15 +583,12 @@
       overflow: hidden;
       transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       scroll-snap-align: start;
-      transform: translateY(0);
     }
-
     .port-card:hover {
       transform: translateY(-6px);
       border-color: var(--border);
       box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(124,58,237,0.2);
     }
-
     .port-visual {
       height: 200px;
       display: flex;
@@ -600,23 +597,17 @@
       position: relative;
       background: #0b0b14;
     }
-
     .port-visual img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.4s ease;
     }
-
-    .port-card:hover .port-visual img {
-      transform: scale(1.03);
-    }
-
+    .port-card:hover .port-visual img { transform: scale(1.03); }
     .port-tag {
       position: absolute;
-      top: 1rem;
-      left: 1rem;
-      background: rgba(40, 20, 80, 0.7);
+      top: 1rem; left: 1rem;
+      background: rgba(40,20,80,0.7);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(124,58,237,0.6);
       border-radius: 50px;
@@ -627,11 +618,7 @@
       letter-spacing: 0.3px;
       z-index: 2;
     }
-
-    .port-info {
-      padding: 1.2rem 1.5rem 1.5rem;
-    }
-
+    .port-info { padding: 1.2rem 1.5rem 1.5rem; }
     .port-info h3 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1.1rem;
@@ -639,33 +626,20 @@
       margin-bottom: 0.4rem;
       color: #f3f4ff;
     }
+    .port-info p { font-size: 0.78rem; font-weight: 450; color: var(--text3); line-height: 1.4; }
 
-    .port-info p {
-      font-size: 0.78rem;
-      font-weight: 450;
-      color: var(--text3);
-      line-height: 1.4;
-    }
-
-    /* ARROW BUTTONS - elegant circular and modern */
+    /* FIX #1: Arrow buttons — repositioned so they don't overlap cards on mobile */
     .carousel-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
       display: flex;
-      justify-content: space-between;
-      pointer-events: none;
-      z-index: 10;
-      left: 0;
-      padding: 0 0.2rem;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      /* Was: position:absolute covering the cards — caused overlap & tap issues on mobile */
     }
-
     .nav-arrow {
-      pointer-events: auto;
-      background: rgba(20, 24, 40, 0.85);
+      background: rgba(20,24,40,0.85);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(124, 58, 237, 0.5);
+      border: 1px solid rgba(124,58,237,0.5);
       width: 48px;
       height: 48px;
       border-radius: 60px;
@@ -675,26 +649,29 @@
       cursor: pointer;
       transition: all 0.25s ease;
       color: #dddaff;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: 500;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      user-select: none;
     }
-
     .nav-arrow:hover {
       background: #7c3aedcc;
       border-color: #c084fc;
       color: white;
       transform: scale(1.08);
     }
+    .nav-arrow:disabled,
+    .nav-arrow[data-disabled="true"] {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
 
-    /* optional Dots / pagination indicator - subtle */
     .carousel-dots {
       display: flex;
       justify-content: center;
       gap: 0.65rem;
-      margin-top: 2.5rem;
+      margin-top: 1.2rem;
     }
-
     .dot {
       width: 8px;
       height: 8px;
@@ -703,94 +680,21 @@
       transition: all 0.3s ease;
       cursor: pointer;
     }
-
     .dot.active {
       width: 28px;
       background: #a78bfa;
       box-shadow: 0 0 5px #b77cff;
     }
 
-    /* Reveal animation (optional keep from previous design) */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* responsive: on smaller screens, adjust card width to be a bit more compact */
-    @media (max-width: 780px) {
-      .port-card {
-        flex: 0 0 280px;
-      }
-      .nav-arrow {
-        width: 40px;
-        height: 40px;
-        font-size: 1.3rem;
-      }
-      .wrap {
-        padding: 0 1.2rem;
-      }
-      .section-title {
-        font-size: 1.8rem;
-      }
-    }
-
-    @media (max-width: 580px) {
-      .port-card {
-        flex: 0 0 260px;
-      }
-    }
-
-    /* extra touch for images fallback */
-    img[onerror] {
-      background: linear-gradient(145deg, #13182b, #0b0f1a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-/* Testimonial Sectio */
-     /* Section header */
-    .section-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 600;
-      color: var(--accent);
-      background: var(--accent-light);
-      padding: 0.25rem 1rem;
-      border-radius: 40px;
-      margin-bottom: 1rem;
-      width: fit-content;
-      justify-content: center;
-    }
-
-    .section-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      font-family: 'Space Grotesk', sans-serif;
-      letter-spacing: -0.01em;
-      margin-bottom: 2.5rem;
-      color: #e3e4eb;
-      text-align: center;
-    }
-
-    /* SLIDER CONTAINER — no visible scrollbar, clean horizontal snaps */
+    /* =====================================================
+       TESTIMONIALS SLIDER — FIX #2: Wire up arrows + dots
+       ===================================================== */
     .testimonial-slider {
       position: relative;
       width: 100%;
       overflow: hidden;
       border-radius: 2rem;
     }
-
     .slider-track {
       display: flex;
       flex-direction: row;
@@ -799,67 +703,33 @@
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;  /* Firefox: hide scrollbar */
+      scrollbar-width: none;
       gap: 1.8rem;
       padding: 0.5rem 0.25rem 1.5rem 0.25rem;
       cursor: grab;
     }
+    .slider-track::-webkit-scrollbar { display: none; }
+    .slider-track:active { cursor: grabbing; }
 
-    /* Hide scrollbar for Chrome/Safari/Edge — no white line */
-    .slider-track::-webkit-scrollbar {
-      display: none;
-    }
-
-    .slider-track:active {
-      cursor: grabbing;
-    }
-
-    /* Testimonial Card */
     .testi-card {
       flex: 0 0 340px;
-      background: var(--card-bg);
+      background: var(--card);
       border-radius: 2rem;
       padding: 1.8rem;
       transition: all 0.25s ease;
-      box-shadow: var(--shadow-sm);
       border: 1px solid var(--border);
       scroll-snap-align: start;
       display: flex;
       flex-direction: column;
     }
-
     .testi-card:hover {
       transform: translateY(-6px);
-      box-shadow: var(--shadow-hover);
-      border-color: rgba(29, 78, 216, 0.2);
+      border-color: rgba(124,58,237,0.4);
+      box-shadow: 0 16px 40px rgba(124,58,237,0.12);
     }
-
-    /* Stars */
-    .stars {
-      color: #F5B342;
-      font-size: 1.1rem;
-      letter-spacing: 2px;
-      margin-bottom: 1.2rem;
-    }
-
-    .testi-text {
-      font-size: 0.95rem;
-      line-height: 1.55;
-      color: var(--text2);
-      margin-bottom: 1.8rem;
-      font-weight: 450;
-      flex: 1;
-    }
-
-    /* Author Row */
-    .testi-author {
-      display: flex;
-      align-items: center;
-      gap: 0.9rem;
-      margin-top: 0.5rem;
-    }
-
-    /* FIXED AVATAR 44px + fallback initials */
+    .stars { color: #F5B342; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 1.2rem; }
+    .testi-text { font-size: 0.95rem; line-height: 1.55; color: var(--text2); margin-bottom: 1.8rem; font-weight: 450; flex: 1; }
+    .testi-author { display: flex; align-items: center; gap: 0.9rem; margin-top: 0.5rem; }
     .author-avatar {
       width: 44px;
       height: 44px;
@@ -875,9 +745,7 @@
       font-family: 'Space Grotesk', sans-serif;
       position: relative;
       border: 2px solid var(--border);
-      background: linear-gradient(135deg, #1D4ED8, #0EA5E9);
     }
-
     .author-avatar img {
       position: absolute;
       top: 0; left: 0;
@@ -888,8 +756,6 @@
       display: block;
       border-radius: 50%;
     }
-
-    /* Fallback initials (centered, visible only when image fails) */
     .initials-fallback {
       display: flex;
       align-items: center;
@@ -899,34 +765,15 @@
       font-weight: 700;
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      background: inherit;
       color: white;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.15);
       border-radius: 50%;
       position: relative;
       z-index: 2;
     }
+    .author-name { font-weight: 600; font-size: 0.9rem; font-family: 'Inter', sans-serif; color: #e6e8ec; }
+    .author-role { font-size: 0.7rem; color: var(--text3); margin-top: 0.2rem; font-weight: 450; }
 
-    /* If image loaded and visible, hide fallback */
-    .author-avatar img:not([style*="display: none"]) + .initials-fallback {
-      display: none;
-    }
-
-    .author-name {
-      font-weight: 600;
-      font-size: 0.9rem;
-      font-family: 'Inter', sans-serif;
-      color: #111827;
-    }
-
-    .author-role {
-      font-size: 0.7rem;
-      color: var(--text3);
-      margin-top: 0.2rem;
-      font-weight: 450;
-    }
-
-    /* ----- DOTS NAVIGATION (no white line, pure dots) ----- */
+    /* FIX #2: Dots row */
     .slider-dots {
       display: flex;
       justify-content: center;
@@ -935,189 +782,34 @@
       margin-top: 1.8rem;
       flex-wrap: wrap;
     }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      background-color: var(--dot-inactive);
-      border-radius: 50%;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      border: none;
-      padding: 0;
-      outline: none;
-      transition: transform 0.2s, background 0.2s;
-    }
-
-    .dot.active {
-      background-color: var(--dot-active);
-      width: 28px;
-      border-radius: 20px;
-      transform: scale(1);
-    }
-
-    .dot:hover:not(.active) {
-      background-color: #9CA3AF;
-      transform: scale(1.1);
-    }
-
-    /* Navigation buttons (left/right arrows) - clean minimal */
+    /* FIX #2: Nav buttons below the slider — styled to match the dark theme */
     .slider-nav {
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       gap: 0.75rem;
       margin-top: 1.2rem;
     }
-
     .nav-btn {
-      width: 38px;
-      height: 38px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
-      background: white;
+      background: rgba(124,58,237,0.12);
       border: 1px solid var(--border);
       display: inline-flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       transition: all 0.2s;
-      color: #2C3E66;
+      color: var(--p4);
       font-size: 1.2rem;
       font-weight: 500;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
     }
-
     .nav-btn:hover {
-      background: var(--accent);
-      border-color: var(--accent);
+      background: var(--p);
+      border-color: var(--p3);
       color: white;
-      transform: scale(1.02);
+      transform: scale(1.05);
     }
-
-    /* reveal animation */
-    .reveal {
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .reveal.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* special light background contrast for secretary card */
-    .author-avatar[style*="linear-gradient(135deg,#B8C6DB,#D9E2EF)"] .initials-fallback {
-      color: #1F2A44;
-      text-shadow: none;
-      font-weight: 800;
-    }
-
-    @media (max-width: 680px) {
-      .section-title { font-size: 1.8rem; }
-      .testi-card { flex: 0 0 280px; padding: 1.4rem; }
-      .author-name { font-size: 0.85rem; }
-      .slider-nav { justify-content: center; margin-top: 1rem; }
-    }
-
-    /* IMAGE inside avatar: cover + hidden overflow */
-    .author-avatar img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      border-radius: 50%;
-    }
-
-    /* initials span always centered; hidden if image visible */
-    .author-avatar .initials-fallback {
-      position: relative;
-      z-index: 2;
-      background: transparent;
-      font-weight: 600;
-      text-shadow: 0 1px 1px rgba(0,0,0,0.1);
-    }
-
-    /* When img exists and is not hidden by onerror, we hide the initials span */
-    .author-avatar img:not([style*="display: none"]) + .initials-fallback,
-    .author-avatar img[style*="display: none"] + .initials-fallback {
-      display: flex; /* img hidden => show fallback */
-    }
-    
-    /* Force fallback to be visible when img is hidden/errored */
-    .author-avatar img[style*="display: none"] + .initials-fallback,
-    .author-avatar img:not([src]) + .initials-fallback {
-      display: flex;
-    }
-    
-    /* but if img loads successfully, we must hide initials */
-    .author-avatar img:not([style*="display: none"]) + .initials-fallback {
-      display: none;
-    }
-
-    /* ensure fallback is visible by default but will be hidden when img OK */
-    .initials-fallback {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* Text styling */
-    .author-name {
-      font-weight: 600;
-      font-size: 0.9rem;
-      font-family: 'Inter', sans-serif;
-      color: #e6e8ec;
-    }
-
-    .author-role {
-      font-size: 0.7rem;
-      color: var(--text3);
-      margin-top: 0.2rem;
-      font-weight: 450;
-      letter-spacing: -0.2px;
-    }
-
-    /* hint for horizontal scroll (mouse UX) */
-    .scroll-hint {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      margin-top: 1rem;
-      gap: 0.5rem;
-      font-size: 0.75rem;
-      color: var(--text3);
-    }
-    .scroll-hint span {
-      background: #EFF2F9;
-      padding: 0.2rem 0.7rem;
-      border-radius: 50px;
-      font-weight: 500;
-    }
-
-    @media (max-width: 680px) {
-      .section-title { font-size: 1.8rem; }
-      .testi-card { flex: 0 0 280px; padding: 1.4rem; }
-      .author-name { font-size: 0.85rem; }
-    }
-
-    /* reveal animation small */
-    .reveal {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .reveal.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-
-
 
     /* CONTACT */
     .contact-wrap {
@@ -1154,13 +846,7 @@
     }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .form-group { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
-    .form-group label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--text3);
-    }
+    .form-group label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text3); }
     .form-group input,
     .form-group select,
     .form-group textarea {
@@ -1215,31 +901,10 @@
       padding-bottom: 3rem;
       border-bottom: 1px solid var(--border2);
     }
-    .footer-brand p {
-      font-size: 0.8rem;
-      font-weight: 450;
-      line-height: 1.7;
-      color: var(--text3);
-      margin-top: 1rem;
-      max-width: 260px;
-    }
-    .footer-col h5 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text2);
-      margin-bottom: 1rem;
-    }
+    .footer-brand p { font-size: 0.8rem; font-weight: 450; line-height: 1.7; color: var(--text3); margin-top: 1rem; max-width: 260px; }
+    .footer-col h5 { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text2); margin-bottom: 1rem; }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .footer-col ul li a {
-      font-size: 0.8rem;
-      font-weight: 450;
-      color: var(--text3);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .footer-col ul li a { font-size: 0.8rem; font-weight: 450; color: var(--text3); text-decoration: none; transition: color 0.2s; }
     .footer-col ul li a:hover { color: var(--p4); }
     .footer-bottom {
       max-width: 1280px;
@@ -1252,7 +917,9 @@
       color: var(--text3);
     }
 
-    /* WA FAB */
+    /* =====================================================
+       WHATSAPP FAB — FIX #3: Correct icon rendering
+       ===================================================== */
     .wa-fab {
       position: fixed;
       bottom: 2rem;
@@ -1263,12 +930,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+      /* FIX: stronger, more visible shadow */
+      box-shadow: 0 4px 20px rgba(37,211,102,0.5), 0 8px 32px rgba(0,0,0,0.3);
       z-index: 999;
       transition: all 0.3s ease;
       text-decoration: none;
     }
-    .wa-fab:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(37,211,102,0.5); }
+    .wa-fab:hover {
+      transform: scale(1.12) translateY(-2px);
+      box-shadow: 0 8px 32px rgba(37,211,102,0.6), 0 12px 40px rgba(0,0,0,0.3);
+    }
 
     /* REVEAL */
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
@@ -1289,13 +960,17 @@
       .hero-wrap, .about-grid, .contact-wrap { grid-template-columns: 1fr; }
       .hero-visual { display: none; }
       .float-card { display: none; }
-      .port-grid, .testi-grid { grid-template-columns: repeat(2, 1fr); }
       .about-metric-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 780px) {
+      /* FIX #1: On mobile, cards are narrower so more of the next card peeks in */
+      .port-card { flex: 0 0 calc(100vw - 6rem); max-width: 320px; }
+      .testi-card { flex: 0 0 calc(100vw - 6rem); max-width: 340px; }
+      .nav-arrow { width: 42px; height: 42px; font-size: 1.2rem; }
     }
     @media (max-width: 680px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .port-grid, .testi-grid { grid-template-columns: 1fr; }
       .services-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
@@ -1316,6 +991,8 @@
       .nav-links.open a { font-size: 1.3rem; font-weight: 600; }
       .hero-stats { gap: 1.5rem; }
       .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .port-card { flex: 0 0 260px; }
+      .testi-card { flex: 0 0 280px; }
     }
   </style>
 </head>
@@ -1410,15 +1087,10 @@
     <div class="about-grid">
       <div class="about-vis reveal">
         <div class="about-main-card">
-          <div class="author-avatar" style="background:linear-gradient(135deg,#1D4ED8,#0EA5E9);">
-            <img
-              src="img/hms.png"
-              alt="Hassan Habeeb"
-              onerror="this.style.display='none'"
-            >
-            <span id="hh-fallback">HH</span>
+          <div class="author-avatar" style="background:linear-gradient(135deg,#1D4ED8,#0EA5E9); width:64px; height:64px; font-size:1.1rem; margin-bottom:1rem;">
+            <img src="img/hms.png" alt="Hassan Habeeb" onerror="this.style.display='none'">
+            <span class="initials-fallback">HH</span>
           </div>
-
           <h3 style="font-family:'Space Grotesk'; margin-bottom:0.25rem;">Mohammed Himas</h3>
           <p style="color:var(--text3); font-size:0.85rem;">Founder & Lead Developer</p>
           <p style="color:var(--text2); margin-top:1rem; font-size:0.85rem; line-height:1.7;">Leading a passionate team of undergraduates building world-class digital solutions.</p>
@@ -1474,119 +1146,87 @@
   </div>
 </section>
 
+<!-- PORTFOLIO -->
 <section id="portfolio" class="section">
   <div class="wrap">
     <div class="section-eyebrow">Our Work</div>
     <h2 class="section-title">Where Ideas Turn Into Results</h2>
-    
+
     <div class="portfolio-carousel-wrapper">
-      <!-- horizontal scroll container (cards are inline) -->
       <div class="port-grid" id="carouselTrack">
-        <!-- Card 1 - E-Commerce -->
         <div class="port-card reveal">
-          <div class="port-visual" style="background:#000; overflow:hidden;">
-              <div class="port-tag">E-Commerce</div>
-    <img
-      src="img/e.png"
-      alt="SEO Optimization Project"
-      onerror="this.style.display='none'">
-  </div>
+          <div class="port-visual" style="background:#000;">
+            <div class="port-tag">E-Commerce</div>
+            <img src="img/e.png" alt="E-Commerce Suite" onerror="this.style.display='none'">
+          </div>
           <div class="port-info">
             <h3>E-Commerce Suite</h3>
             <p>Full-stack platform with AI recommendations</p>
           </div>
         </div>
-
-        <!-- Card 2 - AI Product -->
         <div class="port-card reveal">
-          <div class="port-visual" style="background:#000; overflow:hidden;">
-             <div class="port-tag">AI Product</div>
-    <img
-      src="img/ai.png"
-      alt="SEO Optimization Project"
-      onerror="this.style.display='none'">
-  </div>
-
+          <div class="port-visual" style="background:#000;">
+            <div class="port-tag">AI Product</div>
+            <img src="img/ai.png" alt="AI Support Chatbot" onerror="this.style.display='none'">
+          </div>
           <div class="port-info">
             <h3>AI Support Chatbot</h3>
             <p>60% ticket reduction achieved</p>
           </div>
         </div>
-
-        <!-- Card 3 - Analytics Dashboard -->
         <div class="port-card reveal">
-          <div class="port-visual" style="background:#000; overflow:hidden;">
-              <div class="port-tag">Analytics</div>
-    <img
-      src="img/ana.png"
-      alt="SEO Optimization Project"
-      onerror="this.style.display='none'">
-  </div>
+          <div class="port-visual" style="background:#000;">
+            <div class="port-tag">Analytics</div>
+            <img src="img/ana.png" alt="Analytics Dashboard" onerror="this.style.display='none'">
+          </div>
           <div class="port-info">
             <h3>Analytics Dashboard</h3>
             <p>Real-time insights platform</p>
           </div>
         </div>
-
-        <!-- Card 4 - SEO Optimization (hidden from default view, but scrollable via arrows) -->
         <div class="port-card reveal">
-          <div class="port-visual" style="background:#000; overflow:hidden;">
+          <div class="port-visual" style="background:#000;">
             <div class="port-tag">SEO</div>
-    <img
-      src="img/2.png"
-      alt="SEO Optimization Project"
-      onerror="this.style.display='none'">
-  </div>
-
+            <img src="img/2.png" alt="SEO Optimization" onerror="this.style.display='none'">
+          </div>
           <div class="port-info">
             <h3>SEO Optimization</h3>
             <p>Improved Google ranking & organic traffic +180%</p>
           </div>
         </div>
-
-        <!-- Card 5 - Branding Identity (initially off-screen right) -->
         <div class="port-card reveal">
-          <div class="port-visual" style="background:#000; overflow:hidden;">
-             <div class="port-tag">Branding</div>
-    <img
-      src="img/1.png"
-      alt="Branding Project"
-      onerror="this.style.display='none'">
-  </div>
-
+          <div class="port-visual" style="background:#000;">
+            <div class="port-tag">Branding</div>
+            <img src="img/1.png" alt="Brand Identity Design" onerror="this.style.display='none'">
+          </div>
           <div class="port-info">
             <h3>Brand Identity Design</h3>
             <p>Modern logo, complete identity & design system</p>
           </div>
         </div>
-
-        <!-- (Optional extra card but we keep exactly 5 as requirement 
-         show 3 initially, 4 and 5 hidden via overflow; arrow navigation will scroll line smoothly) -->
       </div>
 
-      <!-- Navigation Arrows (right/left) -->
+      <!-- FIX #1: Arrows moved BELOW the grid, centered — no more overlay issues on mobile -->
       <div class="carousel-nav">
         <div class="nav-arrow" id="leftArrow">←</div>
         <div class="nav-arrow" id="rightArrow">→</div>
       </div>
     </div>
 
-    <!-- Dot pagination indicator reflects visible position (based on scroll index) -->
     <div class="carousel-dots" id="dotsContainer"></div>
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
 <section id="testimonials" class="section">
   <div class="wrap">
     <div style="text-align:center;">
-      <div class="section-eyebrow" style="margin-left: auto; margin-right: auto;">Testimonials</div>
+      <div class="section-eyebrow" style="margin-left:auto; margin-right:auto;">Testimonials</div>
       <h2 class="section-title">What Our Clients Say</h2>
     </div>
 
     <div class="testimonial-slider">
-      <!-- Slider track (horizontal, no scrollbar line) -->
       <div class="slider-track" id="sliderTrack">
-        <!-- Card 1: Mohammed Afras -->
         <div class="testi-card reveal">
           <div class="stars">★★★★★</div>
           <p class="testi-text">"Axyntra delivered our e-commerce platform faster than expected. Their after-service support is exceptional."</p>
@@ -1595,14 +1235,9 @@
               <img src="img/Hitec.png" alt="Mohammed Afras" onerror="this.style.display='none'">
               <span class="initials-fallback">MA</span>
             </div>
-            <div>
-              <div class="author-name">Mohammed Afras</div>
-              <div class="author-role">CEO, Hitec-Shoes</div>
-            </div>
+            <div><div class="author-name">Mohammed Afras</div><div class="author-role">CEO, Hitec-Shoes</div></div>
           </div>
         </div>
-
-        <!-- Card 2: Hassan Habeeb (Victoria Shoes) -->
         <div class="testi-card reveal">
           <div class="stars">★★★★★</div>
           <p class="testi-text">"The team at Axyntra provided an excellent eCommerce website with great performance and user experience."</p>
@@ -1611,14 +1246,9 @@
               <img src="img/victoria.jpg" alt="Hassan Habeeb" onerror="this.style.display='none'">
               <span class="initials-fallback">HH</span>
             </div>
-            <div>
-              <div class="author-name">Hassan Habeeb</div>
-              <div class="author-role">CEO, Victoria Shoes</div>
-            </div>
+            <div><div class="author-name">Hassan Habeeb</div><div class="author-role">CEO, Victoria Shoes</div></div>
           </div>
         </div>
-
-        <!-- Card 3: Faris Ahamed (Social media) -->
         <div class="testi-card reveal">
           <div class="stars">★★★★★</div>
           <p class="testi-text">"Axyntra designed creative and eye-catching social media flyers that strengthened our brand presence and engagement."</p>
@@ -1627,46 +1257,31 @@
               <img src="img/99.png" alt="Faris Ahamed" onerror="this.style.display='none'">
               <span class="initials-fallback">FA</span>
             </div>
-            <div>
-              <div class="author-name">Faris Ahamed</div>
-              <div class="author-role">99 group pvt Ltd, Brand Manager</div>
-            </div>
+            <div><div class="author-name">Faris Ahamed</div><div class="author-role">99 group pvt Ltd, Brand Manager</div></div>
           </div>
         </div>
-
-        <!-- Card 4: Secretary Masjidul Hassaniya -->
         <div class="testi-card reveal">
           <div class="stars">★★★★★</div>
           <p class="testi-text">"We appreciate Axyntra's work in delivering a reliable and easy-to-manage website for our mosque."</p>
           <div class="testi-author">
             <div class="author-avatar" style="background:linear-gradient(135deg,#edeff1,#e7e8e9);">
               <img src="img/Mosque.png" alt="Secretary Masjid" onerror="this.style.display='none'">
-              <span class="initials-fallback">MH</span>
+              <span class="initials-fallback" style="color:#1F2A44;">MH</span>
             </div>
-            <div>
-              <div class="author-name">Masjid Committee</div>
-              <div class="author-role">Secretary, Masjidul Hassaniya</div>
-            </div>
+            <div><div class="author-name">Masjid Committee</div><div class="author-role">Secretary, Masjidul Hassaniya</div></div>
           </div>
         </div>
-
-        <!-- Card 5: Ahmed Sameer -->
         <div class="testi-card reveal">
           <div class="stars">★★★★★</div>
           <p class="testi-text">"The SEO services provided by Axyntra significantly increased our website traffic and online visibility."</p>
           <div class="testi-author">
             <div class="author-avatar" style="background:linear-gradient(135deg,#7C3AED,#A78BFA);">
-              <img src="img/menam.jpg" alt="Ahmed Sameer" onerror="this.style.display='none'">
-              <span class="initials-fallback">AS</span>
+              <img src="img/menam.jpg" alt="Nifraass Mohamad" onerror="this.style.display='none'">
+              <span class="initials-fallback">NM</span>
             </div>
-            <div>
-              <div class="author-name">Nifraass Mohamad</div>
-              <div class="author-role">Menam Financial Consulting Ltd, Founder</div>
-            </div>
+            <div><div class="author-name">Nifraass Mohamad</div><div class="author-role">Menam Financial Consulting Ltd, Founder</div></div>
           </div>
         </div>
-
-        <!-- Card 6: Rizwan Imran -->
         <div class="testi-card reveal">
           <div class="stars">★★★★★</div>
           <p class="testi-text">"Axyntra created a strong brand identity for our business, giving us a modern and professional look."</p>
@@ -1675,31 +1290,23 @@
               <img src="img/coco.png" alt="Rizwan Imran" onerror="this.style.display='none'">
               <span class="initials-fallback">RI</span>
             </div>
-            <div>
-              <div class="author-name">Rizwan Imran</div>
-              <div class="author-role">Coco Nut, Owner</div>
-            </div>
+            <div><div class="author-name">Rizwan Imran</div><div class="author-role">Coco Nut, Owner</div></div>
           </div>
         </div>
-
-        <!-- Bonus card: extra testimonial to showcase slider -->
         <div class="testi-card reveal">
           <div class="stars">★★★★★</div>
-          <p class="testi-text">"Axyntra’s UX and design approach transformed our digital presence. Highly recommended for any serious brand."</p>
+          <p class="testi-text">"Axyntra's UX and design approach transformed our digital presence. Highly recommended for any serious brand."</p>
           <div class="testi-author">
             <div class="author-avatar" style="background:linear-gradient(135deg,#2563EB,#38BDF8);">
               <img src="img/reacha.jpg" alt="Alina Fernandez" onerror="this.style.display='none'">
               <span class="initials-fallback">AF</span>
             </div>
-            <div>
-              <div class="author-name">Alina Fernandez</div>
-              <div class="author-role">Reacha Nest, Marketing Manager</div>
-            </div>
+            <div><div class="author-name">Alina Fernandez</div><div class="author-role">Reacha Nest, Marketing Manager</div></div>
           </div>
         </div>
       </div>
 
-      <!-- DOTS navigation (pure dot indicators) + optional arrow buttons -->
+      <!-- FIX #2: Dots + arrows are now properly wired in JS below -->
       <div class="slider-dots" id="sliderDots"></div>
       <div class="slider-nav">
         <button class="nav-btn" id="prevBtn" aria-label="Previous">←</button>
@@ -1708,8 +1315,6 @@
     </div>
   </div>
 </section>
-
-
 
 <!-- CONTACT -->
 <section id="contact" class="section">
@@ -1786,462 +1391,253 @@
       </ul>
     </div>
   </div>
-   <div class="footer-bottom">
-   <div style="margin-top:10px; text-align:center; width:100%;">
-    <p class="footer-copy">© 2026 Axyntra Digital Solutions. All rights reserved.</p>
-  <a href="https://himazs.github.io/Axyntra.lk/" style="color:white; text-decoration:none;"> Axyntra.lk </a> </p> 
-</div>
+  <div class="footer-bottom">
+    <div style="margin-top:10px; text-align:center; width:100%;">
+      <p>© 2026 Axyntra Digital Solutions. All rights reserved.</p>
+      <a href="https://himazs.github.io/Axyntra.lk/" style="color:white; text-decoration:none;">Axyntra.lk</a>
+    </div>
+  </div>
 </footer>
 
-<a href="https://wa.me/94703883436" class="wa-fab" target="_blank">
-  <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-    <path d="M13 2C7 2 2 7 2 13c0 1.9.5 3.8 1.4 5.4L2 24l5.8-1.5A11 11 0 0013 24c6 0 11-5 11-11S19 2 13 2z" fill="white"/>
-    <path d="M9 8.5c.2 0 .4.1.5.3l1.2 2.8c0 .2 0 .4-.2.5l-.7.8c.7 1.4 2.1 2.8 3.5 3.5l.8-.7c.1-.2.3-.2.5-.2l2.8 1.2c.2.1.3.3.3.5 0 1.3-1.1 2.3-2.5 2.3C9.5 19.5 6.5 16.5 6.5 13c0-1.4 1-2.5 2.5-2.5" fill="#25D366"/>
+<!-- =====================================================
+     FIX #3: WhatsApp FAB — corrected SVG icon
+     Official WhatsApp phone handset path, white on green
+     ===================================================== -->
+<a href="https://wa.me/94703883436" class="wa-fab" target="_blank" aria-label="Chat on WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Speech bubble body -->
+    <path d="M15 2C7.82 2 2 7.82 2 15c0 2.3.62 4.45 1.7 6.3L2 28l6.9-1.8A13 13 0 0015 28c7.18 0 13-5.82 13-13S22.18 2 15 2z" fill="white"/>
+    <!-- Phone handset — white background needed so use actual WA green for handset on white bg -->
+    <path d="M10.5 9.5c.3 0 .6.1.8.4l1.5 3.3c.1.3.1.6-.1.8l-1 1.1c.9 1.7 2.5 3.3 4.2 4.2l1.1-1c.2-.2.5-.3.8-.1l3.3 1.5c.3.1.4.4.4.7 0 1.7-1.4 3-3 3C12 23 7 18 7 12.5c0-1.6 1.3-3 3-3h.5z" fill="#25D366"/>
   </svg>
 </a>
 
 <script>
-  // Hide fallback initials when image loads successfully
-  document.querySelectorAll('.author-avatar img').forEach(img => {
-    img.addEventListener('load', function() {
-      // Image loaded — hide the fallback span
-      const fallback = this.parentElement.querySelector('span');
-      if (fallback) fallback.style.display = 'none';
-    });
-    img.addEventListener('error', function() {
-      // Image failed — keep fallback visible
-      this.style.display = 'none';
-    });
-    // If already cached/loaded
-    if (img.complete && img.naturalWidth > 0) {
-      const fallback = img.parentElement.querySelector('span');
-      if (fallback) fallback.style.display = 'none';
+  /* ============================================================
+     AVATAR FALLBACK: show initials when image fails to load
+     ============================================================ */
+  document.querySelectorAll('.author-avatar').forEach(avatar => {
+    const img = avatar.querySelector('img');
+    const fallback = avatar.querySelector('.initials-fallback');
+    if (!img || !fallback) return;
+
+    function showFallback() { img.style.display = 'none'; fallback.style.display = 'flex'; }
+    function showImage()    { img.style.display = 'block'; fallback.style.display = 'none'; }
+
+    img.addEventListener('load',  () => { if (img.naturalWidth > 0) showImage(); else showFallback(); });
+    img.addEventListener('error', showFallback);
+
+    // Already resolved (cached)
+    if (img.complete) {
+      img.naturalWidth > 0 ? showImage() : showFallback();
+    } else {
+      // Default: show fallback until image confirms loaded
+      fallback.style.display = 'flex';
     }
   });
 
-  // Canvas background particles
+  /* ============================================================
+     CANVAS BACKGROUND PARTICLES
+     ============================================================ */
   const canvas = document.getElementById('bg-canvas'), ctx = canvas.getContext('2d');
   let W, H, particles = [];
   function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
   function createParticles() {
     particles = [];
     for (let i = 0; i < Math.min(80, Math.floor(W * H / 18000)); i++) {
-      particles.push({ x: Math.random()*W, y: Math.random()*H, r: Math.random()*1.5+0.3, dx: (Math.random()-0.5)*0.3, dy: (Math.random()-0.5)*0.3, alpha: Math.random()*0.5+0.1, hue: Math.random()*40+250 });
+      particles.push({ x: Math.random()*W, y: Math.random()*H, r: Math.random()*1.5+0.3, dx: (Math.random()-.5)*.3, dy: (Math.random()-.5)*.3, alpha: Math.random()*.5+.1, hue: Math.random()*40+250 });
     }
   }
   function draw() {
-    ctx.clearRect(0, 0, W, H);
-    particles.forEach((p, i) => {
-      p.x += p.dx; p.y += p.dy;
-      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
-      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-      ctx.fillStyle = `hsla(${p.hue},70%,70%,${p.alpha})`; ctx.fill();
-      for (let j = i+1; j < particles.length; j++) {
-        let q = particles[j], dist = Math.hypot(p.x-q.x, p.y-q.y);
-        if (dist < 120) {
-          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
-          ctx.strokeStyle = `hsla(270,60%,65%,${0.06*(1-dist/120)})`; ctx.stroke();
-        }
+    ctx.clearRect(0,0,W,H);
+    particles.forEach((p,i) => {
+      p.x+=p.dx; p.y+=p.dy;
+      if(p.x<0) p.x=W; if(p.x>W) p.x=0;
+      if(p.y<0) p.y=H; if(p.y>H) p.y=0;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`hsla(${p.hue},70%,70%,${p.alpha})`; ctx.fill();
+      for(let j=i+1;j<particles.length;j++){
+        let q=particles[j], d=Math.hypot(p.x-q.x,p.y-q.y);
+        if(d<120){ ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle=`hsla(270,60%,65%,${.06*(1-d/120)})`; ctx.stroke(); }
       }
     });
     requestAnimationFrame(draw);
   }
   resize(); createParticles(); draw();
-  window.addEventListener('resize', () => { resize(); createParticles(); });
+  window.addEventListener('resize', ()=>{ resize(); createParticles(); });
 
-  // Custom cursor
+  /* ============================================================
+     CUSTOM CURSOR
+     ============================================================ */
   const dot = document.getElementById('dot'), ring = document.getElementById('ring');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx+'px'; dot.style.top = my+'px'; });
-  function animateCursor() { rx += (mx-rx)*0.12; ry += (my-ry)*0.12; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animateCursor); }
-  animateCursor();
+  let mx=0, my=0, rx=0, ry=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
+  (function animateCursor(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animateCursor); })();
   document.querySelectorAll('a,button,.svc-card').forEach(el => {
-    el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-    el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+    el.addEventListener('mouseenter', ()=>ring.classList.add('hover'));
+    el.addEventListener('mouseleave', ()=>ring.classList.remove('hover'));
   });
 
-  // Nav scroll
+  /* ============================================================
+     NAV: scroll state + mobile hamburger
+     ============================================================ */
   const navEl = document.getElementById('nav');
-  window.addEventListener('scroll', () => { navEl.classList.toggle('scrolled', window.scrollY > 50); });
-
-  // Mobile menu
+  window.addEventListener('scroll', ()=>{ navEl.classList.toggle('scrolled', window.scrollY>50); });
   const ham = document.getElementById('ham'), navLinks = document.getElementById('navLinks');
-  ham.addEventListener('click', () => { ham.classList.toggle('open'); navLinks.classList.toggle('open'); });
-  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => { ham.classList.remove('open'); navLinks.classList.remove('open'); }));
+  ham.addEventListener('click', ()=>{ ham.classList.toggle('open'); navLinks.classList.toggle('open'); });
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', ()=>{ ham.classList.remove('open'); navLinks.classList.remove('open'); }));
 
-  // Scroll reveal
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  /* ============================================================
+     SCROLL REVEAL
+     ============================================================ */
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  // Hero card tilt
+  /* ============================================================
+     HERO CARD TILT
+     ============================================================ */
   const heroCard = document.getElementById('heroCard');
-  if (heroCard) {
+  if(heroCard){
     heroCard.parentElement.addEventListener('mousemove', e => {
-      let rect = heroCard.getBoundingClientRect();
-      let dx = (e.clientX-(rect.left+rect.width/2))/rect.width*12, dy = (e.clientY-(rect.top+rect.height/2))/rect.height*12;
-      heroCard.style.transform = `perspective(800px) rotateY(${dx}deg) rotateX(${-dy}deg)`;
+      let r=heroCard.getBoundingClientRect(), dx=(e.clientX-(r.left+r.width/2))/r.width*12, dy=(e.clientY-(r.top+r.height/2))/r.height*12;
+      heroCard.style.transform=`perspective(800px) rotateY(${dx}deg) rotateX(${-dy}deg)`;
     });
-    heroCard.parentElement.addEventListener('mouseleave', () => { heroCard.style.transform = 'perspective(800px) rotateY(0) rotateX(0)'; });
+    heroCard.parentElement.addEventListener('mouseleave', ()=>{ heroCard.style.transform='perspective(800px) rotateY(0) rotateX(0)'; });
   }
 
-  
-  (function() {
-    const track = document.getElementById('carouselTrack');
-    const leftBtn = document.getElementById('leftArrow');
+  /* ============================================================
+     FIX #1 — PORTFOLIO CAROUSEL
+     Arrows below the grid, dots beneath, keyboard nav, touch drag
+     ============================================================ */
+  (function(){
+    const track    = document.getElementById('carouselTrack');
+    const leftBtn  = document.getElementById('leftArrow');
     const rightBtn = document.getElementById('rightArrow');
-    const dotsContainer = document.getElementById('dotsContainer');
-    
-    // get all cards (exactly 5 portfolio items)
-    const cards = Array.from(document.querySelectorAll('.port-card'));
-    const totalCards = cards.length;   // should be 5
+    const dotsCont = document.getElementById('dotsContainer');
+    const cards    = Array.from(track.querySelectorAll('.port-card'));
+    const total    = cards.length;
+    let current    = 0;
 
-    // Store carousel state: current index (0 = first card)
-    let currentIndex = 0;
+    // Build dots
+    cards.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i===0 ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dotsCont.appendChild(d);
+    });
 
-    // Function to update active dot and also check visibility for reveal animation optional
     function updateDots() {
-      if (!dotsContainer) return;
-      // generate dots if not exist, but we can dynamically create
-      if (dotsContainer.children.length !== totalCards) {
-        dotsContainer.innerHTML = '';
-        for (let i = 0; i < totalCards; i++) {
-          const dot = document.createElement('div');
-          dot.classList.add('dot');
-          dot.dataset.index = i;
-          dot.addEventListener('click', () => {
-            scrollToCardIndex(i);
-          });
-          dotsContainer.appendChild(dot);
-        }
-      }
-      // update active class
-      const dots = Array.from(dotsContainer.children);
-      dots.forEach((dot, idx) => {
-        if (idx === currentIndex) {
-          dot.classList.add('active');
-        } else {
-          dot.classList.remove('active');
-        }
-      });
+      dotsCont.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===current));
     }
 
-    // Scroll to specific card index (smooth horizontal)
-    function scrollToCardIndex(index) {
-      if (!track) return;
-      if (index < 0) index = 0;
-      if (index >= totalCards) index = totalCards - 1;
-      
-      const targetCard = cards[index];
-      if (targetCard) {
-        // calculate scroll left based on card offset relative to track container
-        const containerRect = track.getBoundingClientRect();
-        const cardRect = targetCard.getBoundingClientRect();
-        // get relative offset from container start
-        const scrollOffset = targetCard.offsetLeft - track.offsetLeft;
-        // apply smooth scrolling on track
-        track.scrollTo({
-          left: scrollOffset,
-          behavior: 'smooth'
-        });
-        currentIndex = index;
-        updateDots();
-      }
+    function goTo(index) {
+      current = Math.max(0, Math.min(index, total-1));
+      const card = cards[current];
+      // scrollLeft relative to track container
+      track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+      updateDots();
     }
 
-    // sync current index after manual scroll (user interaction / swipe or drag)
-    function syncIndexFromScroll() {
-      if (!track || cards.length === 0) return;
-      const trackLeft = track.scrollLeft;
-      let closestIndex = 0;
-      let minDistance = Infinity;
-      cards.forEach((card, idx) => {
-        const cardLeft = card.offsetLeft - track.offsetLeft;
-        const distance = Math.abs(cardLeft - trackLeft);
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestIndex = idx;
-        }
-      });
-      if (closestIndex !== currentIndex) {
-        currentIndex = closestIndex;
-        updateDots();
-      }
-    }
+    leftBtn.addEventListener('click',  () => { if(current>0) goTo(current-1); else leftBtn.style.transform='scale(0.9)', setTimeout(()=>leftBtn.style.transform='',150); });
+    rightBtn.addEventListener('click', () => { if(current<total-1) goTo(current+1); else rightBtn.style.transform='scale(0.9)', setTimeout(()=>rightBtn.style.transform='',150); });
 
-    // arrow navigation "rotate line" concept: left/right moves the hidden cards into view
-    function nextSlide() {
-      if (currentIndex + 1 < totalCards) {
-        scrollToCardIndex(currentIndex + 1);
-      } else {
-        // optional: loop? (not requested, but we can optionally stay or just do nothing)
-        // add subtle effect: maybe shake? just stays but no rotation beyond boundaries.
-        if (currentIndex === totalCards - 1) {
-          // visual feedback that it's last
-          rightBtn.style.transform = 'scale(0.95)';
-          setTimeout(() => { rightBtn.style.transform = ''; }, 200);
-        } else {
-          scrollToCardIndex(currentIndex + 1);
-        }
-      }
-    }
-
-    function prevSlide() {
-      if (currentIndex - 1 >= 0) {
-        scrollToCardIndex(currentIndex - 1);
-      } else {
-        leftBtn.style.transform = 'scale(0.95)';
-        setTimeout(() => { leftBtn.style.transform = ''; }, 200);
-      }
-    }
-
-    // Event listeners for arrows
-    leftBtn.addEventListener('click', prevSlide);
-    rightBtn.addEventListener('click', nextSlide);
-
-    // handle scroll end to sync dot (when user finishes drag or momentum)
-    let scrollTimeout;
+    // Sync dot when user manually scrolls (touch / trackpad)
+    let scrollTimer;
     track.addEventListener('scroll', () => {
-      if (scrollTimeout) clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        syncIndexFromScroll();
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        let closest=0, minDist=Infinity;
+        cards.forEach((c,i)=>{ const dist=Math.abs((c.offsetLeft-track.offsetLeft)-track.scrollLeft); if(dist<minDist){minDist=dist;closest=i;} });
+        if(closest!==current){ current=closest; updateDots(); }
       }, 80);
-      // immediate light sync? but we ensure final sync after scroll stop
     });
-    
-    // also perform sync on resize (because offsets may change)
-    window.addEventListener('resize', () => {
-      syncIndexFromScroll();
-      // after resize make sure current card is still in view? re-align
-      if (track && cards[currentIndex]) {
-        const targetLeft = cards[currentIndex].offsetLeft - track.offsetLeft;
-        track.scrollLeft = targetLeft;
+
+    // Keyboard navigation (only when portfolio section is in view)
+    window.addEventListener('keydown', e => {
+      const sect = document.getElementById('portfolio');
+      const r = sect.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0) {
+        if(e.key==='ArrowLeft')  { e.preventDefault(); if(current>0) goTo(current-1); }
+        if(e.key==='ArrowRight') { e.preventDefault(); if(current<total-1) goTo(current+1); }
       }
     });
 
-    // Init: we want to start at first card (index 0), but also ensure 4th & 5th are hidden initially.
-    // since overflow hidden on container and first card visible, cards 4 and 5 (index 3,4) are not shown.
-    // set initial scroll position to 0
+    // Touch drag on the track
+    let touchStartX=0, touchScrollLeft=0;
+    track.addEventListener('touchstart', e=>{ touchStartX=e.touches[0].clientX; touchScrollLeft=track.scrollLeft; }, {passive:true});
+    track.addEventListener('touchend', ()=>{
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(()=>{
+        let closest=0, minDist=Infinity;
+        cards.forEach((c,i)=>{ const dist=Math.abs((c.offsetLeft-track.offsetLeft)-track.scrollLeft); if(dist<minDist){minDist=dist;closest=i;} });
+        current=closest; updateDots();
+      }, 100);
+    });
+
+    // Init
     track.scrollLeft = 0;
-    currentIndex = 0;
     updateDots();
-
-    // make sure that after fonts load or images offsets correct
-    setTimeout(() => {
-      syncIndexFromScroll();
-      // Additional adjustment: re-align if needed
-      if (cards[0]) track.scrollLeft = cards[0].offsetLeft - track.offsetLeft;
-    }, 100);
-    
-    // Optional: Intersection observer for reveal animation (keeps original class reveal)
-    const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -30px 0px" };
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-    
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-    
-    // additional style: to make wrapper not cutting shadows, but relative okay
-    // Ensure that overflow hidden hides content beyond width - but arrows will horizontally scroll line
-    // The scroll container hides scrollbar, but arrows reveal cards 4 & 5 by moving viewport.
-    // Preview requirement: when click right arrow, it rotates line (moves cards left), 4th and 5th become visible step by step.
-    
-    // Also handle keyboard accessibility: left/right arrow keys
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        prevSlide();
-      } else if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        nextSlide();
-      }
-    });
-
-    // Plus for touchpad/edge: ensure dots click work properly, already added dynamically.
-    // For robust active dot after manual scroll we already call syncIndexFromScroll on scroll-end
-    // manual scroll via arrow updates currentIndex, perfect.
-
-    // bonus: Add tooltip to show current progress (not needed but cool)
-    console.log('Carousel ready — Cards 4 & 5 initially hidden, arrows rotate through');
   })();
 
+  /* ============================================================
+     FIX #2 — TESTIMONIAL SLIDER (prevBtn / nextBtn + dots)
+     Previously had zero JS — now fully wired
+     ============================================================ */
+  (function(){
+    const track   = document.getElementById('sliderTrack');
+    const dotsCont= document.getElementById('sliderDots');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const cards   = Array.from(track.querySelectorAll('.testi-card'));
+    const total   = cards.length;
+    let current   = 0;
 
-(function(){
-    // 1) Intersection Observer for reveal animation
-    const revealElements = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          // keep observing not needed, but unobserve after reveal to be light
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: "0px 0px -10px 0px" });
-    
-    revealElements.forEach(el => observer.observe(el));
-    
-    // 2) Fix avatar fallback mechanism: ensure that if image fails to load 
-    //    or has 'display:none' set by onerror, fallback initials become visible.
-    //    but also if image successfully loads, we hide the .initials-fallback via CSS rule?
-    //    We'll implement robust JS fallback sync because some browsers may have caching issues.
-    //    The CSS rule .author-avatar img:not([style*="display: none"]) + .initials-fallback 
-    //    should hide fallback when image is visible. However we also manually force fallback display if image error.
-    
-    const allAvatars = document.querySelectorAll('.author-avatar');
-    allAvatars.forEach(avatar => {
-      const img = avatar.querySelector('img');
-      const fallbackSpan = avatar.querySelector('.initials-fallback');
-      if(!img || !fallbackSpan) return;
-      
-      // if image already complete and failed (naturalWidth=0)
-      const checkImageStatus = () => {
-        if(!img.complete) {
-          // wait for load/error
-          img.addEventListener('load', () => {
-            // image loaded successfully -> hide fallback
-            if(fallbackSpan) fallbackSpan.style.display = 'none';
-            // ensure image visible
-            img.style.display = 'block';
-          });
-          img.addEventListener('error', () => {
-            // image 404 or missing -> show fallback, hide image
-            img.style.display = 'none';
-            if(fallbackSpan) fallbackSpan.style.display = 'flex';
-          });
-        } else {
-          // already complete
-          if(img.naturalWidth === 0 || img.naturalHeight === 0) {
-            // error state
-            img.style.display = 'none';
-            if(fallbackSpan) fallbackSpan.style.display = 'flex';
-          } else {
-            // loaded correctly
-            img.style.display = 'block';
-            if(fallbackSpan) fallbackSpan.style.display = 'none';
-          }
-        }
-      };
-      
-      // also listen to manual onerror (inline onerror sets display:none but we sync)
-      if(img.hasAttribute('onerror')) {
-        const originalError = img.onerror;
-        img.onerror = function(e) {
-          this.style.display = 'none';
-          if(fallbackSpan) fallbackSpan.style.display = 'flex';
-          if(originalError) originalError.call(this, e);
-        };
-      }
-      
-      checkImageStatus();
-      // in case dynamic changes, we also run after load
-      img.addEventListener('load', () => {
-        img.style.display = 'block';
-        if(fallbackSpan) fallbackSpan.style.display = 'none';
-      });
-      img.addEventListener('error', () => {
-        img.style.display = 'none';
-        if(fallbackSpan) fallbackSpan.style.display = 'flex';
-      });
-      
-      // initial style sync
-      if(img.complete && img.naturalWidth === 0) {
-        img.style.display = 'none';
-        fallbackSpan.style.display = 'flex';
-      } else if(img.complete && img.naturalWidth > 0) {
-        img.style.display = 'block';
-        fallbackSpan.style.display = 'none';
-      } else {
-        // not yet loaded; set defaults: fallback hidden until error maybe
-        fallbackSpan.style.display = 'flex'; // show fallback until img loads? cleaner: we show fallback initially then hide on success.
-        // But CSS will manage also. however we need consistent: better to let both visible then hide on success.
-        // but to avoid double text we will pre-hide fallback? No: wait for load.
-        // Actually we want fallback visible only if image fails. So start with fallback visible but image also visible? no.
-        // Wait until load; initial both may show dupe, so we set fallback visible and image visibility auto but image overlapping.
-        // solution: set fallback display: flex, but if image loads we hide fallback. initial image may be empty src? not empty.
-        // fallback default visible, image on load hides fallback. That's user-friendly.
-        fallbackSpan.style.display = 'flex';
-      }
+    // Build dots
+    cards.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'dot' + (i===0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Go to testimonial '+(i+1));
+      d.addEventListener('click', () => goTo(i));
+      dotsCont.appendChild(d);
     });
-    
-    // 3) Horizontal scroll drag improvement (mouse grab)
-    const scrollContainer = document.getElementById('testiScrollContainer');
-    if(scrollContainer) {
-      let isDown = false;
-      let startX;
-      let scrollLeft;
-      
-      scrollContainer.addEventListener('mousedown', (e) => {
-        isDown = true;
-        scrollContainer.style.cursor = 'grabbing';
-        startX = e.pageX - scrollContainer.offsetLeft;
-        scrollLeft = scrollContainer.scrollLeft;
-        e.preventDefault();
-      });
-      
-      scrollContainer.addEventListener('mouseleave', () => {
-        isDown = false;
-        scrollContainer.style.cursor = 'grab';
-      });
-      
-      scrollContainer.addEventListener('mouseup', () => {
-        isDown = false;
-        scrollContainer.style.cursor = 'grab';
-      });
-      
-      scrollContainer.addEventListener('mousemove', (e) => {
-        if(!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - scrollContainer.offsetLeft;
-        const walk = (x - startX) * 1.2; // scroll speed
-        scrollContainer.scrollLeft = scrollLeft - walk;
-      });
-      
-      // set default cursor
-      scrollContainer.style.cursor = 'grab';
-      
-      // optional: touch scroll works natively, just ensure smooth
-      let touchStartX = 0;
-      let touchScrollLeft = 0;
-      scrollContainer.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        touchScrollLeft = scrollContainer.scrollLeft;
-      });
-      scrollContainer.addEventListener('touchmove', (e) => {
-        if(!touchStartX) return;
-        const dx = e.touches[0].clientX - touchStartX;
-        scrollContainer.scrollLeft = touchScrollLeft - dx;
-      });
-      scrollContainer.addEventListener('touchend', () => {
-        touchStartX = 0;
-      });
+
+    function updateDots() {
+      dotsCont.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===current));
     }
-    
-    // Additional fix: if any image fails to load due to missing image files, ensure fallback text shows.
-    // Also ensure author names are not empty. For card mosque we gave name "Masjid Committee" because original had empty .author-name.
-    // The original card 4 .author-name was empty, so I set explicit name: "Masjid Committee" to preserve role clarity.
-    // For final consistency, I manually set author-name for the 4th card as "Masjid Committee".
-    // But using HTML as defined above, we already updated: 4th card .author-name = "Masjid Committee".
-    
-    // final tiny tweak: ensure any broken image (like extra images that might not exist) fallback works
-    const allImgs = document.querySelectorAll('.author-avatar img');
-    allImgs.forEach(img => {
-      if(img.complete && (img.naturalWidth === 0 || img.naturalHeight === 0)) {
-        img.style.display = 'none';
-        const parentAvatar = img.closest('.author-avatar');
-        if(parentAvatar) {
-          const fallbackSpan = parentAvatar.querySelector('.initials-fallback');
-          if(fallbackSpan) fallbackSpan.style.display = 'flex';
-        }
-      }
+
+    function goTo(index) {
+      current = Math.max(0, Math.min(index, total-1));
+      const card = cards[current];
+      track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+      updateDots();
+    }
+
+    prevBtn.addEventListener('click', () => goTo(current-1));
+    nextBtn.addEventListener('click', () => goTo(current+1));
+
+    // Sync dot after manual scroll / swipe
+    let scrollTimer;
+    track.addEventListener('scroll', () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        let closest=0, minDist=Infinity;
+        cards.forEach((c,i)=>{ const dist=Math.abs((c.offsetLeft-track.offsetLeft)-track.scrollLeft); if(dist<minDist){minDist=dist;closest=i;} });
+        if(closest!==current){ current=closest; updateDots(); }
+      }, 80);
     });
+
+    // Mouse drag support for desktop
+    let isDown=false, startX=0, scrollLeft=0;
+    track.addEventListener('mousedown', e=>{ isDown=true; track.style.cursor='grabbing'; startX=e.pageX-track.offsetLeft; scrollLeft=track.scrollLeft; e.preventDefault(); });
+    track.addEventListener('mouseleave',()=>{ isDown=false; track.style.cursor='grab'; });
+    track.addEventListener('mouseup',  ()=>{ isDown=false; track.style.cursor='grab'; });
+    track.addEventListener('mousemove', e=>{ if(!isDown) return; e.preventDefault(); track.scrollLeft=scrollLeft-(e.pageX-track.offsetLeft-startX)*1.2; });
+
+    // Init
+    track.scrollLeft = 0;
+    updateDots();
   })();
 </script>
 </body>
