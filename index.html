@@ -1,0 +1,2247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Axyntra Digital Solution | Premium Digital Agency</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --p: #7C3AED;
+      --p2: #9333EA;
+      --p3: #A855F7;
+      --p4: #C084FC;
+      --p5: #E9D5FF;
+      --glow: rgba(124,58,237,0.35);
+      --glow2: rgba(168,85,247,0.2);
+      --bg: #030108;
+      --bg2: #07030f;
+      --bg3: #0d0720;
+      --card: rgba(13,7,32,0.7);
+      --border: rgba(124,58,237,0.25);
+      --border2: rgba(124,58,237,0.12);
+      --text: #F1EEF9;
+      --text2: #B8B0D4;
+      --text3: #7A7298;
+      --fs-xs: 0.75rem;
+      --fs-sm: 0.875rem;
+      --fs-base: 1rem;
+      --fs-md: 1.125rem;
+      --fs-lg: 1.25rem;
+      --fs-xl: 1.5rem;
+      --fs-2xl: 1.875rem;
+      --fs-3xl: 2.25rem;
+      --fs-4xl: 3rem;
+      --fs-5xl: 3.8rem;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+      cursor: none;
+      font-weight: 400;
+      font-size: var(--fs-base);
+    }
+
+    h1, h2, h3, h4, .logo, .stat h3, .metric-box h4, .hero-title, .section-title, .svc-card h3, .port-info h3, .footer-col h5 {
+      font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    /* Custom cursor */
+    .cursor { position: fixed; pointer-events: none; z-index: 9999; mix-blend-mode: difference; }
+    .cursor-dot {
+      width: 8px; height: 8px;
+      background: white;
+      border-radius: 50%;
+      position: fixed;
+      transform: translate(-50%,-50%);
+      transition: transform 0.1s;
+      top: 0; left: 0;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1.5px solid rgba(255,255,255,0.6);
+      border-radius: 50%;
+      position: fixed;
+      transform: translate(-50%,-50%);
+      transition: all 0.15s ease;
+      top: 0; left: 0;
+    }
+    .cursor-ring.hover { transform: translate(-50%,-50%) scale(1.6); border-color: var(--p4); }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(var(--p),var(--p3)); border-radius: 20px; }
+
+    #bg-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* NAVIGATION */
+    nav {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 5%;
+      transition: all 0.4s ease;
+      border-bottom: 1px solid transparent;
+      backdrop-filter: none;
+    }
+    nav.scrolled {
+      background: rgba(3,1,8,0.88);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-bottom-color: var(--border);
+    }
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #fff 30%, var(--p4));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-decoration: none;
+    }
+    .logo-dot { color: var(--p3); background: none; -webkit-background-clip: unset; background-clip: unset; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      color: var(--text2);
+      letter-spacing: -0.01em;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--p3);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover { color: white; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--p), var(--p2)) !important;
+      padding: 0.6rem 1.8rem !important;
+      border-radius: 50px;
+      color: white !important;
+      font-weight: 600 !important;
+      letter-spacing: 0 !important;
+      box-shadow: 0 0 20px var(--glow);
+      transition: all 0.3s ease !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 0 35px var(--glow) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+    .hamburger span { width: 24px; height: 2px; background: white; border-radius: 4px; transition: all 0.3s; display: block; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+    /* HERO */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 9rem 5% 5rem;
+      position: relative;
+    }
+    .hero-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(124,58,237,0.12);
+      border: 1px solid var(--border);
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--p4);
+      margin-bottom: 1.6rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      background: var(--p3);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text2);
+      max-width: 520px;
+      margin-bottom: 2.4rem;
+      line-height: 1.7;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-prim {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, var(--p), var(--p2));
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 30px var(--glow);
+    }
+    .btn-prim:hover { transform: translateY(-2px); box-shadow: 0 12px 40px var(--glow); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: transparent;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text2);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    .btn-ghost:hover { border-color: var(--p3); color: white; }
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border2);
+    }
+    .stat h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, white, var(--p4));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .stat p { font-size: 0.8rem; font-weight: 450; color: var(--text3); margin-top: 0.2rem; }
+
+    /* HERO VISUAL */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 420px;
+    }
+    .hero-orb {
+      position: absolute;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(124,58,237,0.4) 0%, rgba(124,58,237,0.05) 70%, transparent 100%);
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      animation: orbPulse 4s ease-in-out infinite;
+    }
+    .hero-card {
+      background: rgba(13,7,32,0.85);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      width: 280px;
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(20px);
+      transition: transform 0.3s ease;
+      animation: floatY 5s ease-in-out infinite;
+    }
+    .hero-card-glow {
+      position: absolute;
+      inset: -1px;
+      border-radius: 1.5rem;
+      background: linear-gradient(135deg, rgba(124,58,237,0.3), transparent);
+      z-index: -1;
+    }
+    .card-icon-ring {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--p), var(--p2));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .hero-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .hero-card p { font-size: 0.85rem; color: var(--text2); margin-bottom: 1rem; }
+    .floating-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .chip {
+      background: rgba(124,58,237,0.15);
+      border: 1px solid var(--border2);
+      border-radius: 50px;
+      padding: 0.25rem 0.7rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--p4);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .float-card {
+      position: absolute;
+      background: rgba(13,7,32,0.9);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 0.8rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      backdrop-filter: blur(20px);
+      font-size: 0.75rem;
+      z-index: 3;
+      white-space: nowrap;
+    }
+    .float-card-1 { bottom: 40px; left: -20px; animation: floatY 6s ease-in-out infinite 1s; }
+    .float-card-2 { top: 40px; right: -20px; animation: floatY 6s ease-in-out infinite 2s; }
+    .float-icon {
+      width: 32px; height: 32px;
+      background: rgba(124,58,237,0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* MARQUEE */
+    .marquee-strip {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      padding: 1rem 0;
+      border-top: 1px solid var(--border2);
+      border-bottom: 1px solid var(--border2);
+      background: rgba(124,58,237,0.04);
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 20s linear infinite;
+    }
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0 2rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text3);
+      white-space: nowrap;
+    }
+    .marquee-item svg { opacity: 0.5; fill: none; stroke: var(--p4); }
+
+    /* SECTION COMMONS */
+    .section { padding: 6rem 5%; position: relative; }
+    .wrap { max-width: 1280px; margin: 0 auto; width: 100%; }
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--p4);
+      margin-bottom: 1rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--text2);
+      font-size: 1rem;
+      max-width: 580px;
+      line-height: 1.7;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 2rem;
+    }
+    .about-vis { position: relative; }
+    .about-main-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      backdrop-filter: blur(20px);
+    }
+    .founder-avatar {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, var(--p), var(--p2));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    .about-metric-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .metric-box {
+      background: rgba(124,58,237,0.1);
+      border: 1px solid var(--border2);
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      text-align: center;
+    }
+    .metric-box h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, white, var(--p4));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .metric-box p { font-size: 0.65rem; color: var(--text3); margin-top: 0.2rem; }
+    .about-float {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 0.75rem 1.2rem;
+      font-size: 0.75rem;
+      backdrop-filter: blur(20px);
+    }
+    .about-float div:first-child { font-size: 0.6rem; color: var(--text3); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.2rem; }
+    .about-float div:last-child { font-weight: 600; color: var(--text); }
+    .check-list { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 450;
+      color: var(--text2);
+    }
+    .check-icon {
+      width: 20px; height: 20px;
+      background: linear-gradient(135deg, var(--p), var(--p2));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .about-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .pill {
+      background: rgba(124,58,237,0.12);
+      border: 1px solid var(--border2);
+      border-radius: 50px;
+      padding: 0.35rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--p4);
+    }
+
+    /* SERVICES CARDS */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .svc-card {
+      background: var(--card);
+      border: 1px solid var(--border2);
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .svc-card:hover {
+      border-color: var(--border);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(124,58,237,0.15);
+    }
+    .svc-icon-box {
+      width: 48px; height: 48px;
+      background: rgba(124,58,237,0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .svc-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
+    }
+    .svc-card p { font-size: 0.8rem; font-weight: 450; color: var(--text3); line-height: 1.65; }
+    .svc-arrow { margin-top: 1rem; opacity: 0.4; transition: opacity 0.3s; }
+    .svc-card:hover .svc-arrow { opacity: 1; }
+
+      /* ========= CAROUSEL CONTAINER (horizontal scroll with hidden overflow but arrow navigation) ========= */
+    .portfolio-carousel-wrapper {
+      position: relative;
+      margin-top: 3rem;
+    }
+
+    .port-grid {
+      display: flex;
+      flex-direction: row;
+      gap: 1.8rem;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      scrollbar-width: none;  /* hide scrollbar firefox */
+      -ms-overflow-style: none; /* IE/Edge */
+      padding: 0.5rem 0 1rem;
+      scroll-snap-type: x mandatory;
+    }
+
+    .port-grid::-webkit-scrollbar {
+      display: none;  /* hide scrollbar Chrome/Safari */
+    }
+
+    /* each card now has fixed width, maintaining 3 visible principle but actually we decide visible via hidden scroll */
+    .port-card {
+      flex: 0 0 320px;          /* fixed width cards -> horizontal scroll */
+      background: var(--card);
+      backdrop-filter: blur(2px);
+      border: 1px solid var(--border2);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      scroll-snap-align: start;
+      transform: translateY(0);
+    }
+
+    .port-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border);
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(124,58,237,0.2);
+    }
+
+    .port-visual {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: #0b0b14;
+    }
+
+    .port-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .port-card:hover .port-visual img {
+      transform: scale(1.03);
+    }
+
+    .port-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(40, 20, 80, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(124,58,237,0.6);
+      border-radius: 50px;
+      padding: 0.25rem 0.85rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #e9d5ff;
+      letter-spacing: 0.3px;
+      z-index: 2;
+    }
+
+    .port-info {
+      padding: 1.2rem 1.5rem 1.5rem;
+    }
+
+    .port-info h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: #f3f4ff;
+    }
+
+    .port-info p {
+      font-size: 0.78rem;
+      font-weight: 450;
+      color: var(--text3);
+      line-height: 1.4;
+    }
+
+    /* ARROW BUTTONS - elegant circular and modern */
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      z-index: 10;
+      left: 0;
+      padding: 0 0.2rem;
+    }
+
+    .nav-arrow {
+      pointer-events: auto;
+      background: rgba(20, 24, 40, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(124, 58, 237, 0.5);
+      width: 48px;
+      height: 48px;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      color: #dddaff;
+      font-size: 1.6rem;
+      font-weight: 500;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .nav-arrow:hover {
+      background: #7c3aedcc;
+      border-color: #c084fc;
+      color: white;
+      transform: scale(1.08);
+    }
+
+    /* optional Dots / pagination indicator - subtle */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.65rem;
+      margin-top: 2.5rem;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: #2d334f;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      width: 28px;
+      background: #a78bfa;
+      box-shadow: 0 0 5px #b77cff;
+    }
+
+    /* Reveal animation (optional keep from previous design) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* responsive: on smaller screens, adjust card width to be a bit more compact */
+    @media (max-width: 780px) {
+      .port-card {
+        flex: 0 0 280px;
+      }
+      .nav-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+      }
+      .wrap {
+        padding: 0 1.2rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .port-card {
+        flex: 0 0 260px;
+      }
+    }
+
+    /* extra touch for images fallback */
+    img[onerror] {
+      background: linear-gradient(145deg, #13182b, #0b0f1a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+/* Testimonial Sectio */
+     /* Section header */
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      margin-bottom: 1rem;
+      width: fit-content;
+      justify-content: center;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: -0.01em;
+      margin-bottom: 2.5rem;
+      color: #e3e4eb;
+      text-align: center;
+    }
+
+    /* SLIDER CONTAINER — no visible scrollbar, clean horizontal snaps */
+    .testimonial-slider {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 2rem;
+    }
+
+    .slider-track {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;  /* Firefox: hide scrollbar */
+      gap: 1.8rem;
+      padding: 0.5rem 0.25rem 1.5rem 0.25rem;
+      cursor: grab;
+    }
+
+    /* Hide scrollbar for Chrome/Safari/Edge — no white line */
+    .slider-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slider-track:active {
+      cursor: grabbing;
+    }
+
+    /* Testimonial Card */
+    .testi-card {
+      flex: 0 0 340px;
+      background: var(--card-bg);
+      border-radius: 2rem;
+      padding: 1.8rem;
+      transition: all 0.25s ease;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .testi-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(29, 78, 216, 0.2);
+    }
+
+    /* Stars */
+    .stars {
+      color: #F5B342;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      margin-bottom: 1.2rem;
+    }
+
+    .testi-text {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--text2);
+      margin-bottom: 1.8rem;
+      font-weight: 450;
+      flex: 1;
+    }
+
+    /* Author Row */
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    /* FIXED AVATAR 44px + fallback initials */
+    .author-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: white;
+      font-family: 'Space Grotesk', sans-serif;
+      position: relative;
+      border: 2px solid var(--border);
+      background: linear-gradient(135deg, #1D4ED8, #0EA5E9);
+    }
+
+    .author-avatar img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      border-radius: 50%;
+    }
+
+    /* Fallback initials (centered, visible only when image fails) */
+    .initials-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      background: inherit;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* If image loaded and visible, hide fallback */
+    .author-avatar img:not([style*="display: none"]) + .initials-fallback {
+      display: none;
+    }
+
+    .author-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: #111827;
+    }
+
+    .author-role {
+      font-size: 0.7rem;
+      color: var(--text3);
+      margin-top: 0.2rem;
+      font-weight: 450;
+    }
+
+    /* ----- DOTS NAVIGATION (no white line, pure dots) ----- */
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.7rem;
+      margin-top: 1.8rem;
+      flex-wrap: wrap;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      background-color: var(--dot-inactive);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      padding: 0;
+      outline: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .dot.active {
+      background-color: var(--dot-active);
+      width: 28px;
+      border-radius: 20px;
+      transform: scale(1);
+    }
+
+    .dot:hover:not(.active) {
+      background-color: #9CA3AF;
+      transform: scale(1.1);
+    }
+
+    /* Navigation buttons (left/right arrows) - clean minimal */
+    .slider-nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      margin-top: 1.2rem;
+    }
+
+    .nav-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: white;
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #2C3E66;
+      font-size: 1.2rem;
+      font-weight: 500;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    .nav-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+      transform: scale(1.02);
+    }
+
+    /* reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* special light background contrast for secretary card */
+    .author-avatar[style*="linear-gradient(135deg,#B8C6DB,#D9E2EF)"] .initials-fallback {
+      color: #1F2A44;
+      text-shadow: none;
+      font-weight: 800;
+    }
+
+    @media (max-width: 680px) {
+      .section-title { font-size: 1.8rem; }
+      .testi-card { flex: 0 0 280px; padding: 1.4rem; }
+      .author-name { font-size: 0.85rem; }
+      .slider-nav { justify-content: center; margin-top: 1rem; }
+    }
+
+    /* IMAGE inside avatar: cover + hidden overflow */
+    .author-avatar img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      border-radius: 50%;
+    }
+
+    /* initials span always centered; hidden if image visible */
+    .author-avatar .initials-fallback {
+      position: relative;
+      z-index: 2;
+      background: transparent;
+      font-weight: 600;
+      text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    }
+
+    /* When img exists and is not hidden by onerror, we hide the initials span */
+    .author-avatar img:not([style*="display: none"]) + .initials-fallback,
+    .author-avatar img[style*="display: none"] + .initials-fallback {
+      display: flex; /* img hidden => show fallback */
+    }
+    
+    /* Force fallback to be visible when img is hidden/errored */
+    .author-avatar img[style*="display: none"] + .initials-fallback,
+    .author-avatar img:not([src]) + .initials-fallback {
+      display: flex;
+    }
+    
+    /* but if img loads successfully, we must hide initials */
+    .author-avatar img:not([style*="display: none"]) + .initials-fallback {
+      display: none;
+    }
+
+    /* ensure fallback is visible by default but will be hidden when img OK */
+    .initials-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Text styling */
+    .author-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: #e6e8ec;
+    }
+
+    .author-role {
+      font-size: 0.7rem;
+      color: var(--text3);
+      margin-top: 0.2rem;
+      font-weight: 450;
+      letter-spacing: -0.2px;
+    }
+
+    /* hint for horizontal scroll (mouse UX) */
+    .scroll-hint {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 1rem;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--text3);
+    }
+    .scroll-hint span {
+      background: #EFF2F9;
+      padding: 0.2rem 0.7rem;
+      border-radius: 50px;
+      font-weight: 500;
+    }
+
+    @media (max-width: 680px) {
+      .section-title { font-size: 1.8rem; }
+      .testi-card { flex: 0 0 280px; padding: 1.4rem; }
+      .author-name { font-size: 0.85rem; }
+    }
+
+    /* reveal animation small */
+    .reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+
+
+    /* CONTACT */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-items { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text2);
+    }
+    .contact-item-icon {
+      width: 36px; height: 36px;
+      background: rgba(124,58,237,0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+    .contact-form {
+      background: var(--card);
+      border: 1px solid var(--border2);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      backdrop-filter: blur(20px);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+    .form-group label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text3);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(124,58,237,0.06);
+      border: 1px solid var(--border2);
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 450;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--p3); }
+    .form-group select { appearance: none; cursor: pointer; }
+    .form-group select option { background: var(--bg3); color: var(--text); }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--p), var(--p2));
+      border: none;
+      border-radius: 50px;
+      padding: 0.9rem 2rem;
+      color: white;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 30px var(--glow);
+    }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 40px var(--glow); }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      background: rgba(3,1,8,0.95);
+      border-top: 1px solid var(--border2);
+      padding: 4rem 5% 2rem;
+    }
+    .footer-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border2);
+    }
+    .footer-brand p {
+      font-size: 0.8rem;
+      font-weight: 450;
+      line-height: 1.7;
+      color: var(--text3);
+      margin-top: 1rem;
+      max-width: 260px;
+    }
+    .footer-col h5 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text2);
+      margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-col ul li a {
+      font-size: 0.8rem;
+      font-weight: 450;
+      color: var(--text3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--p4); }
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+      font-size: 0.75rem;
+      color: var(--text3);
+    }
+
+    /* WA FAB */
+    .wa-fab {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px; height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+      z-index: 999;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .wa-fab:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(37,211,102,0.5); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal.visible { opacity: 1; transform: translate(0); }
+
+    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(168,85,247,0.5); } 50% { box-shadow: 0 0 0 6px rgba(168,85,247,0); } }
+    @keyframes orbPulse { 0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; } 50% { transform: translate(-50%,-50%) scale(1.15); opacity: 1; } }
+    @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    @media (max-width: 900px) {
+      .hero-wrap, .about-grid, .contact-wrap { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .float-card { display: none; }
+      .port-grid, .testi-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-metric-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .port-grid, .testi-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      body { cursor: auto; }
+      .cursor-dot, .cursor-ring { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        height: 100vh;
+        background: rgba(3,1,8,0.97);
+        backdrop-filter: blur(30px);
+        padding: 6rem 2rem 2rem;
+        gap: 1.5rem;
+        z-index: 999;
+      }
+      .nav-links.open a { font-size: 1.3rem; font-weight: 600; }
+      .hero-stats { gap: 1.5rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="cursor-dot" id="dot"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<nav id="nav">
+  <a href="#home" class="logo">Axyntra<span class="logo-dot">.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact" class="nav-cta">Start a Project</a></li>
+  </ul>
+  <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-wrap">
+    <div class="hero-left">
+      <div class="hero-badge"><span class="badge-dot"></span>Trusted Digital Partner Since 2023</div>
+      <h1 class="hero-title">Smart Digital<br>Solutions for<br><span style="background:linear-gradient(135deg,var(--p4),var(--p3)); -webkit-background-clip:text; background-clip:text; color:transparent;">Modern Businesses</span></h1>
+      <p class="hero-desc">Axyntra delivers fast, affordable, and future-ready digital experiences — from full‑stack development to AI integrations — backed by reliable after-service support.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-prim"><span>Explore Services</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <a href="#contact" class="btn-ghost">Start a Project <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><h3>50<span style="color:var(--p3)">+</span></h3><p>Happy Clients</p></div>
+        <div class="stat"><h3>100<span style="color:var(--p3)">+</span></h3><p>Projects Delivered</p></div>
+        <div class="stat"><h3>2<span style="color:var(--p3); font-size:1.2rem;">yrs</span></h3><p>Of Excellence</p></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-orb"></div>
+      <div class="hero-card" id="heroCard">
+        <div class="hero-card-glow"></div>
+        <div class="card-icon-ring"><svg width="28" height="28" viewBox="0 0 36 36" fill="none"><path d="M18 4L32 28H4L18 4Z" fill="white" opacity="0.9"/><circle cx="18" cy="22" r="4" fill="rgba(255,255,255,0.5)"/></svg></div>
+        <h3>Innovation Meets Execution</h3>
+        <p>From idea to launch — we craft digital excellence.</p>
+        <div class="floating-chips">
+          <div class="chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="#22C55E"/></svg>AI-Powered</div>
+          <div class="chip">⚡ Fast Delivery</div>
+          <div class="chip">🌍 Global Clients</div>
+        </div>
+      </div>
+      <div class="float-card float-card-1">
+        <div class="float-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 10l4 4 8-8" stroke="#22C55E" stroke-width="2"/></svg></div>
+        <div><div style="font-weight:700; color:var(--text);">Project Launched</div><div style="color:var(--text3);">RetailFlow Platform</div></div>
+      </div>
+      <div class="float-card float-card-2">
+        <div class="float-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v14M2 9h14" stroke="#F5A623" stroke-width="2"/></svg></div>
+        <div><div style="font-weight:700; color:var(--text);">+60% Efficiency</div><div style="color:var(--text3);">AI Chatbot Impact</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE STRIP -->
+<div class="marquee-strip">
+  <div class="marquee-track" id="marqueeTrack">
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)"><circle cx="7" cy="7" r="6"/></svg>Full-Stack Development</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)"><rect x="2" y="2" width="10" height="10" rx="2"/></svg>UI/UX Design</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)"><path d="M7 1l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z"/></svg>AI Integration</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)"><circle cx="7" cy="7" r="6"/></svg>AI Chatbots</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)"><rect x="2" y="2" width="10" height="10" rx="2"/></svg>SEO & Analytics</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="var(--p4)"><path d="M7 1l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z"/></svg>Branding & Social</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="var(--p4)"><circle cx="7" cy="7" r="6"/></svg>Backend Dev</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="var(--p4)"><rect x="2" y="2" width="10" height="10" rx="2"/></svg>Frontend Design</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="var(--p4)"><circle cx="7" cy="7" r="6"/></svg>Full-Stack Dev</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)"><circle cx="7" cy="7" r="6"/></svg>Full-Stack Development</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)"><rect x="2" y="2" width="10" height="10" rx="2"/></svg>UI/UX Design</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)"><path d="M7 1l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z"/></svg>AI Integration</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)"><circle cx="7" cy="7" r="6"/></svg>AI Chatbots</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)"><rect x="2" y="2" width="10" height="10" rx="2"/></svg>SEO & Analytics</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="var(--p4)"><path d="M7 1l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z"/></svg>Branding & Social</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="var(--p4)"><circle cx="7" cy="7" r="6"/></svg>Backend Dev</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="var(--p4)"><rect x="2" y="2" width="10" height="10" rx="2"/></svg>Frontend Design</div>
+    <div class="marquee-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="var(--p4)"><circle cx="7" cy="7" r="6"/></svg>Full-Stack Dev</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-vis reveal">
+        <div class="about-main-card">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#1D4ED8,#0EA5E9);">
+            <img
+              src="img/hms.png"
+              alt="Hassan Habeeb"
+              onerror="this.style.display='none'"
+            >
+            <span id="hh-fallback">HH</span>
+          </div>
+
+          <h3 style="font-family:'Space Grotesk'; margin-bottom:0.25rem;">Mohammed Himas</h3>
+          <p style="color:var(--text3); font-size:0.85rem;">Founder & Lead Developer</p>
+          <p style="color:var(--text2); margin-top:1rem; font-size:0.85rem; line-height:1.7;">Leading a passionate team of undergraduates building world-class digital solutions.</p>
+          <div class="about-metric-row">
+            <div class="metric-box"><h4>50+</h4><p>Happy Clients</p></div>
+            <div class="metric-box"><h4>100+</h4><p>Projects Done</p></div>
+            <div class="metric-box"><h4>2+</h4><p>Years Active</p></div>
+            <div class="metric-box"><h4>5★</h4><p>Avg Rating</p></div>
+          </div>
+        </div>
+        <div class="about-float">
+          <div>BASED IN</div>
+          <div>🌍 Sri Lanka & Worldwide</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-eyebrow">Who We Are</div>
+        <h2 class="section-title">Crafting Digital Excellence with Purpose</h2>
+        <p style="color:var(--text2); line-height:1.8; margin-bottom:1.5rem;">Established in 2023 by a passionate group of undergraduates, Axyntra was built on one belief: every business deserves world-class digital services at accessible price points.</p>
+        <div class="check-list">
+          <div class="check-item"><div class="check-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5"/></svg></div>100% project handover with documentation</div>
+          <div class="check-item"><div class="check-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5"/></svg></div>Reliable after-service support for every client</div>
+          <div class="check-item"><div class="check-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5"/></svg></div>50+ satisfied customers across multiple countries</div>
+        </div>
+        <div class="about-pills">
+          <div class="pill">⚡ Fast Delivery</div>
+          <div class="pill">🤝 After-Service</div>
+          <div class="pill">🌍 Worldwide Clients</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <div class="wrap">
+    <div style="text-align:center;">
+      <div class="section-eyebrow" style="justify-content:center;">What We Do</div>
+      <h2 class="section-title">Complete Digital Solutions</h2>
+      <p class="section-sub" style="margin:0 auto;">From AI integration to brand identity — we cover every digital need for modern businesses globally.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card reveal"><div class="svc-icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="var(--p4)" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="var(--p4)" stroke-width="1.5"/></svg></div><h3>Full-Stack Development</h3><p>Scalable web apps using React, Node, Laravel — built for performance.</p><div class="svc-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)" stroke-width="1.5"><path d="M3 7h8M7 3l4 4-4 4"/></svg></div></div>
+      <div class="svc-card reveal"><div class="svc-icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="var(--p4)" stroke-width="1.5"/><path d="M8 12h8M12 8l4 4-4 4" stroke="var(--p4)" stroke-width="1.5"/></svg></div><h3>UI/UX Design</h3><p>User-centric interfaces & prototypes that convert visitors.</p><div class="svc-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)" stroke-width="1.5"><path d="M3 7h8M7 3l4 4-4 4"/></svg></div></div>
+      <div class="svc-card reveal"><div class="svc-icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2a4 4 0 014 4c0 1.2-.5 2.3-1.3 3.1L17 22H7l2.3-12.9A4 4 0 018 6a4 4 0 014-4z" stroke="var(--p4)" stroke-width="1.5"/></svg></div><h3>AI Integration & Training</h3><p>Custom AI models, LLM fine-tuning & workflow automation.</p><div class="svc-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)" stroke-width="1.5"><path d="M3 7h8M7 3l4 4-4 4"/></svg></div></div>
+      <div class="svc-card reveal"><div class="svc-icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="14" rx="2" stroke="var(--p4)" stroke-width="1.5"/><circle cx="8" cy="10" r="2" stroke="var(--p4)" stroke-width="1.5"/></svg></div><h3>AI Chatbot Creation</h3><p>Smart conversational AI for websites — 24/7 lead generation.</p><div class="svc-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)" stroke-width="1.5"><path d="M3 7h8M7 3l4 4-4 4"/></svg></div></div>
+      <div class="svc-card reveal"><div class="svc-icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 20V14l5-8 4 6 3-4 4 5v7H3z" stroke="var(--p4)" stroke-width="1.5"/></svg></div><h3>SEO & Data Analysis</h3><p>Data-driven SEO, analytics dashboards for growth.</p><div class="svc-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)" stroke-width="1.5"><path d="M3 7h8M7 3l4 4-4 4"/></svg></div></div>
+      <div class="svc-card reveal"><div class="svc-icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 16l4-8 4 6 3-4 5 6" stroke="var(--p4)" stroke-width="1.5"/><circle cx="19" cy="5" r="3" stroke="var(--p4)" stroke-width="1.5"/></svg></div><h3>Branding & Social Media</h3><p>Logo design, creative posts, strategic management.</p><div class="svc-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)" stroke-width="1.5"><path d="M3 7h8M7 3l4 4-4 4"/></svg></div></div>
+      <div class="svc-card reveal"><div class="svc-icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2" stroke="var(--p4)" stroke-width="1.5"/><path d="M9 9l6 6M15 9l-6 6" stroke="var(--p4)" stroke-width="1.5"/></svg></div><h3>Backend Development</h3><p>Secure REST APIs, database architecture and cloud solutions.</p><div class="svc-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)" stroke-width="1.5"><path d="M3 7h8M7 3l4 4-4 4"/></svg></div></div>
+      <div class="svc-card reveal"><div class="svc-icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="16" rx="2" stroke="var(--p4)" stroke-width="1.5"/><path d="M7 8l-3 4 3 4M17 8l3 4-3 4M13 6l-2 12" stroke="var(--p4)" stroke-width="1.5"/></svg></div><h3>Frontend Design & Dev</h3><p>Pixel-perfect, responsive interfaces with modern frameworks.</p><div class="svc-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--p4)" stroke-width="1.5"><path d="M3 7h8M7 3l4 4-4 4"/></svg></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio" class="section">
+  <div class="wrap">
+    <div class="section-eyebrow">Our Work</div>
+    <h2 class="section-title">Where Ideas Turn Into Results</h2>
+    
+    <div class="portfolio-carousel-wrapper">
+      <!-- horizontal scroll container (cards are inline) -->
+      <div class="port-grid" id="carouselTrack">
+        <!-- Card 1 - E-Commerce -->
+        <div class="port-card reveal">
+          <div class="port-visual" style="background:#000; overflow:hidden;">
+              <div class="port-tag">E-Commerce</div>
+    <img
+      src="img/e.png"
+      alt="SEO Optimization Project"
+      onerror="this.style.display='none'">
+  </div>
+          <div class="port-info">
+            <h3>E-Commerce Suite</h3>
+            <p>Full-stack platform with AI recommendations</p>
+          </div>
+        </div>
+
+        <!-- Card 2 - AI Product -->
+        <div class="port-card reveal">
+          <div class="port-visual" style="background:#000; overflow:hidden;">
+             <div class="port-tag">AI Product</div>
+    <img
+      src="img/ai.png"
+      alt="SEO Optimization Project"
+      onerror="this.style.display='none'">
+  </div>
+
+          <div class="port-info">
+            <h3>AI Support Chatbot</h3>
+            <p>60% ticket reduction achieved</p>
+          </div>
+        </div>
+
+        <!-- Card 3 - Analytics Dashboard -->
+        <div class="port-card reveal">
+          <div class="port-visual" style="background:#000; overflow:hidden;">
+              <div class="port-tag">Analytics</div>
+    <img
+      src="img/ana.png"
+      alt="SEO Optimization Project"
+      onerror="this.style.display='none'">
+  </div>
+          <div class="port-info">
+            <h3>Analytics Dashboard</h3>
+            <p>Real-time insights platform</p>
+          </div>
+        </div>
+
+        <!-- Card 4 - SEO Optimization (hidden from default view, but scrollable via arrows) -->
+        <div class="port-card reveal">
+          <div class="port-visual" style="background:#000; overflow:hidden;">
+            <div class="port-tag">SEO</div>
+    <img
+      src="img/2.png"
+      alt="SEO Optimization Project"
+      onerror="this.style.display='none'">
+  </div>
+
+          <div class="port-info">
+            <h3>SEO Optimization</h3>
+            <p>Improved Google ranking & organic traffic +180%</p>
+          </div>
+        </div>
+
+        <!-- Card 5 - Branding Identity (initially off-screen right) -->
+        <div class="port-card reveal">
+          <div class="port-visual" style="background:#000; overflow:hidden;">
+             <div class="port-tag">Branding</div>
+    <img
+      src="img/1.png"
+      alt="Branding Project"
+      onerror="this.style.display='none'">
+  </div>
+
+          <div class="port-info">
+            <h3>Brand Identity Design</h3>
+            <p>Modern logo, complete identity & design system</p>
+          </div>
+        </div>
+
+        <!-- (Optional extra card but we keep exactly 5 as requirement 
+         show 3 initially, 4 and 5 hidden via overflow; arrow navigation will scroll line smoothly) -->
+      </div>
+
+      <!-- Navigation Arrows (right/left) -->
+      <div class="carousel-nav">
+        <div class="nav-arrow" id="leftArrow">←</div>
+        <div class="nav-arrow" id="rightArrow">→</div>
+      </div>
+    </div>
+
+    <!-- Dot pagination indicator reflects visible position (based on scroll index) -->
+    <div class="carousel-dots" id="dotsContainer"></div>
+  </div>
+</section>
+
+<section id="testimonials" class="section">
+  <div class="wrap">
+    <div style="text-align:center;">
+      <div class="section-eyebrow" style="margin-left: auto; margin-right: auto;">Testimonials</div>
+      <h2 class="section-title">What Our Clients Say</h2>
+    </div>
+
+    <div class="testimonial-slider">
+      <!-- Slider track (horizontal, no scrollbar line) -->
+      <div class="slider-track" id="sliderTrack">
+        <!-- Card 1: Mohammed Afras -->
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Axyntra delivered our e-commerce platform faster than expected. Their after-service support is exceptional."</p>
+          <div class="testi-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#1D4ED8,#0EA5E9);">
+              <img src="img/Hitec.png" alt="Mohammed Afras" onerror="this.style.display='none'">
+              <span class="initials-fallback">MA</span>
+            </div>
+            <div>
+              <div class="author-name">Mohammed Afras</div>
+              <div class="author-role">CEO, Hitec-Shoes</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Hassan Habeeb (Victoria Shoes) -->
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"The team at Axyntra provided an excellent eCommerce website with great performance and user experience."</p>
+          <div class="testi-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#1D4ED8,#0EA5E9);">
+              <img src="img/victoria.jpg" alt="Hassan Habeeb" onerror="this.style.display='none'">
+              <span class="initials-fallback">HH</span>
+            </div>
+            <div>
+              <div class="author-name">Hassan Habeeb</div>
+              <div class="author-role">CEO, Victoria Shoes</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Faris Ahamed (Social media) -->
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Axyntra designed creative and eye-catching social media flyers that strengthened our brand presence and engagement."</p>
+          <div class="testi-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#0EA5E9,#22D3EE);">
+              <img src="img/99.png" alt="Faris Ahamed" onerror="this.style.display='none'">
+              <span class="initials-fallback">FA</span>
+            </div>
+            <div>
+              <div class="author-name">Faris Ahamed</div>
+              <div class="author-role">99 group pvt Ltd, Brand Manager</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Secretary Masjidul Hassaniya -->
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"We appreciate Axyntra's work in delivering a reliable and easy-to-manage website for our mosque."</p>
+          <div class="testi-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#edeff1,#e7e8e9);">
+              <img src="img/Mosque.png" alt="Secretary Masjid" onerror="this.style.display='none'">
+              <span class="initials-fallback">MH</span>
+            </div>
+            <div>
+              <div class="author-name">Masjid Committee</div>
+              <div class="author-role">Secretary, Masjidul Hassaniya</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Ahmed Sameer -->
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"The SEO services provided by Axyntra significantly increased our website traffic and online visibility."</p>
+          <div class="testi-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#7C3AED,#A78BFA);">
+              <img src="img/menam.jpg" alt="Ahmed Sameer" onerror="this.style.display='none'">
+              <span class="initials-fallback">AS</span>
+            </div>
+            <div>
+              <div class="author-name">Nifraass Mohamad</div>
+              <div class="author-role">Menam Financial Consulting Ltd, Founder</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6: Rizwan Imran -->
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Axyntra created a strong brand identity for our business, giving us a modern and professional look."</p>
+          <div class="testi-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#DC2626,#F97316);">
+              <img src="img/coco.png" alt="Rizwan Imran" onerror="this.style.display='none'">
+              <span class="initials-fallback">RI</span>
+            </div>
+            <div>
+              <div class="author-name">Rizwan Imran</div>
+              <div class="author-role">Coco Nut, Owner</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bonus card: extra testimonial to showcase slider -->
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Axyntra’s UX and design approach transformed our digital presence. Highly recommended for any serious brand."</p>
+          <div class="testi-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#2563EB,#38BDF8);">
+              <img src="img/reacha.jpg" alt="Alina Fernandez" onerror="this.style.display='none'">
+              <span class="initials-fallback">AF</span>
+            </div>
+            <div>
+              <div class="author-name">Alina Fernandez</div>
+              <div class="author-role">Reacha Nest, Marketing Manager</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DOTS navigation (pure dot indicators) + optional arrow buttons -->
+      <div class="slider-dots" id="sliderDots"></div>
+      <div class="slider-nav">
+        <button class="nav-btn" id="prevBtn" aria-label="Previous">←</button>
+        <button class="nav-btn" id="nextBtn" aria-label="Next">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="wrap">
+    <div class="contact-wrap">
+      <div class="reveal">
+        <div class="section-eyebrow">Get in Touch</div>
+        <h2 style="font-family:'Space Grotesk'; font-size:clamp(1.8rem,3vw,2.6rem); font-weight:700; letter-spacing:-0.02em; margin-bottom:1rem;">Let's Build Something<br><span style="background:linear-gradient(135deg,var(--p4),var(--p3));-webkit-background-clip:text;background-clip:text;color:transparent;">Great Together</span></h2>
+        <p style="color:var(--text2); line-height:1.7; margin-bottom:2rem;">Have a project in mind? We're ready to bring your ideas to life with speed and quality.</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 4h14a1 1 0 011 1v8a1 1 0 01-1 1H2a1 1 0 01-1-1V5a1 1 0 011-1z" stroke="var(--p4)" stroke-width="1.3"/><path d="M1 5l8 6 8-6" stroke="var(--p4)" stroke-width="1.3"/></svg></div>
+            hello.axyntra@gmail.com
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📞</div>
+            +94 70388 3436 (WhatsApp)
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <div class="form-row">
+          <div class="form-group"><label>Full Name</label><input type="text" placeholder="Mohammed Himas"></div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="hello@example.com"></div>
+        </div>
+        <div class="form-group">
+          <label>Service</label>
+          <select>
+            <option>Full-Stack Development</option>
+            <option>UI/UX Design</option>
+            <option>AI Integration & Training</option>
+            <option>AI Chatbot Creation</option>
+            <option>SEO & Data Analysis</option>
+            <option>Branding & Social Media</option>
+            <option>Backend Development</option>
+            <option>Frontend Design & Dev</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Project Details</label><textarea rows="4" placeholder="Tell us about your project..."></textarea></div>
+        <button class="btn-submit">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#home" class="logo">Axyntra<span class="logo-dot">.</span></a>
+      <p>Quick, affordable, trusted digital solutions — founded by Mohammed Himas & a passionate team.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">AI Integration</a></li>
+        <li><a href="#services">Web Development</a></li>
+        <li><a href="#services">UI/UX Design</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="mailto:hello.axyntra@gmail.com">hello.axyntra@gmail.com</a></li>
+        <li><a href="https://wa.me/94703883436" target="_blank">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Axyntra Digital Solution</span>
+    <span>Built with <span style="color:var(--p3);">✦</span> for global clients</span>
+  </div>
+</footer>
+
+<a href="https://wa.me/94703883436" class="wa-fab" target="_blank">
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+    <path d="M13 2C7 2 2 7 2 13c0 1.9.5 3.8 1.4 5.4L2 24l5.8-1.5A11 11 0 0013 24c6 0 11-5 11-11S19 2 13 2z" fill="white"/>
+    <path d="M9 8.5c.2 0 .4.1.5.3l1.2 2.8c0 .2 0 .4-.2.5l-.7.8c.7 1.4 2.1 2.8 3.5 3.5l.8-.7c.1-.2.3-.2.5-.2l2.8 1.2c.2.1.3.3.3.5 0 1.3-1.1 2.3-2.5 2.3C9.5 19.5 6.5 16.5 6.5 13c0-1.4 1-2.5 2.5-2.5" fill="#25D366"/>
+  </svg>
+</a>
+
+<script>
+  // Hide fallback initials when image loads successfully
+  document.querySelectorAll('.author-avatar img').forEach(img => {
+    img.addEventListener('load', function() {
+      // Image loaded — hide the fallback span
+      const fallback = this.parentElement.querySelector('span');
+      if (fallback) fallback.style.display = 'none';
+    });
+    img.addEventListener('error', function() {
+      // Image failed — keep fallback visible
+      this.style.display = 'none';
+    });
+    // If already cached/loaded
+    if (img.complete && img.naturalWidth > 0) {
+      const fallback = img.parentElement.querySelector('span');
+      if (fallback) fallback.style.display = 'none';
+    }
+  });
+
+  // Canvas background particles
+  const canvas = document.getElementById('bg-canvas'), ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  function createParticles() {
+    particles = [];
+    for (let i = 0; i < Math.min(80, Math.floor(W * H / 18000)); i++) {
+      particles.push({ x: Math.random()*W, y: Math.random()*H, r: Math.random()*1.5+0.3, dx: (Math.random()-0.5)*0.3, dy: (Math.random()-0.5)*0.3, alpha: Math.random()*0.5+0.1, hue: Math.random()*40+250 });
+    }
+  }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach((p, i) => {
+      p.x += p.dx; p.y += p.dy;
+      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = `hsla(${p.hue},70%,70%,${p.alpha})`; ctx.fill();
+      for (let j = i+1; j < particles.length; j++) {
+        let q = particles[j], dist = Math.hypot(p.x-q.x, p.y-q.y);
+        if (dist < 120) {
+          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+          ctx.strokeStyle = `hsla(270,60%,65%,${0.06*(1-dist/120)})`; ctx.stroke();
+        }
+      }
+    });
+    requestAnimationFrame(draw);
+  }
+  resize(); createParticles(); draw();
+  window.addEventListener('resize', () => { resize(); createParticles(); });
+
+  // Custom cursor
+  const dot = document.getElementById('dot'), ring = document.getElementById('ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx+'px'; dot.style.top = my+'px'; });
+  function animateCursor() { rx += (mx-rx)*0.12; ry += (my-ry)*0.12; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animateCursor); }
+  animateCursor();
+  document.querySelectorAll('a,button,.svc-card').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+  });
+
+  // Nav scroll
+  const navEl = document.getElementById('nav');
+  window.addEventListener('scroll', () => { navEl.classList.toggle('scrolled', window.scrollY > 50); });
+
+  // Mobile menu
+  const ham = document.getElementById('ham'), navLinks = document.getElementById('navLinks');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); navLinks.classList.toggle('open'); });
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => { ham.classList.remove('open'); navLinks.classList.remove('open'); }));
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Hero card tilt
+  const heroCard = document.getElementById('heroCard');
+  if (heroCard) {
+    heroCard.parentElement.addEventListener('mousemove', e => {
+      let rect = heroCard.getBoundingClientRect();
+      let dx = (e.clientX-(rect.left+rect.width/2))/rect.width*12, dy = (e.clientY-(rect.top+rect.height/2))/rect.height*12;
+      heroCard.style.transform = `perspective(800px) rotateY(${dx}deg) rotateX(${-dy}deg)`;
+    });
+    heroCard.parentElement.addEventListener('mouseleave', () => { heroCard.style.transform = 'perspective(800px) rotateY(0) rotateX(0)'; });
+  }
+
+  
+  (function() {
+    const track = document.getElementById('carouselTrack');
+    const leftBtn = document.getElementById('leftArrow');
+    const rightBtn = document.getElementById('rightArrow');
+    const dotsContainer = document.getElementById('dotsContainer');
+    
+    // get all cards (exactly 5 portfolio items)
+    const cards = Array.from(document.querySelectorAll('.port-card'));
+    const totalCards = cards.length;   // should be 5
+
+    // Store carousel state: current index (0 = first card)
+    let currentIndex = 0;
+
+    // Function to update active dot and also check visibility for reveal animation optional
+    function updateDots() {
+      if (!dotsContainer) return;
+      // generate dots if not exist, but we can dynamically create
+      if (dotsContainer.children.length !== totalCards) {
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalCards; i++) {
+          const dot = document.createElement('div');
+          dot.classList.add('dot');
+          dot.dataset.index = i;
+          dot.addEventListener('click', () => {
+            scrollToCardIndex(i);
+          });
+          dotsContainer.appendChild(dot);
+        }
+      }
+      // update active class
+      const dots = Array.from(dotsContainer.children);
+      dots.forEach((dot, idx) => {
+        if (idx === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    // Scroll to specific card index (smooth horizontal)
+    function scrollToCardIndex(index) {
+      if (!track) return;
+      if (index < 0) index = 0;
+      if (index >= totalCards) index = totalCards - 1;
+      
+      const targetCard = cards[index];
+      if (targetCard) {
+        // calculate scroll left based on card offset relative to track container
+        const containerRect = track.getBoundingClientRect();
+        const cardRect = targetCard.getBoundingClientRect();
+        // get relative offset from container start
+        const scrollOffset = targetCard.offsetLeft - track.offsetLeft;
+        // apply smooth scrolling on track
+        track.scrollTo({
+          left: scrollOffset,
+          behavior: 'smooth'
+        });
+        currentIndex = index;
+        updateDots();
+      }
+    }
+
+    // sync current index after manual scroll (user interaction / swipe or drag)
+    function syncIndexFromScroll() {
+      if (!track || cards.length === 0) return;
+      const trackLeft = track.scrollLeft;
+      let closestIndex = 0;
+      let minDistance = Infinity;
+      cards.forEach((card, idx) => {
+        const cardLeft = card.offsetLeft - track.offsetLeft;
+        const distance = Math.abs(cardLeft - trackLeft);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = idx;
+        }
+      });
+      if (closestIndex !== currentIndex) {
+        currentIndex = closestIndex;
+        updateDots();
+      }
+    }
+
+    // arrow navigation "rotate line" concept: left/right moves the hidden cards into view
+    function nextSlide() {
+      if (currentIndex + 1 < totalCards) {
+        scrollToCardIndex(currentIndex + 1);
+      } else {
+        // optional: loop? (not requested, but we can optionally stay or just do nothing)
+        // add subtle effect: maybe shake? just stays but no rotation beyond boundaries.
+        if (currentIndex === totalCards - 1) {
+          // visual feedback that it's last
+          rightBtn.style.transform = 'scale(0.95)';
+          setTimeout(() => { rightBtn.style.transform = ''; }, 200);
+        } else {
+          scrollToCardIndex(currentIndex + 1);
+        }
+      }
+    }
+
+    function prevSlide() {
+      if (currentIndex - 1 >= 0) {
+        scrollToCardIndex(currentIndex - 1);
+      } else {
+        leftBtn.style.transform = 'scale(0.95)';
+        setTimeout(() => { leftBtn.style.transform = ''; }, 200);
+      }
+    }
+
+    // Event listeners for arrows
+    leftBtn.addEventListener('click', prevSlide);
+    rightBtn.addEventListener('click', nextSlide);
+
+    // handle scroll end to sync dot (when user finishes drag or momentum)
+    let scrollTimeout;
+    track.addEventListener('scroll', () => {
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        syncIndexFromScroll();
+      }, 80);
+      // immediate light sync? but we ensure final sync after scroll stop
+    });
+    
+    // also perform sync on resize (because offsets may change)
+    window.addEventListener('resize', () => {
+      syncIndexFromScroll();
+      // after resize make sure current card is still in view? re-align
+      if (track && cards[currentIndex]) {
+        const targetLeft = cards[currentIndex].offsetLeft - track.offsetLeft;
+        track.scrollLeft = targetLeft;
+      }
+    });
+
+    // Init: we want to start at first card (index 0), but also ensure 4th & 5th are hidden initially.
+    // since overflow hidden on container and first card visible, cards 4 and 5 (index 3,4) are not shown.
+    // set initial scroll position to 0
+    track.scrollLeft = 0;
+    currentIndex = 0;
+    updateDots();
+
+    // make sure that after fonts load or images offsets correct
+    setTimeout(() => {
+      syncIndexFromScroll();
+      // Additional adjustment: re-align if needed
+      if (cards[0]) track.scrollLeft = cards[0].offsetLeft - track.offsetLeft;
+    }, 100);
+    
+    // Optional: Intersection observer for reveal animation (keeps original class reveal)
+    const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -30px 0px" };
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    
+    // additional style: to make wrapper not cutting shadows, but relative okay
+    // Ensure that overflow hidden hides content beyond width - but arrows will horizontally scroll line
+    // The scroll container hides scrollbar, but arrows reveal cards 4 & 5 by moving viewport.
+    // Preview requirement: when click right arrow, it rotates line (moves cards left), 4th and 5th become visible step by step.
+    
+    // Also handle keyboard accessibility: left/right arrow keys
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        nextSlide();
+      }
+    });
+
+    // Plus for touchpad/edge: ensure dots click work properly, already added dynamically.
+    // For robust active dot after manual scroll we already call syncIndexFromScroll on scroll-end
+    // manual scroll via arrow updates currentIndex, perfect.
+
+    // bonus: Add tooltip to show current progress (not needed but cool)
+    console.log('Carousel ready — Cards 4 & 5 initially hidden, arrows rotate through');
+  })();
+
+
+(function(){
+    // 1) Intersection Observer for reveal animation
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          // keep observing not needed, but unobserve after reveal to be light
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -10px 0px" });
+    
+    revealElements.forEach(el => observer.observe(el));
+    
+    // 2) Fix avatar fallback mechanism: ensure that if image fails to load 
+    //    or has 'display:none' set by onerror, fallback initials become visible.
+    //    but also if image successfully loads, we hide the .initials-fallback via CSS rule?
+    //    We'll implement robust JS fallback sync because some browsers may have caching issues.
+    //    The CSS rule .author-avatar img:not([style*="display: none"]) + .initials-fallback 
+    //    should hide fallback when image is visible. However we also manually force fallback display if image error.
+    
+    const allAvatars = document.querySelectorAll('.author-avatar');
+    allAvatars.forEach(avatar => {
+      const img = avatar.querySelector('img');
+      const fallbackSpan = avatar.querySelector('.initials-fallback');
+      if(!img || !fallbackSpan) return;
+      
+      // if image already complete and failed (naturalWidth=0)
+      const checkImageStatus = () => {
+        if(!img.complete) {
+          // wait for load/error
+          img.addEventListener('load', () => {
+            // image loaded successfully -> hide fallback
+            if(fallbackSpan) fallbackSpan.style.display = 'none';
+            // ensure image visible
+            img.style.display = 'block';
+          });
+          img.addEventListener('error', () => {
+            // image 404 or missing -> show fallback, hide image
+            img.style.display = 'none';
+            if(fallbackSpan) fallbackSpan.style.display = 'flex';
+          });
+        } else {
+          // already complete
+          if(img.naturalWidth === 0 || img.naturalHeight === 0) {
+            // error state
+            img.style.display = 'none';
+            if(fallbackSpan) fallbackSpan.style.display = 'flex';
+          } else {
+            // loaded correctly
+            img.style.display = 'block';
+            if(fallbackSpan) fallbackSpan.style.display = 'none';
+          }
+        }
+      };
+      
+      // also listen to manual onerror (inline onerror sets display:none but we sync)
+      if(img.hasAttribute('onerror')) {
+        const originalError = img.onerror;
+        img.onerror = function(e) {
+          this.style.display = 'none';
+          if(fallbackSpan) fallbackSpan.style.display = 'flex';
+          if(originalError) originalError.call(this, e);
+        };
+      }
+      
+      checkImageStatus();
+      // in case dynamic changes, we also run after load
+      img.addEventListener('load', () => {
+        img.style.display = 'block';
+        if(fallbackSpan) fallbackSpan.style.display = 'none';
+      });
+      img.addEventListener('error', () => {
+        img.style.display = 'none';
+        if(fallbackSpan) fallbackSpan.style.display = 'flex';
+      });
+      
+      // initial style sync
+      if(img.complete && img.naturalWidth === 0) {
+        img.style.display = 'none';
+        fallbackSpan.style.display = 'flex';
+      } else if(img.complete && img.naturalWidth > 0) {
+        img.style.display = 'block';
+        fallbackSpan.style.display = 'none';
+      } else {
+        // not yet loaded; set defaults: fallback hidden until error maybe
+        fallbackSpan.style.display = 'flex'; // show fallback until img loads? cleaner: we show fallback initially then hide on success.
+        // But CSS will manage also. however we need consistent: better to let both visible then hide on success.
+        // but to avoid double text we will pre-hide fallback? No: wait for load.
+        // Actually we want fallback visible only if image fails. So start with fallback visible but image also visible? no.
+        // Wait until load; initial both may show dupe, so we set fallback visible and image visibility auto but image overlapping.
+        // solution: set fallback display: flex, but if image loads we hide fallback. initial image may be empty src? not empty.
+        // fallback default visible, image on load hides fallback. That's user-friendly.
+        fallbackSpan.style.display = 'flex';
+      }
+    });
+    
+    // 3) Horizontal scroll drag improvement (mouse grab)
+    const scrollContainer = document.getElementById('testiScrollContainer');
+    if(scrollContainer) {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      
+      scrollContainer.addEventListener('mousedown', (e) => {
+        isDown = true;
+        scrollContainer.style.cursor = 'grabbing';
+        startX = e.pageX - scrollContainer.offsetLeft;
+        scrollLeft = scrollContainer.scrollLeft;
+        e.preventDefault();
+      });
+      
+      scrollContainer.addEventListener('mouseleave', () => {
+        isDown = false;
+        scrollContainer.style.cursor = 'grab';
+      });
+      
+      scrollContainer.addEventListener('mouseup', () => {
+        isDown = false;
+        scrollContainer.style.cursor = 'grab';
+      });
+      
+      scrollContainer.addEventListener('mousemove', (e) => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - scrollContainer.offsetLeft;
+        const walk = (x - startX) * 1.2; // scroll speed
+        scrollContainer.scrollLeft = scrollLeft - walk;
+      });
+      
+      // set default cursor
+      scrollContainer.style.cursor = 'grab';
+      
+      // optional: touch scroll works natively, just ensure smooth
+      let touchStartX = 0;
+      let touchScrollLeft = 0;
+      scrollContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchScrollLeft = scrollContainer.scrollLeft;
+      });
+      scrollContainer.addEventListener('touchmove', (e) => {
+        if(!touchStartX) return;
+        const dx = e.touches[0].clientX - touchStartX;
+        scrollContainer.scrollLeft = touchScrollLeft - dx;
+      });
+      scrollContainer.addEventListener('touchend', () => {
+        touchStartX = 0;
+      });
+    }
+    
+    // Additional fix: if any image fails to load due to missing image files, ensure fallback text shows.
+    // Also ensure author names are not empty. For card mosque we gave name "Masjid Committee" because original had empty .author-name.
+    // The original card 4 .author-name was empty, so I set explicit name: "Masjid Committee" to preserve role clarity.
+    // For final consistency, I manually set author-name for the 4th card as "Masjid Committee".
+    // But using HTML as defined above, we already updated: 4th card .author-name = "Masjid Committee".
+    
+    // final tiny tweak: ensure any broken image (like extra images that might not exist) fallback works
+    const allImgs = document.querySelectorAll('.author-avatar img');
+    allImgs.forEach(img => {
+      if(img.complete && (img.naturalWidth === 0 || img.naturalHeight === 0)) {
+        img.style.display = 'none';
+        const parentAvatar = img.closest('.author-avatar');
+        if(parentAvatar) {
+          const fallbackSpan = parentAvatar.querySelector('.initials-fallback');
+          if(fallbackSpan) fallbackSpan.style.display = 'flex';
+        }
+      }
+    });
+  })();
+</script>
+</body>
+</html>
