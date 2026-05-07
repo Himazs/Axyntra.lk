@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://himazs.github.io/Axyntra.lk/sitemap.xml
