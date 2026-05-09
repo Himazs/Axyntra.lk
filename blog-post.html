@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Blog | Axyntra Digital Solution</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --p:   #7C3AED;
+      --p2:  #9333EA;
+      --p3:  #A855F7;
+      --p4:  #C084FC;
+      --p5:  #E9D5FF;
+      --glow: rgba(124,58,237,0.35);
+      --bg:  #030108;
+      --bg2: #07030f;
+      --bg3: #0d0720;
+      --card: rgba(13,7,32,0.75);
+      --card2: rgba(18,10,40,0.9);
+      --border:  rgba(124,58,237,0.25);
+      --border2: rgba(124,58,237,0.12);
+      --text:  #F1EEF9;
+      --text2: #B8B0D4;
+      --text3: #7A7298;
+      --text4: #4a4470;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans:  'Space Grotesk', system-ui, sans-serif;
+      --body:  'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      font-family: var(--body);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+      cursor: none;
+    }
+
+    /* ── CURSOR ── */
+    .cursor-dot  { width:7px;height:7px;background:#fff;border-radius:50%;position:fixed;transform:translate(-50%,-50%);top:0;left:0;z-index:9999;pointer-events:none;mix-blend-mode:difference;transition:transform .1s; }
+    .cursor-ring { width:34px;height:34px;border:1.5px solid rgba(255,255,255,.55);border-radius:50%;position:fixed;transform:translate(-50%,-50%);transition:all .15s ease;top:0;left:0;z-index:9999;pointer-events:none;mix-blend-mode:difference; }
+    .cursor-ring.hover { transform:translate(-50%,-50%) scale(1.7); border-color:var(--p4); }
+
+    ::-webkit-scrollbar { width:3px; }
+    ::-webkit-scrollbar-track { background:var(--bg); }
+    ::-webkit-scrollbar-thumb { background:linear-gradient(var(--p),var(--p3)); border-radius:20px; }
+
+    /* ── READING PROGRESS BAR ── */
+    #readProgress {
+      position: fixed; top: 0; left: 0; height: 2.5px; z-index: 1100;
+      background: linear-gradient(90deg, var(--p), var(--p3), var(--p4));
+      width: 0%; transition: width .1s linear;
+      box-shadow: 0 0 10px var(--glow);
+    }
+
+    /* ── BG CANVAS ── */
+    #bg-canvas { position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.4; }
+
+    /* ── NAV ── */
+    nav {
+      position:fixed;top:0;left:0;width:100%;z-index:1000;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:1.1rem 5%;
+      background:rgba(3,1,8,.88);
+      backdrop-filter:blur(20px) saturate(180%);
+      border-bottom:1px solid var(--border);
+      transition:all .4s ease;
+    }
+    .logo { font-family:var(--sans);font-weight:700;font-size:1.8rem;letter-spacing:-.02em;background:linear-gradient(135deg,#fff 30%,var(--p4));-webkit-background-clip:text;background-clip:text;color:transparent;text-decoration:none; }
+    .logo-dot { color:var(--p3);background:none;-webkit-background-clip:unset;background-clip:unset; }
+    .nav-links { display:flex;gap:2.5rem;list-style:none;align-items:center; }
+    .nav-links a { text-decoration:none;font-size:.875rem;font-weight:500;color:var(--text2);letter-spacing:-.01em;transition:color .2s;position:relative; }
+    .nav-links a::after { content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--p3);transition:width .3s; }
+    .nav-links a:hover { color:white; }
+    .nav-links a:hover::after { width:100%; }
+    .nav-links a.active-link { color:white; }
+    .nav-links a.active-link::after { width:100%; }
+    .nav-cta { background:linear-gradient(135deg,var(--p),var(--p2))!important;padding:.6rem 1.8rem!important;border-radius:50px;color:white!important;font-weight:600!important;box-shadow:0 0 20px var(--glow);transition:all .3s ease!important; }
+    .nav-cta::after { display:none!important; }
+    .nav-cta:hover { transform:translateY(-2px);box-shadow:0 0 35px var(--glow)!important; }
+    .hamburger { display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001; }
+    .hamburger span { width:24px;height:2px;background:white;border-radius:4px;transition:all .3s;display:block; }
+    .hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+
+    /* ── POST HERO ── */
+    .post-hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 8rem 5% 4rem;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hero-bg-img {
+      position: absolute; inset: 0;
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+      filter: brightness(0.25) saturate(0.8);
+      transition: transform 8s ease;
+    }
+    .post-hero:hover .hero-bg-img { transform: scale(1.03); }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(0deg, rgba(3,1,8,1) 0%, rgba(3,1,8,.7) 40%, rgba(3,1,8,.2) 100%);
+    }
+    .hero-overlay-side {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(135deg, rgba(124,58,237,.15) 0%, transparent 60%);
+    }
+    .post-hero-content {
+      position: relative; z-index: 2;
+      max-width: 820px;
+    }
+    .post-eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(124,58,237,.15); border: 1px solid var(--border);
+      border-radius: 50px; padding: .35rem 1rem;
+      font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--p4);
+      font-family: var(--body); margin-bottom: 1.4rem;
+    }
+    .post-hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.18;
+      letter-spacing: -.01em;
+      margin-bottom: 1.2rem;
+      color: #fff;
+      max-width: 720px;
+    }
+    .post-hero h1 em {
+      font-style: italic;
+      color: var(--p4);
+    }
+    .post-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      flex-wrap: wrap; margin-bottom: 1.5rem;
+    }
+    .meta-author { display:flex;align-items:center;gap:.6rem; }
+    .meta-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--p), var(--p2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem; font-weight: 700; color: white;
+      font-family: var(--sans); flex-shrink: 0;
+    }
+    .meta-name { font-weight: 600; font-size: .85rem; color: var(--text); }
+    .meta-role { font-size: .7rem; color: var(--text3); }
+    .meta-divider { width: 1px; height: 28px; background: var(--border); }
+    .meta-item { font-size: .78rem; color: var(--text3); display:flex;align-items:center;gap:.35rem; }
+
+    /* ── LAYOUT ── */
+    .post-layout {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 300px;
+      gap: 4rem; padding: 4rem 5% 6rem;
+      position: relative; z-index: 1;
+    }
+
+    /* ── ARTICLE ── */
+    .article-body {
+      font-family: var(--body);
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text2);
+    }
+    .article-body h2 {
+      font-family: var(--serif);
+      font-size: 1.9rem;
+      font-weight: 400;
+      color: var(--text);
+      margin: 2.5rem 0 1rem;
+      letter-spacing: -.01em;
+      line-height: 1.25;
+    }
+    .article-body h3 {
+      font-family: var(--sans);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2rem 0 .75rem;
+      letter-spacing: -.01em;
+    }
+    .article-body p { margin-bottom: 1.4rem; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body a { color: var(--p4); text-decoration: underline; text-underline-offset: 3px; transition: color .2s; }
+    .article-body a:hover { color: var(--p3); }
+    .article-body ul, .article-body ol {
+      padding-left: 1.5rem; margin-bottom: 1.4rem;
+      display: flex; flex-direction: column; gap: .5rem;
+    }
+    .article-body li { color: var(--text2); font-size: 1rem; }
+
+    /* Pull Quote */
+    .pull-quote {
+      border-left: 3px solid var(--p3);
+      background: linear-gradient(135deg, rgba(124,58,237,.1), rgba(124,58,237,.04));
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.5rem 2rem;
+      margin: 2.5rem 0;
+      position: relative;
+    }
+    .pull-quote::before {
+      content: '"';
+      position: absolute; top: -.2rem; left: 1.5rem;
+      font-family: var(--serif); font-size: 5rem;
+      color: var(--p3); opacity: .3; line-height: 1;
+    }
+    .pull-quote p {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.55;
+      margin-bottom: 0;
+    }
+
+    /* Stat Cards row */
+    .stat-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem; margin: 2rem 0;
+    }
+    .stat-box {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 1rem; padding: 1.2rem 1rem; text-align: center;
+      transition: border-color .2s;
+    }
+    .stat-box:hover { border-color: var(--p3); }
+    .stat-box .num {
+      font-family: var(--sans); font-size: 2rem; font-weight: 700;
+      background: linear-gradient(135deg, white, var(--p4));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .stat-box .lbl { font-size: .72rem; color: var(--text3); margin-top: .2rem; }
+
+    /* Info Card */
+    .info-card {
+      background: linear-gradient(135deg, rgba(124,58,237,.12), rgba(124,58,237,.05));
+      border: 1px solid var(--border); border-radius: 1.25rem;
+      padding: 1.5rem 1.8rem; margin: 2rem 0;
+    }
+    .info-card-title {
+      font-family: var(--sans); font-size: .75rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--p4); margin-bottom: .75rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .info-card ul { padding-left: 1rem; display: flex; flex-direction: column; gap: .5rem; }
+    .info-card li { font-size: .9rem; color: var(--text2); }
+
+    /* Code block */
+    .code-block {
+      background: rgba(10,5,25,.9); border: 1px solid var(--border);
+      border-radius: 1rem; padding: 1.5rem; margin: 1.5rem 0;
+      overflow-x: auto;
+    }
+    .code-block pre {
+      font-family: 'Courier New', monospace; font-size: .82rem;
+      color: #c4b5fd; line-height: 1.7;
+    }
+    .code-label {
+      font-size: .65rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--text3);
+      margin-bottom: .75rem; display: block;
+    }
+
+    /* Image Block */
+    .article-img {
+      width: 100%; border-radius: 1rem; overflow: hidden;
+      margin: 2rem 0; border: 1px solid var(--border2);
+    }
+    .article-img img { width: 100%; display: block; }
+    .article-img figcaption {
+      background: var(--card); padding: .75rem 1rem;
+      font-size: .72rem; color: var(--text3); text-align: center;
+    }
+
+    /* Author Card */
+    .author-card {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 1.5rem; padding: 2rem;
+      margin-top: 3rem;
+      display: flex; gap: 1.5rem; align-items: flex-start;
+    }
+    .author-img {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--p), var(--p2));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--sans); font-weight: 700; font-size: 1.1rem; color: white;
+      flex-shrink: 0; border: 2px solid var(--border);
+    }
+    .author-card h4 { font-family: var(--sans); font-size: 1rem; font-weight: 700; margin-bottom: .2rem; }
+    .author-card .role { font-size: .75rem; color: var(--p4); margin-bottom: .5rem; font-weight: 600; }
+    .author-card p { font-size: .82rem; color: var(--text3); line-height: 1.65; }
+
+    /* Share */
+    .share-section { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border2); }
+    .share-label { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text3); margin-bottom: .75rem; }
+    .share-btns { display: flex; gap: .6rem; flex-wrap: wrap; }
+    .share-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      border: 1px solid var(--border2); border-radius: 50px;
+      padding: .45rem 1.1rem; font-size: .75rem; font-weight: 600;
+      color: var(--text2); text-decoration: none; cursor: pointer;
+      background: rgba(124,58,237,.06); transition: all .2s;
+    }
+    .share-btn:hover { border-color: var(--p3); color: var(--p4); background: rgba(124,58,237,.12); }
+
+    /* ── SIDEBAR ── */
+    .sidebar { position: sticky; top: 6rem; height: fit-content; }
+
+    .toc-card {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 1.25rem; padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .toc-title {
+      font-family: var(--sans); font-size: .7rem; font-weight: 700;
+      letter-spacing: .07em; text-transform: uppercase;
+      color: var(--p4); margin-bottom: 1rem;
+    }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: .1rem; }
+    .toc-list li a {
+      display: block; font-size: .8rem; color: var(--text3);
+      text-decoration: none; padding: .4rem .6rem;
+      border-radius: .5rem; border-left: 2px solid transparent;
+      transition: all .2s;
+    }
+    .toc-list li a:hover { color: var(--p4); border-left-color: var(--p3); background: rgba(124,58,237,.06); }
+    .toc-list li a.active { color: var(--p4); border-left-color: var(--p3); background: rgba(124,58,237,.1); }
+
+    .sidebar-cta {
+      background: linear-gradient(135deg, rgba(124,58,237,.18), rgba(124,58,237,.06));
+      border: 1px solid var(--border); border-radius: 1.25rem;
+      padding: 1.5rem; text-align: center; margin-bottom: 1.5rem;
+    }
+    .sidebar-cta h4 { font-family: var(--sans); font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .sidebar-cta p { font-size: .78rem; color: var(--text3); margin-bottom: 1rem; line-height: 1.5; }
+    .sidebar-cta .btn-cta {
+      display: block; background: linear-gradient(135deg, var(--p), var(--p2));
+      border-radius: 50px; padding: .65rem 1.2rem;
+      font-family: var(--sans); font-weight: 700; font-size: .8rem;
+      color: white; text-decoration: none; text-align: center;
+      box-shadow: 0 6px 20px var(--glow); transition: all .3s;
+    }
+    .sidebar-cta .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 30px var(--glow); }
+
+    .related-mini { background: var(--card2); border: 1px solid var(--border); border-radius: 1.25rem; padding: 1.5rem; }
+    .related-mini .rt { font-family: var(--sans); font-size: .7rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--p4); margin-bottom: 1rem; }
+    .mini-post { display: flex; gap: .75rem; padding: .75rem 0; border-bottom: 1px solid var(--border2); text-decoration: none; }
+    .mini-post:last-child { border-bottom: none; padding-bottom: 0; }
+    .mini-thumb { width: 48px; height: 48px; border-radius: .5rem; background: rgba(124,58,237,.15); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; overflow: hidden; }
+    .mini-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .mini-text h5 { font-family: var(--sans); font-size: .78rem; font-weight: 700; color: var(--text); margin-bottom: .2rem; line-height: 1.3; }
+    .mini-text span { font-size: .67rem; color: var(--text3); }
+
+    /* ── RELATED POSTS SECTION ── */
+    .related-section { position: relative; z-index: 1; padding: 0 5% 6rem; }
+    .related-inner { max-width: 1200px; margin: 0 auto; }
+    .related-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+    .related-header h2 { font-family: var(--sans); font-size: 1.5rem; font-weight: 700; }
+    .related-header a { font-size: .8rem; color: var(--p4); text-decoration: none; font-weight: 600; }
+    .related-header a:hover { color: var(--p3); }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .rel-card {
+      background: var(--card); border: 1px solid var(--border2);
+      border-radius: 1.5rem; overflow: hidden;
+      transition: all .35s cubic-bezier(.2,.9,.4,1.1);
+    }
+    .rel-card:hover { transform: translateY(-5px); border-color: var(--border); box-shadow: 0 20px 40px rgba(0,0,0,.4); }
+    .rel-thumb {
+      height: 170px; position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #0d0720, #080514);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .rel-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .rel-card:hover .rel-thumb img { transform: scale(1.05); }
+    .rel-cat { position: absolute; top: .75rem; left: .75rem; background: rgba(30,15,60,.8); backdrop-filter: blur(8px); border: 1px solid rgba(124,58,237,.5); border-radius: 50px; padding: .2rem .7rem; font-size: .65rem; font-weight: 700; color: var(--p4); }
+    .rel-body { padding: 1.2rem 1.3rem 1.5rem; }
+    .rel-body h3 { font-family: var(--sans); font-size: .95rem; font-weight: 700; margin-bottom: .4rem; line-height: 1.4; color: var(--text); }
+    .rel-body p { font-size: .75rem; color: var(--text3); line-height: 1.55; margin-bottom: .75rem; }
+    .rel-link { display: inline-flex; align-items: center; gap: .35rem; font-size: .75rem; font-weight: 600; color: var(--p4); text-decoration: none; transition: gap .2s; }
+    .rel-link:hover { gap: .6rem; }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      position: relative; z-index: 1; padding: 0 5% 6rem;
+    }
+    .cta-card {
+      max-width: 1200px; margin: 0 auto;
+      background: linear-gradient(135deg, rgba(124,58,237,.18) 0%, rgba(147,51,234,.1) 50%, rgba(124,58,237,.06) 100%);
+      border: 1px solid var(--border); border-radius: 2rem;
+      padding: 3.5rem; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(124,58,237,.2), transparent 70%);
+      pointer-events: none;
+    }
+    .cta-card h2 {
+      font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 400; margin-bottom: .75rem; position: relative;
+    }
+    .cta-card p { color: var(--text2); font-size: 1rem; margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto; position: relative; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+    .btn-prim { display:inline-flex;align-items:center;gap:.6rem;background:linear-gradient(135deg,var(--p),var(--p2));padding:.9rem 2rem;border-radius:50px;font-weight:600;font-size:.9rem;font-family:var(--body);color:white;text-decoration:none;transition:all .3s ease;box-shadow:0 8px 30px var(--glow); }
+    .btn-prim:hover { transform:translateY(-2px);box-shadow:0 12px 40px var(--glow); }
+    .btn-ghost { display:inline-flex;align-items:center;gap:.6rem;background:transparent;padding:.9rem 2rem;border-radius:50px;font-weight:500;font-size:.9rem;font-family:var(--body);color:var(--text2);text-decoration:none;border:1px solid var(--border);transition:all .3s ease; }
+    .btn-ghost:hover { border-color:var(--p3);color:white; }
+
+    /* ── FOOTER ── */
+    footer { position:relative;z-index:1;background:rgba(3,1,8,.97);border-top:1px solid var(--border2);padding:4rem 5% 2rem; }
+    .footer-grid { max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border2); }
+    .footer-brand p { font-size:.8rem;line-height:1.7;color:var(--text3);margin-top:1rem;max-width:260px; }
+    .footer-col h5 { font-family:var(--sans);font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text2);margin-bottom:1rem; }
+    .footer-col ul { list-style:none;display:flex;flex-direction:column;gap:.6rem; }
+    .footer-col ul li a { font-size:.78rem;color:var(--text3);text-decoration:none;transition:color .2s; }
+    .footer-col ul li a:hover { color:var(--p4); }
+    .footer-bottom { max-width:1280px;margin:0 auto;padding-top:2rem;font-size:.75rem;color:var(--text3);text-align:center; }
+
+    /* WA FAB */
+    .wa-fab { position:fixed;bottom:2rem;right:2rem;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5);z-index:999;transition:all .3s;text-decoration:none; }
+    .wa-fab:hover { transform:scale(1.12) translateY(-2px); }
+
+    /* REVEAL */
+    .reveal { opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease; }
+    .reveal.visible { opacity:1;transform:none; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1024px){
+      .post-layout { grid-template-columns:1fr; }
+      .sidebar { position:static; }
+      .toc-card { display:none; }
+      .stat-row { grid-template-columns:repeat(3,1fr); }
+      .related-grid { grid-template-columns:repeat(2,1fr); }
+      .footer-grid { grid-template-columns:1fr 1fr;gap:2rem; }
+    }
+    @media(max-width:680px){
+      .nav-links { display:none; }
+      .hamburger { display:flex; }
+      body { cursor:auto; }
+      .cursor-dot,.cursor-ring { display:none; }
+      .nav-links.open { display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;height:100vh;background:rgba(3,1,8,.97);backdrop-filter:blur(30px);padding:6rem 2rem 2rem;gap:1.5rem;z-index:999; }
+      .nav-links.open a { font-size:1.3rem;font-weight:600; }
+      .post-hero h1 { font-size:2rem; }
+      .stat-row { grid-template-columns:1fr 1fr; }
+      .related-grid { grid-template-columns:1fr; }
+      .cta-card { padding:2rem 1.5rem; }
+      .footer-grid { grid-template-columns:1fr; }
+      .author-card { flex-direction:column; }
+      .post-meta { gap:1rem; }
+    }
+
+    @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(168,85,247,.5)}50%{box-shadow:0 0 0 6px rgba(168,85,247,0)} }
+    @keyframes floatY { 0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)} }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none} }
+
+    .post-hero-content { animation:fadeIn .8s ease both; }
+  </style>
+</head>
+<body>
+
+<div id="readProgress"></div>
+<canvas id="bg-canvas"></canvas>
+<div class="cursor-dot" id="dot"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="logo">Axyntra<span class="logo-dot">.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="projects.html">Portfolio</a></li>
+    <li><a href="index.html#testimonials">Testimonials</a></li>
+    <li><a href="index.html#blog" class="active-link">Blog</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Start a Project</a></li>
+  </ul>
+  <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- POST HERO -->
+<div class="post-hero" id="postHero">
+  <div class="hero-bg-img" id="heroBgImg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-side"></div>
+  <div class="post-hero-content">
+    <div class="post-eyebrow" id="postEyebrow">🤖 AI & Automation</div>
+    <h1 id="postTitle">How AI Chatbots <em>Boost Sales</em><br>by 45% — Real Strategies</h1>
+    <div class="post-meta">
+      <div class="meta-author">
+        <div class="meta-avatar">MH</div>
+        <div>
+          <div class="meta-name">Mohammed Himas</div>
+          <div class="meta-role">Founder & Lead Developer</div>
+        </div>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1" y="2" width="11" height="10" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M4 1v2M9 1v2M1 5h11" stroke="currentColor" stroke-width="1.2"/></svg>
+        <span id="postDate">March 12, 2025</span>
+      </div>
+      <div class="meta-item">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M6.5 3.5v3l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <span id="postRead">6 min read</span>
+      </div>
+      <div class="meta-item">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1L8 4.5H12L9 7l1 4L6.5 9 4 11l1-4L2 4.5h4z" stroke="currentColor" stroke-width="1.1"/></svg>
+        <span>5.0 / 5.0</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN POST LAYOUT -->
+<div class="post-layout" id="postLayout">
+
+  <!-- ARTICLE -->
+  <article class="article-body" id="articleBody">
+    <!-- Content injected by JS -->
+  </article>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="toc-card">
+      <div class="toc-title">📋 Table of Contents</div>
+      <ul class="toc-list" id="tocList"></ul>
+    </div>
+
+    <div class="sidebar-cta">
+      <h4>Ready to Build Yours?</h4>
+      <p>Let Axyntra integrate a custom AI chatbot into your business today.</p>
+      <a href="index.html#contact" class="btn-cta">Start a Project →</a>
+    </div>
+
+    <div class="related-mini">
+      <div class="rt">Related Reading</div>
+      <a href="blog-post.html?post=llm-finetuning" class="mini-post" style="text-decoration:none;">
+        <div class="mini-thumb">🤖</div>
+        <div class="mini-text">
+          <h5>LLM Fine-Tuning for Business Use Cases</h5>
+          <span>7 min read</span>
+        </div>
+      </a>
+      <a href="blog-post.html?post=fullstack-tips" class="mini-post" style="text-decoration:none;">
+        <div class="mini-thumb">⚡</div>
+        <div class="mini-text">
+          <h5>Full-Stack Performance Best Practices 2025</h5>
+          <span>8 min read</span>
+        </div>
+      </a>
+      <a href="blog-post.html?post=voice-seo" class="mini-post" style="text-decoration:none;">
+        <div class="mini-thumb">📊</div>
+        <div class="mini-text">
+          <h5>Voice Search SEO: Preparing for 2026</h5>
+          <span>4 min read</span>
+        </div>
+      </a>
+    </div>
+  </aside>
+</div>
+
+<!-- RELATED POSTS -->
+<section class="related-section reveal">
+  <div class="related-inner">
+    <div class="related-header">
+      <h2>More from Our Blog</h2>
+      <a href="index.html#blog">View All Posts →</a>
+    </div>
+    <div class="related-grid" id="relatedGrid">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section reveal">
+  <div class="cta-card">
+    <h2>Ready to <em style="color:var(--p4);font-style:italic;">Transform</em> Your Business?</h2>
+    <p>From AI chatbots to full-stack platforms — Axyntra delivers world-class digital solutions at accessible prices.</p>
+    <div class="cta-btns">
+      <a href="index.html#contact" class="btn-prim">
+        <span>Start a Project</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+      <a href="projects.html" class="btn-ghost">View Our Work</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Axyntra<span class="logo-dot">.</span></a>
+      <p>Quick, affordable, trusted digital solutions — founded by Mohammed Himas & a passionate team.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="index.html#services">AI Integration</a></li>
+        <li><a href="index.html#services">Web Development</a></li>
+        <li><a href="index.html#services">UI/UX Design</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="projects.html">Portfolio</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="mailto:hello.axyntra@gmail.com">hello.axyntra@gmail.com</a></li>
+        <li><a href="https://wa.me/94703883436" target="_blank">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Axyntra Digital Solutions. All rights reserved. · <a href="index.html" style="color:var(--p4);text-decoration:none;">Axyntra.lk</a></p>
+  </div>
+</footer>
+
+<!-- WA FAB -->
+<a href="https://wa.me/94703883436" class="wa-fab" target="_blank" aria-label="Chat on WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+    <path d="M15 2C7.82 2 2 7.82 2 15c0 2.3.62 4.45 1.7 6.3L2 28l6.9-1.8A13 13 0 0015 28c7.18 0 13-5.82 13-13S22.18 2 15 2z" fill="white"/>
+    <path d="M10.5 9.5c.3 0 .6.1.8.4l1.5 3.3c.1.3.1.6-.1.8l-1 1.1c.9 1.7 2.5 3.3 4.2 4.2l1.1-1c.2-.2.5-.3.8-.1l3.3 1.5c.3.1.4.4.4.7 0 1.7-1.4 3-3 3C12 23 7 18 7 12.5c0-1.6 1.3-3 3-3h.5z" fill="#25D366"/>
+  </svg>
+</a>
+
+<script>
+/* ══════════════════════════════════════
+   POST DATABASE
+══════════════════════════════════════ */
+const POSTS = {
+  'ai-chatbots': {
+    category: '🤖 AI & Automation',
+    title: 'How AI Chatbots <em>Boost Sales</em><br>by 45% — Real Strategies',
+    date: 'March 12, 2025',
+    readTime: '6 min read',
+    heroImg: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1400&h=700&fit=crop',
+    content: `
+      <p>Artificial intelligence has fundamentally reshaped how businesses interact with customers. Among the most impactful applications — <strong>AI-powered chatbots</strong> — businesses are seeing tangible results: reduced response times, higher conversion rates, and most notably, sales lifts averaging 45%.</p>
+      <p>This isn't hype. It's backed by data from our client deployments and industry research. In this article, we break down the exact strategies that make AI chatbots effective sales tools.</p>
+
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">45%</div><div class="lbl">Average Sales Lift</div></div>
+        <div class="stat-box"><div class="num">60%</div><div class="lbl">Ticket Reduction</div></div>
+        <div class="stat-box"><div class="num">24/7</div><div class="lbl">Lead Capture</div></div>
+      </div>
+
+      <h2 id="why-chatbots">Why Chatbots Outperform Traditional Live Chat</h2>
+      <p>Traditional live chat has a fatal flaw: humans need sleep. A prospect visiting your website at 2 AM in a different timezone leaves empty-handed if no agent is available. AI chatbots eliminate this entirely. They engage every visitor, qualify leads, answer FAQs, and even complete transactions — around the clock.</p>
+      <p>Beyond availability, AI chatbots are <strong>consistent</strong>. They never have a bad day, never give outdated information, and never miss an upsell opportunity programmed into their flow.</p>
+
+      <div class="pull-quote">
+        <p>The question is no longer whether to deploy an AI chatbot — it's how quickly you can get one live before your competitors do.</p>
+      </div>
+
+      <h2 id="strategy-1">Strategy 1: Proactive Engagement Triggers</h2>
+      <p>The biggest mistake businesses make is waiting for users to initiate. Instead, configure your chatbot to trigger proactively based on behavior signals:</p>
+      <ul>
+        <li><strong>Time on page:</strong> If a visitor spends 30+ seconds on a product page, trigger a "Can I help you decide?" message.</li>
+        <li><strong>Exit intent:</strong> Detect cursor movement toward the browser close button and offer a discount or answer objections.</li>
+        <li><strong>Cart abandonment:</strong> Trigger when items are in cart but no checkout action in 2+ minutes.</li>
+        <li><strong>Scroll depth:</strong> After a user reads 70% of a pricing page, proactively answer common questions.</li>
+      </ul>
+
+      <div class="info-card">
+        <div class="info-card-title">⚡ Pro Tip from Axyntra</div>
+        <ul>
+          <li>A/B test trigger timings — 20 seconds vs. 45 seconds can shift conversion rates by 12%</li>
+          <li>Personalize greetings using UTM parameters to match the ad the user clicked</li>
+          <li>Always offer a human handoff option for high-value prospects</li>
+        </ul>
+      </div>
+
+      <h2 id="strategy-2">Strategy 2: Conversational Qualification Flows</h2>
+      <p>Instead of sending all leads to your CRM equally, use your chatbot to qualify them in real-time. Build a conversation flow that identifies:</p>
+      <ol>
+        <li>The prospect's primary challenge or need</li>
+        <li>Their budget range (approximate)</li>
+        <li>Their decision timeline</li>
+        <li>Who else is involved in the decision</li>
+      </ol>
+      <p>High-scoring leads get an immediate calendar booking link. Low-scoring leads get nurtured with content. This alone can <strong>triple your sales team's efficiency</strong> — they only speak with pre-qualified prospects.</p>
+
+      <h2 id="strategy-3">Strategy 3: Personalized Product Recommendations</h2>
+      <p>Using the conversation data collected, modern AI chatbots can recommend specific products or services. This mirrors the Amazon effect — personalized recommendations account for up to 35% of Amazon's revenue. The same principle applies to B2B and service businesses.</p>
+      <p>At Axyntra, we integrated a recommendation engine into a client's e-commerce chatbot. Within 60 days, average order value increased by 28% through intelligent cross-sell suggestions during the chat session.</p>
+
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">28%</div><div class="lbl">Higher Order Value</div></div>
+        <div class="stat-box"><div class="num">3×</div><div class="lbl">Sales Team Efficiency</div></div>
+        <div class="stat-box"><div class="num">35%</div><div class="lbl">Revenue from Recs</div></div>
+      </div>
+
+      <h2 id="implementation">Implementing Your First AI Chatbot</h2>
+      <p>Getting started doesn't require a massive technical team. Here's the implementation roadmap we use at Axyntra:</p>
+
+      <div class="code-block">
+        <span class="code-label">// Implementation Phases</span>
+        <pre>Phase 1: Define Goals & User Journeys (Week 1)
+  → Map 3-5 primary conversation intents
+  → Identify top 20 FAQs from support tickets
+  → Define escalation triggers
+
+Phase 2: Build & Train (Weeks 2-3)
+  → Set up NLP model with intent classification
+  → Design conversation flows (happy path + fallbacks)
+  → Integrate with CRM & calendar tool
+
+Phase 3: Soft Launch & Optimize (Week 4+)
+  → Deploy to 20% of traffic
+  → Monitor drop-off points
+  → A/B test response variations</pre>
+      </div>
+
+      <h2 id="choosing-platform">Choosing the Right Platform</h2>
+      <p>Not all chatbot platforms are equal. The right choice depends on your technical resources, budget, and integration requirements:</p>
+      <ul>
+        <li><strong>No-code solutions</strong> (Intercom, Drift) — fast to launch, limited customization, higher monthly cost</li>
+        <li><strong>Custom LLM integration</strong> (OpenAI + custom UI) — maximum flexibility, requires development expertise, our recommended approach for serious businesses</li>
+        <li><strong>Hybrid approach</strong> — rule-based flows for predictable queries + LLM for open-ended conversations</li>
+      </ul>
+      <p>At Axyntra, we build fully custom AI chatbot solutions that integrate seamlessly with your existing stack — no monthly per-seat fees, full ownership of your data.</p>
+
+      <div class="pull-quote">
+        <p>The best chatbot is the one your customers don't realize is a bot — until they're already converted.</p>
+      </div>
+
+      <h2 id="results">Real Results from Our Clients</h2>
+      <p>The numbers above aren't theoretical. Here's what our clients have experienced after deploying Axyntra-built AI chatbots:</p>
+      <ul>
+        <li>A <strong>footwear e-commerce</strong> client saw a 42% increase in add-to-cart rate after deploying a size recommendation chatbot</li>
+        <li>A <strong>financial consulting firm</strong> reduced their inbound email volume by 60% — freeing consultants for billable hours</li>
+        <li>A <strong>real estate platform</strong> achieved 3× more qualified showings booked per month through automated pre-qualification</li>
+      </ul>
+
+      <div class="share-section">
+        <div class="share-label">Share This Article</div>
+        <div class="share-btns">
+          <a class="share-btn" href="#" onclick="navigator.clipboard.writeText(window.location.href);return false;">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5.5 3H3a1 1 0 00-1 1v7a1 1 0 001 1h7a1 1 0 001-1V9" stroke="currentColor" stroke-width="1.3"/><path d="M8 1h4v4M12 1L7 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            Copy Link
+          </a>
+          <a class="share-btn" href="https://wa.me/?text=Check%20this%20out%3A%20AI%20Chatbots%20boosting%20sales%20by%2045%25%20by%20Axyntra" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1C3.68 1 1 3.68 1 7c0 1.05.28 2.04.77 2.88L1 13l3.2-.84A6 6 0 107 1z" stroke="currentColor" stroke-width="1.2"/></svg>
+            WhatsApp
+          </a>
+          <a class="share-btn" href="https://twitter.com/intent/tweet?text=AI+Chatbots+can+boost+sales+by+45%25+—+here's+how+via+@axyntra" target="_blank">
+            𝕏 Twitter/X
+          </a>
+          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https://axyntra.lk" target="_blank">
+            in LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <!-- AUTHOR CARD -->
+      <div class="author-card">
+        <div class="author-img">MH</div>
+        <div>
+          <h4>Mohammed Himas</h4>
+          <div class="role">Founder & Lead Developer at Axyntra</div>
+          <p>Mohammed leads Axyntra's AI and full-stack development division, having delivered 100+ digital projects for clients across 10+ countries. He specialises in LLM fine-tuning, conversational AI, and scalable web architectures.</p>
+        </div>
+      </div>
+    `
+  },
+
+  'fullstack-tips': {
+    category: '💻 Web Development',
+    title: 'Full-Stack Performance:<br><em>Best Practices</em> for 2025',
+    date: 'February 28, 2025',
+    readTime: '8 min read',
+    heroImg: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1400&h=700&fit=crop',
+    content: `
+      <p>Modern web applications demand more than functional code — they demand <strong>blazing performance, rock-solid reliability, and exceptional user experience</strong>. In 2025, users expect sub-second interactions and pixel-perfect interfaces across every device.</p>
+      <p>At Axyntra, performance isn't an afterthought. It's baked into our development process from day one. Here are the practices our team follows on every project.</p>
+
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">&lt;1s</div><div class="lbl">Target Load Time</div></div>
+        <div class="stat-box"><div class="num">99.9%</div><div class="lbl">Uptime Target</div></div>
+        <div class="stat-box"><div class="num">100</div><div class="lbl">Lighthouse Score</div></div>
+      </div>
+
+      <h2 id="architecture">Architecture First</h2>
+      <p>The most impactful performance decision happens before a single line of code is written: architecture. For most Axyntra projects, we evaluate three patterns:</p>
+      <ul>
+        <li><strong>SSR (Server-Side Rendering)</strong> — ideal for SEO-critical content-heavy apps</li>
+        <li><strong>SSG (Static Site Generation)</strong> — best for marketing sites, blogs, portfolios</li>
+        <li><strong>CSR + API (Client-Side Rendering)</strong> — optimal for highly interactive dashboards and web apps</li>
+      </ul>
+
+      <h2 id="frontend-perf">Frontend Performance</h2>
+      <p>On the frontend, every millisecond counts. These are non-negotiables on every Axyntra project:</p>
+
+      <div class="code-block">
+        <span class="code-label">// Next.js Image Optimization</span>
+        <pre>import Image from 'next/image';
+
+// Automatic WebP conversion, lazy loading,
+// and responsive sizing handled automatically
+&lt;Image
+  src="/hero.jpg"
+  alt="Hero"
+  width={1200}
+  height={600}
+  priority  // LCP image — load immediately
+  quality={85}
+/&gt;</pre>
+      </div>
+
+      <div class="pull-quote">
+        <p>A 100ms delay in page load time can reduce conversions by 7%. Performance is directly tied to revenue.</p>
+      </div>
+
+      <h2 id="backend-perf">Backend & API Performance</h2>
+      <p>Our backend philosophy centres around three pillars: <strong>caching aggressively, querying efficiently, and scaling horizontally</strong>.</p>
+
+      <div class="info-card">
+        <div class="info-card-title">🔥 Axyntra's Backend Stack in 2025</div>
+        <ul>
+          <li>Redis for session + query result caching (sub-millisecond reads)</li>
+          <li>PostgreSQL with proper indexing and EXPLAIN ANALYZE on every slow query</li>
+          <li>BullMQ for job queues — offload email, PDF generation, AI calls</li>
+          <li>CDN edge caching for static assets and API responses where possible</li>
+        </ul>
+      </div>
+
+      <h2 id="monitoring">Monitoring & Observability</h2>
+      <p>You can't improve what you can't measure. Every production deployment we ship includes monitoring from day one: error tracking, performance monitoring, uptime checks, and alerting.</p>
+
+      <div class="author-card">
+        <div class="author-img">MH</div>
+        <div>
+          <h4>Mohammed Himas</h4>
+          <div class="role">Founder & Lead Developer at Axyntra</div>
+          <p>Full-stack architect with expertise in React, Node.js, Laravel, and cloud-native architectures. Passionate about performance-driven development and clean, maintainable code.</p>
+        </div>
+      </div>
+
+      <div class="share-section">
+        <div class="share-label">Share This Article</div>
+        <div class="share-btns">
+          <a class="share-btn" href="#" onclick="navigator.clipboard.writeText(window.location.href);return false;">📋 Copy Link</a>
+          <a class="share-btn" href="https://wa.me/?text=Full-Stack+Performance+Best+Practices+2025+by+Axyntra" target="_blank">WhatsApp</a>
+        </div>
+      </div>
+    `
+  },
+
+  'brand-identity': {
+    category: '🎨 Branding & Design',
+    title: 'The Psychology of<br><em>Modern Brand Identity</em>',
+    date: 'January 15, 2025',
+    readTime: '5 min read',
+    heroImg: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=1400&h=700&fit=crop',
+    content: `
+      <p>A brand is more than a logo. It's the sum of every interaction a customer has with your business — from the fonts you choose to the tone of your support emails. In 2025, brands that invest in cohesive identity see measurable advantages in trust, recall, and conversion.</p>
+
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">80%</div><div class="lbl">Brand Recognition via Color</div></div>
+        <div class="stat-box"><div class="num">3×</div><div class="lbl">More Engagement</div></div>
+        <div class="stat-box"><div class="num">10s</div><div class="lbl">First Impression Window</div></div>
+      </div>
+
+      <h2 id="color-psychology">Color Psychology in Branding</h2>
+      <p>Color is your most powerful unconscious tool. Research shows that color increases brand recognition by up to 80%, and 85% of shoppers cite color as the primary reason for purchasing a product.</p>
+
+      <div class="pull-quote">
+        <p>Colors don't just communicate aesthetics — they communicate values, trustworthiness, and personality at a glance.</p>
+      </div>
+
+      <h2 id="typography">Typography as Brand Voice</h2>
+      <p>Font choice communicates before a single word is read. A serif font signals tradition and authority; a geometric sans-serif signals modernity and accessibility. The key is matching typographic personality to brand personality — then using it consistently everywhere.</p>
+
+      <div class="info-card">
+        <div class="info-card-title">✨ Axyntra's Brand Identity Process</div>
+        <ul>
+          <li>Discovery workshop: values, audience, competitors, aspirations</li>
+          <li>Mood board and visual direction alignment</li>
+          <li>Logo design (3 concepts minimum, unlimited refinements)</li>
+          <li>Full brand guidelines document — colors, fonts, spacing, usage rules</li>
+          <li>Social media template kit for immediate consistency</li>
+        </ul>
+      </div>
+
+      <div class="author-card">
+        <div class="author-img">MH</div>
+        <div>
+          <h4>Mohammed Himas</h4>
+          <div class="role">Founder & Lead Developer at Axyntra</div>
+          <p>Combining technical expertise with design sensibility, Mohammed has led brand identity projects for clients across retail, fintech, and hospitality sectors.</p>
+        </div>
+      </div>
+
+      <div class="share-section">
+        <div class="share-label">Share This Article</div>
+        <div class="share-btns">
+          <a class="share-btn" href="#" onclick="navigator.clipboard.writeText(window.location.href);return false;">📋 Copy Link</a>
+          <a class="share-btn" href="https://wa.me/?text=Brand+Identity+Psychology+by+Axyntra" target="_blank">WhatsApp</a>
+        </div>
+      </div>
+    `
+  },
+
+  'voice-seo': {
+    category: '📈 SEO & Analytics',
+    title: 'Voice Search SEO:<br><em>Preparing for 2026</em>',
+    date: 'January 5, 2025',
+    readTime: '4 min read',
+    heroImg: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=1400&h=700&fit=crop',
+    content: `
+      <p>Voice search has crossed from novelty to mainstream. Over <strong>50% of all searches</strong> are now voice-initiated, driven by smart speakers, mobile assistants, and in-car systems. If your content isn't optimized for voice, you're invisible to half your potential audience.</p>
+
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">50%</div><div class="lbl">Searches Are Voice</div></div>
+        <div class="stat-box"><div class="num">3×</div><div class="lbl">Longer Voice Queries</div></div>
+        <div class="stat-box"><div class="num">#0</div><div class="lbl">Target Position</div></div>
+      </div>
+
+      <h2 id="conversational-queries">Understanding Conversational Queries</h2>
+      <p>Voice queries are fundamentally different from typed queries. Instead of "best AI chatbot 2025," a voice user asks <em>"What's the best AI chatbot for a small business?"</em> This conversational, question-based format requires a completely different content strategy.</p>
+
+      <div class="pull-quote">
+        <p>Optimize for how people talk, not how they type. Voice SEO isn't a feature — it's a fundamental shift in how content is structured.</p>
+      </div>
+
+      <h2 id="featured-snippets">Winning Featured Snippets (Position Zero)</h2>
+      <p>Voice assistants almost exclusively read featured snippets. Structure your content to capture these: answer questions concisely in the first paragraph (40-60 words), use clear headings in question format, and structure data in tables or lists where possible.</p>
+
+      <div class="info-card">
+        <div class="info-card-title">📈 Axyntra SEO Implementation Checklist</div>
+        <ul>
+          <li>Add FAQ schema markup to all service and blog pages</li>
+          <li>Target long-tail conversational keywords with question-format headings</li>
+          <li>Ensure Google Business Profile is complete and verified</li>
+          <li>Optimize for local voice searches: "near me" and location-specific queries</li>
+          <li>Achieve Core Web Vitals green — speed is a voice ranking factor</li>
+        </ul>
+      </div>
+
+      <div class="author-card">
+        <div class="author-img">MH</div>
+        <div>
+          <h4>Mohammed Himas</h4>
+          <div class="role">Founder & Lead Developer at Axyntra</div>
+          <p>SEO strategist and developer, specialising in technical SEO, Core Web Vitals optimization, and AI-assisted content strategies for global clients.</p>
+        </div>
+      </div>
+
+      <div class="share-section">
+        <div class="share-label">Share This Article</div>
+        <div class="share-btns">
+          <a class="share-btn" href="#" onclick="navigator.clipboard.writeText(window.location.href);return false;">📋 Copy Link</a>
+          <a class="share-btn" href="https://wa.me/?text=Voice+Search+SEO+2026+by+Axyntra" target="_blank">WhatsApp</a>
+        </div>
+      </div>
+    `
+  },
+
+  'llm-finetuning': {
+    category: '🤖 AI & Automation',
+    title: 'LLM Fine-Tuning for<br><em>Business Use Cases</em>',
+    date: 'December 10, 2024',
+    readTime: '7 min read',
+    heroImg: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1400&h=700&fit=crop',
+    content: `
+      <p>Off-the-shelf language models are impressive — but they're built for everyone, which means they're perfectly optimised for no one in particular. <strong>Fine-tuning</strong> changes that: it takes a general-purpose LLM and shapes it into a specialist that knows your products, your tone, your policies, and your customers.</p>
+
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">85%</div><div class="lbl">Accuracy Improvement</div></div>
+        <div class="stat-box"><div class="num">70%</div><div class="lbl">Fewer Hallucinations</div></div>
+        <div class="stat-box"><div class="num">5×</div><div class="lbl">Domain-Specific Speed</div></div>
+      </div>
+
+      <h2 id="what-is-finetuning">What Fine-Tuning Actually Is</h2>
+      <p>Fine-tuning is a form of transfer learning. You start with a pre-trained model (GPT-4, Llama 3, Claude) that already understands language, then train it further on your specific dataset. The model learns your domain vocabulary, preferred response style, and the specific tasks it should perform.</p>
+
+      <div class="pull-quote">
+        <p>Fine-tuning isn't just about making the model smarter — it's about making it yours. Your brand voice. Your knowledge. Your rules.</p>
+      </div>
+
+      <h2 id="when-to-finetune">When Fine-Tuning Makes Sense</h2>
+      <p>Fine-tuning isn't always the right answer. Prompt engineering and RAG (Retrieval-Augmented Generation) solve many problems more cost-effectively. Fine-tuning excels when you need:</p>
+      <ul>
+        <li>Consistent brand voice and tone across thousands of responses</li>
+        <li>Deep expertise in a specific domain (legal, medical, financial)</li>
+        <li>Structured output formats (JSON, specific templates) without verbose prompting</li>
+        <li>Reduced inference costs (smaller fine-tuned models outperform larger base models)</li>
+      </ul>
+
+      <div class="info-card">
+        <div class="info-card-title">🛠️ Axyntra Fine-Tuning Process</div>
+        <ul>
+          <li>Dataset curation and cleaning (quality &gt; quantity)</li>
+          <li>Training data preparation in JSONL conversation format</li>
+          <li>Fine-tune on cloud GPU (AWS, GCP, or Replicate)</li>
+          <li>Evaluation against benchmark prompts and edge cases</li>
+          <li>Deploy with API wrapper, rate limiting, and monitoring</li>
+        </ul>
+      </div>
+
+      <div class="author-card">
+        <div class="author-img">MH</div>
+        <div>
+          <h4>Mohammed Himas</h4>
+          <div class="role">Founder & Lead Developer at Axyntra</div>
+          <p>AI integration specialist with hands-on experience fine-tuning GPT, Llama, and Mistral models for production business applications across multiple industries.</p>
+        </div>
+      </div>
+
+      <div class="share-section">
+        <div class="share-label">Share This Article</div>
+        <div class="share-btns">
+          <a class="share-btn" href="#" onclick="navigator.clipboard.writeText(window.location.href);return false;">📋 Copy Link</a>
+          <a class="share-btn" href="https://wa.me/?text=LLM+Fine-Tuning+for+Business+by+Axyntra" target="_blank">WhatsApp</a>
+        </div>
+      </div>
+    `
+  }
+};
+
+/* ══════════════════════════════════════
+   RELATED POSTS DATA
+══════════════════════════════════════ */
+const RELATED_POSTS = [
+  { slug: 'ai-chatbots', cat: '🤖 AI', title: 'How AI Chatbots Boost Sales by 45%', desc: 'Real-world strategies to integrate AI assistants and increase conversions.', img: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop', read: '6 min' },
+  { slug: 'fullstack-tips', cat: '💻 Dev', title: 'Full-Stack Performance Best Practices 2025', desc: 'Speed, scalability, and modern architecture for blazing-fast apps.', img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=250&fit=crop', read: '8 min' },
+  { slug: 'brand-identity', cat: '🎨 Brand', title: 'The Psychology of Modern Brand Identity', desc: 'How color psychology and typography define digital success.', img: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&h=250&fit=crop', read: '5 min' },
+  { slug: 'voice-seo', cat: '📈 SEO', title: 'Voice Search SEO: Preparing for 2026', desc: 'Optimize for voice assistants and conversational queries.', img: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&h=250&fit=crop', read: '4 min' },
+  { slug: 'llm-finetuning', cat: '🤖 AI', title: 'LLM Fine-Tuning for Business Use Cases', desc: 'How custom-trained models automate customer support effectively.', img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=250&fit=crop', read: '7 min' }
+];
+
+/* ══════════════════════════════════════
+   INIT
+══════════════════════════════════════ */
+(function init(){
+  const params = new URLSearchParams(window.location.search);
+  const postSlug = params.get('post') || 'ai-chatbots';
+  const post = POSTS[postSlug] || POSTS['ai-chatbots'];
+
+  // Set meta
+  document.title = post.title.replace(/<[^>]+>/g,'') + ' | Axyntra Blog';
+  document.getElementById('postEyebrow').innerHTML = post.category;
+  document.getElementById('postTitle').innerHTML = post.title;
+  document.getElementById('postDate').textContent = post.date;
+  document.getElementById('postRead').textContent = post.readTime;
+  document.getElementById('heroBgImg').style.backgroundImage = `url('${post.heroImg}')`;
+  document.getElementById('articleBody').innerHTML = post.content;
+
+  // Build TOC from h2 elements
+  const h2s = document.querySelectorAll('.article-body h2');
+  const tocList = document.getElementById('tocList');
+  h2s.forEach(h2 => {
+    if(!h2.id) h2.id = h2.textContent.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+    const li = document.createElement('li');
+    const a  = document.createElement('a');
+    a.href = '#' + h2.id;
+    a.textContent = h2.textContent;
+    li.appendChild(a);
+    tocList.appendChild(li);
+  });
+
+  // Related posts (exclude current)
+  const grid = document.getElementById('relatedGrid');
+  const related = RELATED_POSTS.filter(p => p.slug !== postSlug).slice(0,3);
+  grid.innerHTML = related.map(p => `
+    <div class="rel-card">
+      <div class="rel-thumb">
+        <div class="rel-cat">${p.cat}</div>
+        <img src="${p.img}" alt="${p.title}" loading="lazy" onerror="this.style.display='none'">
+      </div>
+      <div class="rel-body">
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+        <a href="blog-post.html?post=${p.slug}" class="rel-link">Read Article → <span style="font-size:.65rem;color:var(--text3);">${p.read}</span></a>
+      </div>
+    </div>
+  `).join('');
+
+  // TOC active state on scroll
+  const tocLinks = tocList.querySelectorAll('a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    h2s.forEach(h2 => { if(window.scrollY >= h2.offsetTop - 120) current = h2.id; });
+    tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+  }, { passive: true });
+
+})();
+
+/* ── READING PROGRESS ── */
+window.addEventListener('scroll', () => {
+  const article = document.getElementById('articleBody');
+  if(!article) return;
+  const rect = article.getBoundingClientRect();
+  const articleH = article.offsetHeight;
+  const scrolled = Math.max(0, -rect.top);
+  const progress = Math.min(100, (scrolled / articleH) * 100);
+  document.getElementById('readProgress').style.width = progress + '%';
+}, { passive: true });
+
+/* ── CANVAS ── */
+(function(){
+  const canvas = document.getElementById('bg-canvas'), ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+  function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  function createParticles(){
+    particles = [];
+    for(let i=0; i<Math.min(70, Math.floor(W*H/18000)); i++){
+      particles.push({ x:Math.random()*W, y:Math.random()*H, r:Math.random()*1.5+.3, dx:(Math.random()-.5)*.25, dy:(Math.random()-.5)*.25, alpha:Math.random()*.45+.1, hue:Math.random()*40+250 });
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach((p,i)=>{
+      p.x+=p.dx; p.y+=p.dy;
+      if(p.x<0)p.x=W; if(p.x>W)p.x=0; if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`hsla(${p.hue},70%,70%,${p.alpha})`; ctx.fill();
+      for(let j=i+1;j<particles.length;j++){
+        const q=particles[j], d=Math.hypot(p.x-q.x,p.y-q.y);
+        if(d<110){ ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle=`hsla(270,55%,60%,${.05*(1-d/110)})`; ctx.stroke(); }
+      }
+    });
+    requestAnimationFrame(draw);
+  }
+  resize(); createParticles(); draw();
+  window.addEventListener('resize', ()=>{ resize(); createParticles(); });
+})();
+
+/* ── CUSTOM CURSOR ── */
+(function(){
+  const dot = document.getElementById('dot'), ring = document.getElementById('ring');
+  if(!dot || !ring) return;
+  let mx=0, my=0, rx=0, ry=0;
+  document.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
+  (function animateCursor(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animateCursor); })();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>ring.classList.remove('hover'));
+  });
+})();
+
+/* ── NAV ── */
+const ham = document.getElementById('ham'), navLinks = document.getElementById('navLinks');
+ham.addEventListener('click',()=>{ ham.classList.toggle('open'); navLinks.classList.toggle('open'); });
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{ ham.classList.remove('open'); navLinks.classList.remove('open'); }));
+
+/* ── SCROLL REVEAL ── */
+new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); } }); }, { threshold:.1 })
+  .observe && document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); } }); }, { threshold:.1 }).observe(el);
+  });
+</script>
+</body>
+</html>
