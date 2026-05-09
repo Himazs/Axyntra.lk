@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Axyntra Digital Solution | Premium Digital Agency</title>
  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
-  <style>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+ <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
@@ -577,23 +578,107 @@
     .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 14px 44px var(--glow); }
 
     /* ─── FOOTER ─── */
-    footer {
-      position: relative; z-index: 1;
-      background: rgba(4,2,10,0.98); border-top: 1px solid var(--border2);
-      padding: 4rem 5% 2rem;
-    }
-    .footer-grid {
-      max-width: 1280px; margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border2);
-    }
-    .footer-brand p { font-size: 0.8rem; line-height: 1.7; color: var(--text4); margin-top: 1rem; max-width: 260px; }
-    .footer-col h5 { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text2); margin-bottom: 1rem; }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .footer-col ul li a { font-size: 0.8rem; color: var(--text4); text-decoration: none; transition: color 0.2s; }
-    .footer-col ul li a:hover { color: var(--p4); }
-    .footer-bottom { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; font-size: 0.73rem; color: var(--text4); }
+   /* ─── FOOTER ─── */
+footer{
+  position:relative;
+  z-index:1;
+  background:rgba(4,2,10,0.98);
+  border-top:1px solid var(--border2);
+  padding:4rem 5% 2rem;
+}
 
+/* MAKE ALL COLUMNS HORIZONTAL */
+.footer-grid{
+  max-width:1400px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:2rem;
+  flex-wrap:wrap;
+  padding-bottom:3rem;
+  border-bottom:1px solid var(--border2);
+}
+
+.footer-brand{
+  max-width:300px;
+}
+
+.footer-brand p{
+  font-size:0.8rem;
+  line-height:1.7;
+  color:var(--text4);
+  margin-top:1rem;
+}
+
+.footer-col h5{
+  font-family:'Syne',sans-serif;
+  font-size:0.75rem;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--text2);
+  margin-bottom:1rem;
+}
+
+.footer-col ul{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:0.7rem;
+}
+
+.footer-col ul li a{
+  font-size:0.82rem;
+  color:var(--text4);
+  text-decoration:none;
+  transition:0.25s ease;
+}
+
+.footer-col ul li a:hover{
+  color:var(--p4);
+  transform:translateX(4px);
+}
+
+/* SOCIAL ICONS */
+.social-links li a{
+  display:flex;
+  align-items:center;
+  gap:0.7rem;
+}
+
+.social-links i{
+  width:18px;
+  text-align:center;
+  font-size:1rem;
+  color:var(--p4);
+}
+
+/* FOOTER BOTTOM */
+.footer-bottom{
+  max-width:1400px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-top:2rem;
+  font-size:0.73rem;
+  color:var(--text4);
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .footer-grid{
+    flex-direction:column;
+    gap:2.5rem;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    gap:0.6rem;
+    text-align:center;
+  }
+}
     /* ─── TRUST BADGES ROW ─── */
     .trust-row {
       display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
@@ -1067,12 +1152,20 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
+
     <div class="footer-brand">
-      <a href="#home" class="logo">Axyntra<span class="logo-dot">.</span></a>
-      <p>Quick, affordable, trusted digital solutions — founded by Mohammed Himas & a passionate team. Serving clients worldwide since 2023.</p>
+      <a href="#home" class="logo">
+        Axyntra<span class="logo-dot">.</span>
+      </a>
+
+      <p>
+        Quick, affordable, trusted digital solutions — founded by Mohammed Himas & a passionate team. Serving clients worldwide since 2023.
+      </p>
     </div>
+
     <div class="footer-col">
       <h5>Services</h5>
+
       <ul>
         <li><a href="#services">AI Integration</a></li>
         <li><a href="#services">Web Development</a></li>
@@ -1080,8 +1173,10 @@
         <li><a href="#services">SEO & Analytics</a></li>
       </ul>
     </div>
+
     <div class="footer-col">
       <h5>Company</h5>
+
       <ul>
         <li><a href="#about">About Us</a></li>
         <li><a href="projects.html">Portfolio</a></li>
@@ -1089,18 +1184,90 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
+
     <div class="footer-col">
-      <h5>Contact</h5>
-      <ul>
-        <li><a href="mailto:hello.axyntra@gmail.com">hello.axyntra@gmail.com</a></li>
-        <li><a href="https://wa.me/94703883436" target="_blank">WhatsApp Us</a></li>
-        <li><a href="projects.html">View Projects</a></li>
+      <h5>Social Media</h5>
+
+      <ul class="social-links">
+
+        <li>
+          <a href="https://www.threads.net/@axyntra_" target="_blank">
+            <i class="fa-brands fa-threads"></i>
+            Threads
+          </a>
+        </li>
+
+        <li>
+          <a href="https://www.facebook.com/share/1B5AbsUJAs/" target="_blank">
+            <i class="fa-brands fa-facebook-f"></i>
+            Facebook
+          </a>
+        </li>
+
+        <li>
+          <a href="https://www.reddit.com/u/Axyntra/" target="_blank">
+            <i class="fa-brands fa-reddit-alien"></i>
+            Reddit
+          </a>
+        </li>
+
+        <li>
+          <a href="https://www.instagram.com/axyntra_/" target="_blank">
+            <i class="fa-brands fa-instagram"></i>
+            Instagram
+          </a>
+        </li>
+
+        <li>
+          <a href="https://www.linkedin.com/company/axyntra/" target="_blank">
+            <i class="fa-brands fa-linkedin-in"></i>
+            LinkedIn
+          </a>
+        </li>
+
+        <li>
+          <a href="https://x.com/Axyntra" target="_blank">
+            <i class="fa-brands fa-x-twitter"></i>
+            Twitter / X
+          </a>
+        </li>
+
       </ul>
     </div>
+
+    <div class="footer-col">
+      <h5>Contact</h5>
+
+      <ul>
+        <li>
+          <a href="mailto:hello.axyntra@gmail.com">
+            hello.axyntra@gmail.com
+          </a>
+        </li>
+
+        <li>
+          <a href="https://wa.me/94703883436" target="_blank">
+            WhatsApp Us
+          </a>
+        </li>
+
+        <li>
+          <a href="projects.html">
+            View Projects
+          </a>
+        </li>
+      </ul>
+    </div>
+
   </div>
+
   <div class="footer-bottom">
     <div>© 2026 Axyntra Digital Solutions. All rights reserved.</div>
-    <a href="https://himazs.github.io/Axyntra.lk/" style="color:var(--p4);text-decoration:none;">Axyntra.lk</a>
+
+    <a href="https://himazs.github.io/Axyntra.lk/"
+       style="color:var(--p4);text-decoration:none;">
+      Axyntra.lk
+    </a>
   </div>
 </footer>
 
