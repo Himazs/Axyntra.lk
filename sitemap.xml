@@ -1,8 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage -->
   <url>
     <loc>https://himazs.github.io/Axyntra.lk/</loc>
-    <lastmod>2026-05-07</lastmod>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- If you have sections as separate pages, add them below -->
+  <!-- Example: About Page -->
+  <!-- 
+  <url>
+    <loc>https://himazs.github.io/Axyntra.lk/about.html</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  -->
+
+  <!-- Example: Services Page -->
+  <!--
+  <url>
+    <loc>https://himazs.github.io/Axyntra.lk/services.html</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  -->
+
+  <!-- Example: Contact Page -->
+  <!--
+  <url>
+    <loc>https://himazs.github.io/Axyntra.lk/contact.html</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  -->
+
 </urlset>
