@@ -1,1058 +1,1850 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Projects | Axyntra Digital Solution</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+/>
 
-    :root {
-      --p: #7C3AED;
-      --p2: #9333EA;
-      --p3: #A855F7;
-      --p4: #C084FC;
-      --p5: #E9D5FF;
-      --glow: rgba(124,58,237,0.35);
-      --glow2: rgba(168,85,247,0.2);
-      --bg: #030108;
-      --bg2: #07030f;
-      --bg3: #0d0720;
-      --card: rgba(13,7,32,0.7);
-      --border: rgba(124,58,237,0.25);
-      --border2: rgba(124,58,237,0.12);
-      --text: #F1EEF9;
-      --text2: #B8B0D4;
-      --text3: #7A7298;
-    }
+<title>Projects | Axyntra Digital Solutions</title>
 
-    html { scroll-behavior: smooth; }
+<meta
+  name="description"
+  content="Explore Axyntra's web development portfolio — e-commerce, business, education, real estate, restaurant and more."
+/>
 
-    body {
-      background: var(--bg);
-      font-family: 'Inter', system-ui, sans-serif;
-      color: var(--text);
-      overflow-x: hidden;
-      line-height: 1.6;
-      cursor: none;
-    }
+<meta name="author" content="Axyntra Digital Solutions" />
 
-    h1,h2,h3,h4,.logo { font-family: 'Space Grotesk', sans-serif; font-weight: 600; letter-spacing: -0.02em; }
+<link rel="icon" type="image/svg+xml" href="img/logo.svg" />
 
-    /* CURSOR */
-    .cursor-dot  { width:8px;height:8px;background:#fff;border-radius:50%;position:fixed;transform:translate(-50%,-50%);transition:transform .1s;top:0;left:0;z-index:9999;pointer-events:none;mix-blend-mode:difference; }
-    .cursor-ring { width:36px;height:36px;border:1.5px solid rgba(255,255,255,.6);border-radius:50%;position:fixed;transform:translate(-50%,-50%);transition:all .15s ease;top:0;left:0;z-index:9999;pointer-events:none;mix-blend-mode:difference; }
-    .cursor-ring.hover { transform:translate(-50%,-50%) scale(1.6); border-color:var(--p4); }
+<link
+  href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
 
-    ::-webkit-scrollbar { width:4px; }
-    ::-webkit-scrollbar-track { background:var(--bg); }
-    ::-webkit-scrollbar-thumb { background:linear-gradient(var(--p),var(--p3)); border-radius:20px; }
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+/>
 
-    #bg-canvas { position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.45; }
+<style>
 
-    /* NAV */
-    nav {
-      position:fixed;top:0;left:0;width:100%;z-index:1000;
-      display:flex;justify-content:space-between;align-items:center;
-      padding:1.1rem 5%;
-      transition:all .4s ease;
-      border-bottom:1px solid transparent;
-      background:rgba(3,1,8,.88);
-      backdrop-filter:blur(20px) saturate(180%);
-      border-bottom-color:var(--border);
-    }
-    .logo { font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.8rem;letter-spacing:-.02em;background:linear-gradient(135deg,#fff 30%,var(--p4));-webkit-background-clip:text;background-clip:text;color:transparent;text-decoration:none; }
-    .logo-dot { color:var(--p3);background:none;-webkit-background-clip:unset;background-clip:unset; }
-    .nav-links { display:flex;gap:2.5rem;list-style:none;align-items:center; }
-    .nav-links a { text-decoration:none;font-size:.875rem;font-weight:500;color:var(--text2);letter-spacing:-.01em;transition:color .2s;position:relative; }
-    .nav-links a::after { content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--p3);transition:width .3s; }
-    .nav-links a:hover { color:white; }
-    .nav-links a:hover::after { width:100%; }
-    .nav-links a.active-link { color:white; }
-    .nav-links a.active-link::after { width:100%; }
-    .nav-cta { background:linear-gradient(135deg,var(--p),var(--p2))!important;padding:.6rem 1.8rem!important;border-radius:50px;color:white!important;font-weight:600!important;box-shadow:0 0 20px var(--glow);transition:all .3s ease!important; }
-    .nav-cta::after { display:none!important; }
-    .nav-cta:hover { transform:translateY(-2px);box-shadow:0 0 35px var(--glow)!important; }
-    .hamburger { display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001; }
-    .hamburger span { width:24px;height:2px;background:white;border-radius:4px;transition:all .3s;display:block; }
-    .hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
-    .hamburger.open span:nth-child(2) { opacity:0; }
-    .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    /* PAGE HEADER */
-    .page-header {
-      padding: 9rem 5% 4rem;
-      position: relative;
-      z-index: 1;
-      text-align: center;
-    }
-    .page-header .eyebrow {
-      display:inline-flex;align-items:center;gap:.6rem;
-      font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-      color:var(--p4);margin-bottom:1rem;font-family:'Inter',sans-serif;
-      background:rgba(124,58,237,.1);border:1px solid var(--border);
-      padding:.4rem 1.2rem;border-radius:50px;
-    }
-    .page-header h1 {
-      font-family:'Space Grotesk',sans-serif;
-      font-size:clamp(2.4rem,5vw,4rem);
-      font-weight:700;letter-spacing:-.02em;line-height:1.15;
-      margin-bottom:1rem;
-    }
-    .page-header p { color:var(--text2);font-size:1rem;max-width:520px;margin:0 auto 2rem;line-height:1.7; }
+:root{
+  --p:#6D28D9;
+  --p2:#7C3AED;
+  --p3:#8B5CF6;
+  --p4:#C4B5FD;
 
-    /* BACK LINK */
-    .back-link {
-      display:inline-flex;align-items:center;gap:.5rem;
-      color:var(--text3);font-size:.82rem;font-weight:500;text-decoration:none;
-      border:1px solid var(--border2);border-radius:50px;padding:.4rem 1rem;
-      transition:all .2s;margin-bottom:2rem;
-    }
-    .back-link:hover { color:var(--p4);border-color:var(--border); }
+  --bg:#080412;
+  --bg2:#0C0818;
+  --card:rgba(18,12,35,.8);
 
-    /* STATS BAR */
-    .stats-bar {
-      display:flex;justify-content:center;gap:3rem;
-      margin-bottom:3.5rem;flex-wrap:wrap;
-    }
-    .stat-item { text-align:center; }
-    .stat-item .num {
-      font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;
-      background:linear-gradient(135deg,white,var(--p4));-webkit-background-clip:text;background-clip:text;color:transparent;
-    }
-    .stat-item .lbl { font-size:.75rem;color:var(--text3);margin-top:.2rem; }
+  --border:rgba(109,40,217,.25);
 
-    /* FILTER TABS */
-    .filter-wrap { position:relative;z-index:1;padding:0 5%;margin-bottom:3rem; }
-    .filter-inner { max-width:1280px;margin:0 auto; }
-    .filter-scroll {
-      display:flex;gap:.6rem;overflow-x:auto;scrollbar-width:none;
-      padding:.3rem .2rem 1rem;scroll-snap-type:x mandatory;
-    }
-    .filter-scroll::-webkit-scrollbar { display:none; }
-    .filter-btn {
-      display:inline-flex;align-items:center;gap:.5rem;
-      background:rgba(124,58,237,.08);border:1px solid var(--border2);
-      border-radius:50px;padding:.55rem 1.3rem;
-      font-size:.8rem;font-weight:600;color:var(--text3);
-      cursor:pointer;transition:all .25s ease;white-space:nowrap;
-      font-family:'Inter',sans-serif;letter-spacing:-.01em;
-      scroll-snap-align:start;
-    }
-    .filter-btn:hover { border-color:var(--border);color:var(--p4); }
-    .filter-btn.active {
-      background:linear-gradient(135deg,var(--p),var(--p2));
-      border-color:transparent;color:white;
-      box-shadow:0 4px 20px var(--glow);
-    }
-    .filter-btn .count {
-      background:rgba(255,255,255,.15);border-radius:50px;
-      padding:.1rem .5rem;font-size:.68rem;
-    }
-    .filter-btn.active .count { background:rgba(255,255,255,.25); }
+  --text:#fff;
+  --text2:#d6ccff;
+  --text3:#9f8fc7;
+  --text4:#6b5f88;
+}
 
-    /* SECTION */
-    .projects-section { padding:0 5% 6rem;position:relative;z-index:1; }
-    .section-inner { max-width:1280px;margin:0 auto; }
+html{
+  scroll-behavior:smooth;
+}
 
-    /* CATEGORY GROUP */
-    .cat-group { margin-bottom:4rem; }
-    .cat-header {
-      display:flex;align-items:center;gap:1rem;
-      margin-bottom:2rem;padding-bottom:1rem;
-      border-bottom:1px solid var(--border2);
-    }
-    .cat-icon {
-      width:40px;height:40px;background:rgba(124,58,237,.15);
-      border:1px solid var(--border2);border-radius:10px;
-      display:flex;align-items:center;justify-content:center;font-size:1.1rem;
-      flex-shrink:0;
-    }
-    .cat-title { font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text); }
-    .cat-count { font-size:.75rem;color:var(--text3);background:rgba(124,58,237,.1);border:1px solid var(--border2);padding:.2rem .7rem;border-radius:50px;margin-left:.5rem; }
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
+  line-height:1.6;
+}
 
-    /* PROJECT GRID */
-    .projects-grid {
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:1.5rem;
-    }
+body.loading{
+  overflow:hidden;
+}
 
-    /* PROJECT CARD */
-    .proj-card {
-      background:var(--card);
-      border:1px solid var(--border2);
-      border-radius:1.5rem;
-      overflow:hidden;
-      transition:all .35s cubic-bezier(.2,.9,.4,1.1);
-      position:relative;
-      opacity:0;transform:translateY(20px);
-      animation:cardIn .5s ease forwards;
-    }
-    .proj-card:hover {
-      transform:translateY(-6px);
-      border-color:var(--border);
-      box-shadow:0 20px 40px -10px rgba(0,0,0,.5),0 0 0 1px rgba(124,58,237,.2);
-    }
-    @keyframes cardIn { to { opacity:1; transform:translateY(0); } }
+h1,h2,h3,h4,h5,.logo{
+  font-family:'Outfit',sans-serif;
+}
 
-    /* CARD VISUAL */
-    .card-visual {
-      height:200px;
-      position:relative;
-      overflow:hidden;
-      background:#09061a;
-    }
-    .card-visual-inner {
-      width:100%;height:100%;
-      display:flex;align-items:center;justify-content:center;
-      position:relative;
-    }
-    /* Gradient placeholder visuals */
-    .cv-ecommerce  { background:linear-gradient(135deg,#0a0f2e 0%,#1a0a3c 40%,#0d1a3a 100%); }
-    .cv-portfolio  { background:linear-gradient(135deg,#0d0d1a 0%,#1a0d2e 40%,#0a1520 100%); }
-    .cv-business   { background:linear-gradient(135deg,#0a1520 0%,#0d2040 40%,#0a0d20 100%); }
-    .cv-education  { background:linear-gradient(135deg,#0a200a 0%,#0d3010 40%,#101a0a 100%); }
-    .cv-realestate { background:linear-gradient(135deg,#1a100a 0%,#2a1a08 40%,#150d05 100%); }
-    .cv-restaurant { background:linear-gradient(135deg,#200a0a 0%,#301008 40%,#1a0808 100%); }
-    .cv-travel     { background:linear-gradient(135deg,#0a1520 0%,#08202e 40%,#0a1a25 100%); }
+::-webkit-scrollbar{
+  width:4px;
+}
 
-    .card-visual img {
-      width:100%;height:100%;object-fit:cover;
-      transition:transform .4s ease;display:block;
-    }
-    .proj-card:hover .card-visual img { transform:scale(1.05); }
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--p),var(--p3));
+  border-radius:30px;
+}
 
-    /* Mock browser chrome */
-    .browser-chrome {
-      position:absolute;top:0;left:0;right:0;
-      height:28px;
-      background:rgba(10,5,25,.9);
-      border-bottom:1px solid rgba(124,58,237,.15);
-      display:flex;align-items:center;padding:0 10px;gap:5px;
-      z-index:2;
-    }
-    .browser-dot { width:7px;height:7px;border-radius:50%; }
-    .bd-red   { background:#FF5F57; }
-    .bd-yel   { background:#FFBD2E; }
-    .bd-grn   { background:#28C840; }
-    .browser-bar {
-      flex:1;height:14px;background:rgba(124,58,237,.1);
-      border:1px solid rgba(124,58,237,.15);border-radius:3px;margin:0 8px;
-      display:flex;align-items:center;padding:0 6px;
-    }
-    .browser-url { font-size:8px;color:var(--text3);font-family:'Inter',sans-serif; }
+/* LOADER */
 
-    /* Placeholder visual graphic inside card */
-    .visual-graphic {
-      position:absolute;top:28px;left:0;right:0;bottom:0;
-      display:flex;align-items:center;justify-content:center;
-      overflow:hidden;
-    }
-    .vg-lines { display:flex;flex-direction:column;gap:5px;padding:12px 16px;width:100%; }
-    .vg-line { height:6px;border-radius:3px;background:rgba(124,58,237,.2); }
-    .vg-line.wide  { width:80%; }
-    .vg-line.med   { width:55%; }
-    .vg-line.short { width:35%; }
-    .vg-line.highlight { background:rgba(124,58,237,.45);width:65%; }
+#page-loader{
+  position:fixed;
+  inset:0;
+  background:#05020c;
+  z-index:99999;
 
-    .proj-badge {
-      position:absolute;top:36px;left:12px;
-      background:rgba(40,20,80,.75);backdrop-filter:blur(10px);
-      border:1px solid rgba(124,58,237,.6);border-radius:50px;
-      padding:.22rem .75rem;font-size:.65rem;font-weight:700;
-      color:#e9d5ff;letter-spacing:.3px;z-index:3;
-    }
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
 
-    /* STATUS BADGE */
-    .status-badge {
-      position:absolute;top:36px;right:12px;
-      padding:.22rem .7rem;border-radius:50px;font-size:.62rem;font-weight:700;
-      letter-spacing:.02em;z-index:3;
-    }
-    .status-live    { background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.4);color:#4ade80; }
-    .status-ongoing { background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.4);color:#fbbf24; }
+.loader-logo-img{
+  width:95px;
+  margin-bottom:1rem;
+  animation:float 3s ease-in-out infinite;
+}
 
-    /* CARD BODY */
-    .card-body { padding:1.3rem 1.5rem 1rem; }
-    .card-body h3 { font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.3rem;color:#f3f4ff; }
-    .card-body .card-desc { font-size:.77rem;color:var(--text3);line-height:1.5;margin-bottom:1rem; }
-    .card-tags { display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem; }
-    .tag {
-      background:rgba(124,58,237,.1);border:1px solid var(--border2);
-      border-radius:50px;padding:.2rem .65rem;font-size:.65rem;font-weight:500;color:var(--p4);
-    }
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
 
-    /* CARD FOOTER */
-    .card-footer {
-      padding:.85rem 1.5rem 1.2rem;
-      border-top:1px solid var(--border2);
-      display:flex;align-items:center;justify-content:space-between;
-    }
-    .card-meta { font-size:.7rem;color:var(--text3); }
-    .btn-view-proj {
-      display:inline-flex;align-items:center;gap:.45rem;
-      background:#0f172a;color:#fff;
-      font-family:'Inter',sans-serif;font-weight:600;font-size:.77rem;
-      padding:.5rem 1.1rem;border-radius:50px;text-decoration:none;
-      border:1px solid rgba(124,58,237,.3);
-      transition:all .25s cubic-bezier(.34,1.56,.64,1);
-      position:relative;overflow:hidden;cursor:pointer;
-    }
-    .btn-view-proj::before {
-      content:'';position:absolute;top:0;left:-75%;width:55%;height:100%;
-      background:linear-gradient(120deg,transparent,rgba(255,255,255,.18),transparent);
-      animation:shimmer 2.8s ease-in-out infinite;pointer-events:none;
-    }
-    @keyframes shimmer { 0%{left:-75%}60%{left:130%}100%{left:130%} }
-    .btn-view-proj:hover {
-      background:#1e3a5f;transform:translateY(-2px);gap:.7rem;
-      box-shadow:0 8px 24px rgba(15,23,42,.3);border-color:var(--p3);
-    }
-    .btn-view-proj .arr { transition:transform .2s cubic-bezier(.34,1.56,.64,1); }
-    .btn-view-proj:hover .arr { transform:translateX(4px); }
+.loader-brand-name{
+  font-size:2rem;
+  font-weight:900;
+  letter-spacing:.12em;
 
-    /* EMPTY STATE */
-    .empty-state {
-      text-align:center;padding:4rem 2rem;
-      background:var(--card);border:1px dashed var(--border2);
-      border-radius:1.5rem;margin-top:1rem;
-    }
-    .empty-icon { font-size:2.5rem;margin-bottom:1rem; }
-    .empty-state h3 { font-family:'Space Grotesk',sans-serif;font-size:1.2rem;margin-bottom:.5rem;color:var(--text2); }
-    .empty-state p { font-size:.82rem;color:var(--text3); }
+  background:linear-gradient(135deg,#fff,#c4b5fd);
 
-    /* COMING SOON card */
-    .cs-card {
-      background:rgba(124,58,237,.05);
-      border:1px dashed var(--border2);
-      border-radius:1.5rem;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      min-height:220px;text-align:center;padding:2rem;
-      transition:border-color .2s;
-    }
-    .cs-card:hover { border-color:var(--border); }
-    .cs-badge {
-      background:rgba(124,58,237,.12);border:1px solid var(--border2);
-      border-radius:50px;padding:.3rem .9rem;font-size:.68rem;font-weight:600;
-      color:var(--p4);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.75rem;
-    }
-    .cs-card p { font-size:.78rem;color:var(--text3);line-height:1.5; }
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
 
-    /* FOOTER */
-    footer { position:relative;z-index:1;background:rgba(3,1,8,.95);border-top:1px solid var(--border2);padding:4rem 5% 2rem; }
-    .footer-grid { max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border2); }
-    .footer-brand p { font-size:.8rem;font-weight:450;line-height:1.7;color:var(--text3);margin-top:1rem;max-width:260px; }
-    .footer-col h5 { font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text2);margin-bottom:1rem; }
-    .footer-col ul { list-style:none;display:flex;flex-direction:column;gap:.6rem; }
-    .footer-col ul li a { font-size:.8rem;font-weight:450;color:var(--text3);text-decoration:none;transition:color .2s; }
-    .footer-col ul li a:hover { color:var(--p4); }
-    .footer-bottom { max-width:1280px;margin:0 auto;padding-top:2rem;font-size:.75rem;color:var(--text3);text-align:center; }
+.loader-tagline{
+  color:rgba(196,181,253,.6);
+  letter-spacing:.2em;
+  margin-top:.4rem;
+  font-size:.72rem;
+}
 
-    /* WA FAB */
-    .wa-fab { position:fixed;bottom:2rem;right:2rem;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5),0 8px 32px rgba(0,0,0,.3);z-index:999;transition:all .3s;text-decoration:none; }
-    .wa-fab:hover { transform:scale(1.12) translateY(-2px); }
+/* BG */
 
-    /* REVEAL */
-    .reveal { opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease; }
-    .reveal.visible { opacity:1;transform:none; }
+#bg-canvas{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  opacity:.4;
+  pointer-events:none;
+}
 
-    @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(168,85,247,.5)}50%{box-shadow:0 0 0 6px rgba(168,85,247,0)} }
-    @keyframes floatY { 0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)} }
+/* CURSOR */
 
-    /* RESPONSIVE */
-    @media(max-width:1100px){ .projects-grid{ grid-template-columns:repeat(2,1fr); } .footer-grid{grid-template-columns:1fr 1fr;gap:2rem;} }
-    @media(max-width:680px){
-      .nav-links{display:none;} .hamburger{display:flex;}
-      .projects-grid{grid-template-columns:1fr;}
-      .footer-grid{grid-template-columns:1fr;}
-      body{cursor:auto;} .cursor-dot,.cursor-ring{display:none;}
-      .nav-links.open{display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;height:100vh;background:rgba(3,1,8,.97);backdrop-filter:blur(30px);padding:6rem 2rem 2rem;gap:1.5rem;z-index:999;}
-      .nav-links.open a{font-size:1.3rem;font-weight:600;}
-      .stats-bar{gap:1.5rem;}
-      .page-header h1{font-size:2rem;}
-    }
-  </style>
+.cursor-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--p4);
+
+  position:fixed;
+  z-index:9999;
+  pointer-events:none;
+
+  transform:translate(-50%,-50%);
+}
+
+.cursor-ring{
+  width:34px;
+  height:34px;
+  border:1px solid rgba(196,181,253,.6);
+  border-radius:50%;
+
+  position:fixed;
+  z-index:9999;
+  pointer-events:none;
+
+  transform:translate(-50%,-50%);
+  transition:.18s;
+}
+
+.cursor-ring.hover{
+  transform:translate(-50%,-50%) scale(1.8);
+  background:rgba(109,40,217,.1);
+}
+
+/* NAV */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:1rem 5%;
+
+  background:rgba(8,4,18,.92);
+  backdrop-filter:blur(20px);
+
+  border-bottom:1px solid rgba(109,40,217,.15);
+}
+
+.logo{
+  text-decoration:none;
+  font-size:1.8rem;
+  font-weight:900;
+
+  background:linear-gradient(135deg,#fff,#c4b5fd);
+
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.logo-dot{
+  color:var(--p4);
+}
+
+.nav-links{
+  display:flex;
+  gap:2rem;
+  list-style:none;
+  align-items:center;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:var(--text3);
+  font-size:.92rem;
+  transition:.3s;
+  position:relative;
+}
+
+.nav-links a:hover{
+  color:#fff;
+}
+
+.nav-links a::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-5px;
+
+  width:0;
+  height:2px;
+
+  background:linear-gradient(90deg,var(--p3),var(--p4));
+  transition:.3s;
+}
+
+.nav-links a:hover::after,
+.active-link::after{
+  width:100%;
+}
+
+.active-link{
+  color:#fff !important;
+}
+
+.nav-cta{
+  background:linear-gradient(135deg,var(--p),var(--p2));
+  color:#fff !important;
+
+  padding:.7rem 1.3rem;
+  border-radius:50px;
+}
+
+.nav-cta::after{
+  display:none;
+}
+
+/* MOBILE NAV */
+
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+
+.hamburger span{
+  width:24px;
+  height:2px;
+  background:#fff;
+  border-radius:20px;
+  transition:.3s;
+}
+
+.hamburger.open span:nth-child(1){
+  transform:translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2){
+  opacity:0;
+}
+
+.hamburger.open span:nth-child(3){
+  transform:translateY(-7px) rotate(-45deg);
+}
+
+/* HEADER */
+
+.page-header{
+  padding:9rem 5% 5rem;
+  text-align:center;
+  position:relative;
+  z-index:1;
+  overflow:hidden;
+}
+
+.header-bg{
+  position:absolute;
+  inset:0;
+  z-index:-1;
+}
+
+.bg-orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(100px);
+  opacity:.35;
+}
+
+.orb1{
+  width:300px;
+  height:300px;
+  background:#7c3aed;
+  top:-80px;
+  left:-100px;
+}
+
+.orb2{
+  width:280px;
+  height:280px;
+  background:#4f46e5;
+  top:0;
+  right:-100px;
+}
+
+.orb3{
+  width:240px;
+  height:240px;
+  background:#9333ea;
+  bottom:-80px;
+  left:40%;
+}
+
+.back-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+
+  margin-bottom:2rem;
+
+  color:var(--text3);
+  text-decoration:none;
+
+  border:1px solid rgba(109,40,217,.2);
+
+  padding:.5rem 1rem;
+  border-radius:50px;
+
+  transition:.3s;
+}
+
+.back-link:hover{
+  color:#fff;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+
+  background:rgba(109,40,217,.1);
+
+  border:1px solid rgba(109,40,217,.2);
+
+  padding:.5rem 1.2rem;
+  border-radius:50px;
+
+  color:var(--p4);
+  font-size:.75rem;
+  font-weight:700;
+
+  margin-bottom:1.2rem;
+}
+
+.page-header h1{
+  font-size:clamp(2.7rem,6vw,5rem);
+  line-height:1.1;
+  margin-bottom:1rem;
+}
+
+.page-header p{
+  max-width:700px;
+  margin:auto;
+  color:var(--text3);
+}
+
+/* FILTER */
+
+.filter-wrap{
+  padding:0 5%;
+  margin-bottom:3rem;
+  position:relative;
+  z-index:2;
+  overflow:hidden;
+}
+
+.filter-marquee{
+  width:100%;
+  overflow:hidden;
+  position:relative;
+}
+
+.filter-scroll{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  width:max-content;
+
+  animation:scrollFilters 22s linear infinite;
+}
+
+.filter-marquee:hover .filter-scroll{
+  animation-play-state:paused;
+}
+
+@keyframes scrollFilters{
+
+  0%{
+    transform:translateX(0);
+  }
+
+  100%{
+    transform:translateX(-50%);
+  }
+
+}
+
+.filter-btn{
+  border:none;
+  outline:none;
+
+  background:rgba(109,40,217,.08);
+
+  border:1px solid rgba(109,40,217,.15);
+
+  color:var(--text3);
+
+  padding:.8rem 1.3rem;
+
+  border-radius:50px;
+
+  cursor:pointer;
+
+  white-space:nowrap;
+
+  transition:.3s;
+
+  font-size:.85rem;
+  font-weight:600;
+
+  backdrop-filter:blur(12px);
+
+  flex-shrink:0;
+}
+
+.filter-btn:hover{
+  color:#fff;
+  transform:translateY(-2px);
+  border-color:rgba(109,40,217,.35);
+}
+
+.filter-btn.active{
+  background:linear-gradient(135deg,var(--p),var(--p2));
+  color:#fff;
+
+  box-shadow:
+    0 10px 25px rgba(109,40,217,.35);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .filter-scroll{
+    gap:.7rem;
+    animation-duration:18s;
+  }
+
+  .filter-btn{
+    padding:.7rem 1rem;
+    font-size:.78rem;
+  }
+
+}
+
+
+/* PROJECTS */
+
+.projects-section{
+  padding:0 5% 6rem;
+  position:relative;
+  z-index:1;
+}
+
+.section-inner{
+  max-width:1300px;
+  margin:auto;
+}
+
+.cat-group{
+  margin-bottom:4rem;
+}
+
+.cat-header{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+
+  margin-bottom:2rem;
+  padding-bottom:1rem;
+
+  border-bottom:1px solid rgba(109,40,217,.15);
+}
+
+.cat-icon{
+  width:46px;
+  height:46px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:14px;
+
+  background:rgba(109,40,217,.12);
+
+  border:1px solid rgba(109,40,217,.2);
+}
+
+.cat-title{
+  font-size:1.2rem;
+  font-weight:700;
+}
+
+.cat-count{
+  color:var(--text3);
+  margin-left:.5rem;
+  font-size:.78rem;
+}
+
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+}
+
+.proj-card,
+.cs-card{
+  background:var(--card);
+
+  border:1px solid rgba(109,40,217,.15);
+
+  border-radius:1.5rem;
+
+  overflow:hidden;
+
+  transition:.35s;
+}
+
+.proj-card:hover,
+.cs-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(109,40,217,.4);
+}
+
+.card-visual{
+  height:210px;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#111827,#1e1b4b,#0f172a);
+}
+
+.browser-chrome{
+  height:30px;
+
+  display:flex;
+  align-items:center;
+  gap:5px;
+
+  padding:0 12px;
+
+  background:rgba(0,0,0,.4);
+
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.browser-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+}
+
+.bd-red{background:#ff5f57;}
+.bd-yel{background:#febc2e;}
+.bd-grn{background:#28c840;}
+
+.browser-bar{
+  flex:1;
+  height:15px;
+
+  background:rgba(255,255,255,.05);
+
+  border-radius:4px;
+
+  display:flex;
+  align-items:center;
+
+  padding:0 7px;
+  margin-left:8px;
+}
+
+.browser-url{
+  font-size:8px;
+  color:var(--text3);
+}
+
+.visual-graphic{
+  position:absolute;
+  inset:30px 0 0 0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.vg-lines{
+  width:100%;
+  padding:16px;
+}
+
+.vg-line{
+  height:6px;
+  border-radius:10px;
+  margin-bottom:7px;
+
+  background:rgba(124,58,237,.2);
+}
+
+.highlight{
+  background:rgba(124,58,237,.45);
+  width:70%;
+}
+
+.wide{width:90%;}
+.med{width:60%;}
+.short{width:40%;}
+
+.proj-badge,
+.status-badge{
+  position:absolute;
+  top:38px;
+
+  padding:.25rem .75rem;
+
+  border-radius:50px;
+
+  font-size:.65rem;
+  font-weight:700;
+}
+
+.proj-badge{
+  left:12px;
+
+  background:rgba(0,0,0,.45);
+  border:1px solid rgba(109,40,217,.35);
+}
+
+.status-badge{
+  right:12px;
+
+  background:rgba(34,197,94,.12);
+
+  border:1px solid rgba(34,197,94,.25);
+
+  color:#4ade80;
+}
+
+.card-body{
+  padding:1.4rem;
+}
+
+.card-body h3{
+  margin-bottom:.4rem;
+  font-size:1rem;
+}
+
+.card-desc{
+  color:var(--text3);
+  font-size:.8rem;
+  margin-bottom:1rem;
+}
+
+.card-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+}
+
+.tag{
+  background:rgba(109,40,217,.08);
+
+  border:1px solid rgba(109,40,217,.15);
+
+  padding:.28rem .7rem;
+
+  border-radius:50px;
+
+  font-size:.65rem;
+
+  color:var(--p4);
+}
+
+.card-footer{
+  padding:1rem 1.4rem;
+
+  border-top:1px solid rgba(109,40,217,.12);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+}
+
+.card-meta{
+  color:var(--text3);
+  font-size:.72rem;
+}
+
+.btn-view-proj{
+  text-decoration:none;
+  color:#fff;
+
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+
+  padding:.6rem 1rem;
+
+  border-radius:50px;
+
+  background:rgba(109,40,217,.1);
+
+  border:1px solid rgba(109,40,217,.15);
+
+  font-size:.76rem;
+  font-weight:600;
+
+  transition:.3s;
+}
+
+.btn-view-proj:hover{
+  background:rgba(109,40,217,.22);
+}
+
+.cs-card{
+  min-height:350px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+
+  text-align:center;
+
+  padding:2rem;
+}
+
+.cs-badge{
+  background:linear-gradient(135deg,var(--p),var(--p2));
+
+  padding:.45rem 1rem;
+
+  border-radius:50px;
+
+  font-size:.72rem;
+  font-weight:700;
+
+  margin-bottom:1rem;
+}
+
+.cs-card p{
+  color:var(--text3);
+  font-size:.9rem;
+}
+
+.empty-state{
+  text-align:center;
+  padding:4rem 2rem;
+}
+
+.empty-icon{
+  font-size:4rem;
+  margin-bottom:1rem;
+}
+
+/* FOOTER */
+
+footer{
+  background:#04020a;
+
+  border-top:1px solid rgba(109,40,217,.15);
+
+  padding:4rem 5% 2rem;
+
+  position:relative;
+  z-index:1;
+}
+
+.footer-grid{
+  max-width:1300px;
+  margin:auto;
+
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:2rem;
+
+  padding-bottom:3rem;
+
+  border-bottom:1px solid rgba(109,40,217,.15);
+}
+
+.footer-brand{
+  max-width:320px;
+}
+
+.footer-brand p{
+  margin-top:1rem;
+  color:var(--text4);
+  font-size:.85rem;
+}
+
+.footer-col h5{
+  margin-bottom:1rem;
+  color:#fff;
+  font-size:.78rem;
+}
+
+.footer-col ul{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:.8rem;
+}
+
+.footer-col a{
+  text-decoration:none;
+  color:var(--text4);
+  transition:.3s;
+}
+
+.footer-col a:hover{
+  color:var(--p4);
+}
+
+.footer-bottom{
+  max-width:1300px;
+  margin:auto;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding-top:2rem;
+
+  color:var(--text4);
+  font-size:.75rem;
+}
+
+/* FAB */
+
+.wa-fab{
+  position:fixed;
+  right:1.5rem;
+  bottom:1.5rem;
+
+  width:58px;
+  height:58px;
+
+  border-radius:50%;
+
+  background:#25D366;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-decoration:none;
+
+  z-index:999;
+
+  box-shadow:0 10px 25px rgba(37,211,102,.45);
+
+  transition:.3s;
+}
+
+.wa-fab:hover{
+  transform:scale(1.12);
+}
+
+/* REVEAL */
+
+.reveal{
+  opacity:0;
+  transform:translateY(25px);
+  transition:.7s;
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:none;
+}
+
+/* MOBILE */
+
+@media(max-width:1100px){
+
+  .projects-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:768px){
+
+  body{
+    cursor:auto;
+  }
+
+  .cursor-dot,
+  .cursor-ring{
+    display:none;
+  }
+
+  .hamburger{
+    display:flex;
+  }
+
+  .nav-links{
+    position:fixed;
+    top:72px;
+    left:0;
+
+    width:100%;
+
+    background:#0b0617;
+
+    flex-direction:column;
+
+    gap:1.3rem;
+
+    padding:2rem;
+
+    transform:translateY(-140%);
+    transition:.4s;
+  }
+
+  .nav-links.open{
+    transform:translateY(0);
+  }
+
+  .projects-grid{
+    grid-template-columns:1fr;
+  }
+
+  .footer-grid{
+    flex-direction:column;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    gap:.7rem;
+    text-align:center;
+  }
+
+}
+
+</style>
 </head>
-<body>
+
+<body class="loading">
+
+<!-- LOADER -->
+
+<div id="page-loader">
+
+  <img
+    src="img/Axy.png"
+    alt="Axyntra"
+    class="loader-logo-img"
+  />
+
+  <div class="loader-brand-name">Axyntra</div>
+
+  <div class="loader-tagline">
+    DIGITAL SOLUTIONS
+  </div>
+
+</div>
+
+<!-- BG -->
 
 <canvas id="bg-canvas"></canvas>
+
 <div class="cursor-dot" id="dot"></div>
 <div class="cursor-ring" id="ring"></div>
 
 <!-- NAV -->
-<nav id="nav">
-  <a href="index.html" class="logo">Axyntra<span class="logo-dot">.</span></a>
+
+<nav>
+
+  <a href="index.html" class="logo">
+    Axyntra<span class="logo-dot">.</span>
+  </a>
+
   <ul class="nav-links" id="navLinks">
+
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#about">About</a></li>
     <li><a href="index.html#services">Services</a></li>
-    <li><a href="projects.html" class="active-link">Portfolio</a></li>
-    <li><a href="index.html#testimonials">Testimonials</a></li>
+
+    <li>
+      <a href="projects.html" class="active-link">
+        Portfolio
+      </a>
+    </li>
+
     <li><a href="index.html#contact" class="nav-cta">Start a Project</a></li>
+
   </ul>
-  <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
+
+  <div class="hamburger" id="ham">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
 </nav>
 
-<!-- PAGE HEADER -->
+<!-- HEADER -->
+
 <div class="page-header">
-  <a href="index.html" class="back-link"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 3L5 7l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Back to Home</a>
-  <div class="eyebrow">✦ Our Work</div>
-  <h1>Web Development<br><span style="background:linear-gradient(135deg,var(--p4),var(--p3));-webkit-background-clip:text;background-clip:text;color:transparent;">Projects</span></h1>
-  <p>Real websites. Real results. Explore our web development portfolio spanning e-commerce to travel — each built with precision and purpose.</p>
+
+  <div class="header-bg">
+
+    <div class="bg-orb orb1"></div>
+    <div class="bg-orb orb2"></div>
+    <div class="bg-orb orb3"></div>
+
+  </div>
+
+  <a href="index.html" class="back-link">
+    ← Back to Home
+  </a>
+
+  <div class="eyebrow">
+    ✦ Our Work
+  </div>
+
+  <h1>
+    Web Development<br>
+
+    <span style="
+      background:linear-gradient(135deg,var(--p4),var(--p3));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    ">
+      Projects
+    </span>
+
+  </h1>
+
+  <p>
+    Real websites. Real results. Explore our premium portfolio
+    spanning e-commerce, business, education, restaurants,
+    real estate and more.
+  </p>
+
 </div>
 
-<!-- STATS BAR -->
-<div class="stats-bar reveal">
-  <div class="stat-item"><div class="num" id="totalCount">7+</div><div class="lbl">Projects</div></div>
-  <div class="stat-item"><div class="num">7</div><div class="lbl">Categories</div></div>
-  <div class="stat-item"><div class="num">100%</div><div class="lbl">Client Satisfaction</div></div>
-  <div class="stat-item"><div class="num">5★</div><div class="lbl">Average Rating</div></div>
-</div>
+<!-- FILTER -->
 
-<!-- FILTER TABS -->
 <div class="filter-wrap">
-  <div class="filter-inner">
+
+  <div class="filter-marquee">
+
     <div class="filter-scroll" id="filterRow">
-      <button class="filter-btn active" data-cat="all">All Projects <span class="count" id="allCount">7</span></button>
-      <button class="filter-btn" data-cat="ecommerce">🛍️ E-Commerce <span class="count">2</span></button>
-      <button class="filter-btn" data-cat="portfolio">🎨 Portfolio <span class="count">1</span></button>
-      <button class="filter-btn" data-cat="business">🏢 Business <span class="count">1</span></button>
-      <button class="filter-btn" data-cat="education">📚 Education <span class="count">1</span></button>
-      <button class="filter-btn" data-cat="realestate">🏠 Real Estate <span class="count">1</span></button>
-      <button class="filter-btn" data-cat="restaurant">🍽️ Restaurant & Food <span class="count">1</span></button>
-      <button class="filter-btn" data-cat="travel">✈️ Travel & Tourism <span class="count">0</span></button>
+
+      <!-- ORIGINAL -->
+      <button class="filter-btn active" data-cat="all">
+        All Projects
+      </button>
+
+      <button class="filter-btn" data-cat="ecommerce">
+        🛍️ E-Commerce
+      </button>
+
+      <button class="filter-btn" data-cat="portfolio">
+        🎨 Portfolio
+      </button>
+
+      <button class="filter-btn" data-cat="business">
+        🏢 Business
+      </button>
+
+      <button class="filter-btn" data-cat="education">
+        📚 Education
+      </button>
+
+      <button class="filter-btn" data-cat="realestate">
+        🏠 Real Estate
+      </button>
+
+      <button class="filter-btn" data-cat="restaurant">
+        🍽️ Restaurant
+      </button>
+
+      <button class="filter-btn" data-cat="travel">
+        ✈️ Travel
+      </button>
+
+      <!-- DUPLICATE FOR INFINITE LOOP -->
+
+      <button class="filter-btn active" data-cat="all">
+        All Projects
+      </button>
+
+      <button class="filter-btn" data-cat="ecommerce">
+        🛍️ E-Commerce
+      </button>
+
+      <button class="filter-btn" data-cat="portfolio">
+        🎨 Portfolio
+      </button>
+
+      <button class="filter-btn" data-cat="business">
+        🏢 Business
+      </button>
+
+      <button class="filter-btn" data-cat="education">
+        📚 Education
+      </button>
+
+      <button class="filter-btn" data-cat="realestate">
+        🏠 Real Estate
+      </button>
+
+      <button class="filter-btn" data-cat="restaurant">
+        🍽️ Restaurant
+      </button>
+
+      <button class="filter-btn" data-cat="travel">
+        ✈️ Travel
+      </button>
+
     </div>
+
   </div>
+
 </div>
 
-<!-- PROJECTS SECTION -->
+<!-- PROJECTS -->
+
 <div class="projects-section">
-  <div class="section-inner" id="projectsContainer">
 
-    <!-- ══════════════════════ E-COMMERCE ══════════════════════ -->
-    <div class="cat-group" data-category="ecommerce" id="group-ecommerce">
-      <div class="cat-header">
-        <div class="cat-icon">🛍️</div>
-        <div>
-          <span class="cat-title">E-Commerce Websites</span>
-          <span class="cat-count">2 projects</span>
-        </div>
-      </div>
-      <div class="projects-grid">
+  <div class="section-inner">
 
-        <!-- Card 1 -->
-        <div class="proj-card reveal" style="animation-delay:.05s" data-cat="ecommerce">
-          <div class="card-visual cv-ecommerce">
-            <div class="browser-chrome">
-              <div class="browser-dot bd-red"></div>
-              <div class="browser-dot bd-yel"></div>
-              <div class="browser-dot bd-grn"></div>
-              <div class="browser-bar"><span class="browser-url">hitec-shoes.lk</span></div>
+    <div class="projects-grid" id="projectGrid">
+
+      <!-- CARD -->
+
+      <div class="proj-card reveal" data-cat="ecommerce">
+
+        <div class="card-visual">
+
+          <div class="browser-chrome">
+            <div class="browser-dot bd-red"></div>
+            <div class="browser-dot bd-yel"></div>
+            <div class="browser-dot bd-grn"></div>
+
+            <div class="browser-bar">
+              <span class="browser-url">hitec-shoes.lk</span>
             </div>
-            <div class="visual-graphic">
-              <div class="vg-lines">
-                <div class="vg-line highlight"></div>
-                <div class="vg-line wide"></div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
-                  <div style="background:rgba(124,58,237,.18);border-radius:8px;height:50px;border:1px solid rgba(124,58,237,.15);"></div>
-                  <div style="background:rgba(124,58,237,.18);border-radius:8px;height:50px;border:1px solid rgba(124,58,237,.15);"></div>
-                </div>
-                <div class="vg-line med"></div>
-                <div class="vg-line short"></div>
+          </div>
+
+          <div class="visual-graphic">
+
+            <div class="vg-lines">
+
+              <div class="vg-line highlight"></div>
+              <div class="vg-line wide"></div>
+
+              <div style="
+                display:grid;
+                grid-template-columns:1fr 1fr;
+                gap:6px;
+                margin:10px 0;
+              ">
+
+                <div style="
+                  height:50px;
+                  border-radius:8px;
+                  background:rgba(124,58,237,.18);
+                "></div>
+
+                <div style="
+                  height:50px;
+                  border-radius:8px;
+                  background:rgba(124,58,237,.18);
+                "></div>
+
               </div>
+
+              <div class="vg-line med"></div>
+
             </div>
-            <div class="proj-badge">E-Commerce</div>
-            <div class="status-badge status-live">● Live</div>
+
           </div>
-          <div class="card-body">
-            <h3>Hitec Shoes Online Store</h3>
-            <p class="card-desc">Full-stack e-commerce platform with product catalog, cart, order management, and admin dashboard for a footwear brand.</p>
-            <div class="card-tags">
-              <span class="tag">React</span>
-              <span class="tag">Node.js</span>
-              <span class="tag">MongoDB</span>
-              <span class="tag">Stripe</span>
-            </div>
+
+          <div class="proj-badge">
+            E-Commerce
           </div>
-          <div class="card-footer">
-            <span class="card-meta">Delivered · 2024</span>
-            <a href="https://himazs.github.io/Hitec-Shoes/" class="btn-view-proj">View Demo <span class="arr">→</span></a>
+
+          <div class="status-badge">
+            ● Live
           </div>
+
         </div>
 
-        <!-- Card 2 -->
-        <div class="proj-card reveal" style="animation-delay:.1s" data-cat="ecommerce">
-          <div class="card-visual cv-ecommerce">
-            <div class="browser-chrome">
-              <div class="browser-dot bd-red"></div>
-              <div class="browser-dot bd-yel"></div>
-              <div class="browser-dot bd-grn"></div>
-              <div class="browser-bar"><span class="browser-url">victoria-shoes.lk</span></div>
-            </div>
-            <div class="visual-graphic">
-              <div class="vg-lines">
-                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:8px;">
-                  <div style="background:rgba(124,58,237,.2);border-radius:6px;height:40px;border:1px solid rgba(124,58,237,.2);"></div>
-                  <div style="background:rgba(124,58,237,.2);border-radius:6px;height:40px;border:1px solid rgba(124,58,237,.2);"></div>
-                  <div style="background:rgba(124,58,237,.2);border-radius:6px;height:40px;border:1px solid rgba(124,58,237,.2);"></div>
-                </div>
-                <div class="vg-line highlight"></div>
-                <div class="vg-line wide"></div>
-                <div class="vg-line med"></div>
-              </div>
-            </div>
-            <div class="proj-badge">E-Commerce</div>
-            <div class="status-badge status-live">● Live</div>
+        <div class="card-body">
+
+          <h3>Hitec Shoes Online Store</h3>
+
+          <p class="card-desc">
+            Modern e-commerce website with cart system,
+            admin dashboard and premium UI.
+          </p>
+
+          <div class="card-tags">
+
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">MongoDB</span>
+
           </div>
-          <div class="card-body">
-            <h3>Victoria Shoes Platform</h3>
-            <p class="card-desc">Premium e-commerce site with AI-powered size recommendations, multi-currency checkout, and real-time inventory sync.</p>
-            <div class="card-tags">
-              <span class="tag">Next.js</span>
-              <span class="tag">Tailwind</span>
-              <span class="tag">PostgreSQL</span>
-              <span class="tag">AI</span>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-meta">Delivered · 2024</span>
-            <a href="https://himazs.github.io/Victoria_Shoes/" class="btn-view-proj">View Demo <span class="arr">→</span></a>
-          </div>
+
         </div>
 
-        <!-- Coming soon -->
-        <div class="cs-card">
-          <div class="cs-badge">Coming Soon</div>
-          <p>More e-commerce projects being added.<br>Got a store to build? Let's talk.</p>
+        <div class="card-footer">
+
+          <span class="card-meta">
+            Delivered · 2024
+          </span>
+
+          <a
+            href="https://himazs.github.io/Hitec-Shoes/"
+            class="btn-view-proj"
+            target="_blank"
+          >
+            View Demo →
+          </a>
+
         </div>
 
       </div>
+
+      <!-- CARD -->
+
+      <div class="proj-card reveal" data-cat="portfolio">
+
+        <div class="card-visual">
+
+          <div class="browser-chrome">
+            <div class="browser-dot bd-red"></div>
+            <div class="browser-dot bd-yel"></div>
+            <div class="browser-dot bd-grn"></div>
+
+            <div class="browser-bar">
+              <span class="browser-url">himas.lk</span>
+            </div>
+          </div>
+
+          <div class="visual-graphic">
+
+            <div class="vg-lines">
+
+              <div class="vg-line highlight"></div>
+              <div class="vg-line wide"></div>
+              <div class="vg-line med"></div>
+
+            </div>
+
+          </div>
+
+          <div class="proj-badge">
+            Portfolio
+          </div>
+
+          <div class="status-badge">
+            ● Live
+          </div>
+
+        </div>
+
+        <div class="card-body">
+
+          <h3>Creative Portfolio</h3>
+
+          <p class="card-desc">
+            Premium animated portfolio for a software engineer.
+          </p>
+
+          <div class="card-tags">
+
+            <span class="tag">GSAP</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Figma</span>
+
+          </div>
+
+        </div>
+
+        <div class="card-footer">
+
+          <span class="card-meta">
+            Delivered · 2025
+          </span>
+
+          <a
+            href="https://himazs.github.io/Himas/"
+            class="btn-view-proj"
+            target="_blank"
+          >
+            View Site →
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="proj-card reveal" data-cat="business">
+
+        <div class="card-visual">
+
+          <div class="browser-chrome">
+            <div class="browser-dot bd-red"></div>
+            <div class="browser-dot bd-yel"></div>
+            <div class="browser-dot bd-grn"></div>
+
+            <div class="browser-bar">
+              <span class="browser-url">menam.co.uk</span>
+            </div>
+          </div>
+
+          <div class="visual-graphic">
+
+            <div class="vg-lines">
+
+              <div class="vg-line highlight"></div>
+              <div class="vg-line wide"></div>
+
+              <div style="
+                display:flex;
+                gap:6px;
+                margin-top:8px;
+              ">
+
+                <div style="
+                  flex:1;
+                  height:40px;
+                  border-radius:8px;
+                  background:rgba(14,165,233,.12);
+                "></div>
+
+                <div style="
+                  flex:1;
+                  height:40px;
+                  border-radius:8px;
+                  background:rgba(14,165,233,.12);
+                "></div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="proj-badge">
+            Business
+          </div>
+
+          <div class="status-badge">
+            ● Live
+          </div>
+
+        </div>
+
+        <div class="card-body">
+
+          <h3>Menam Financial Consulting</h3>
+
+          <p class="card-desc">
+            Corporate consulting website with SEO optimization and analytics.
+          </p>
+
+          <div class="card-tags">
+
+            <span class="tag">WordPress</span>
+            <span class="tag">SEO</span>
+            <span class="tag">Analytics</span>
+
+          </div>
+
+        </div>
+
+        <div class="card-footer">
+
+          <span class="card-meta">
+            Delivered · 2025
+          </span>
+
+          <a
+            href="https://menam.co.uk/"
+            class="btn-view-proj"
+            target="_blank"
+          >
+            View Site →
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- COMING -->
+
+      <div class="cs-card reveal" data-cat="restaurant">
+
+        <div class="cs-badge">
+          Coming Soon
+        </div>
+
+        <p>
+          More restaurant and food projects
+          are currently in development.
+        </p>
+
+      </div>
+
+      <!-- COMING -->
+
+      <div class="cs-card reveal" data-cat="education">
+
+        <div class="cs-badge">
+          Education Projects
+        </div>
+
+        <p>
+          Learning platforms and mosque websites
+          coming soon.
+        </p>
+
+      </div>
+
+      <!-- COMING -->
+
+      <div class="cs-card reveal" data-cat="realestate">
+
+        <div class="cs-badge">
+          Real Estate
+        </div>
+
+        <p>
+          Premium property listing websites
+          are being added.
+        </p>
+
+      </div>
+
     </div>
 
-    <!-- ══════════════════════ PORTFOLIO ══════════════════════ -->
-    <div class="cat-group" data-category="portfolio" id="group-portfolio">
-      <div class="cat-header">
-        <div class="cat-icon">🎨</div>
-        <div>
-          <span class="cat-title">Portfolio Websites</span>
-          <span class="cat-count">1 project</span>
-        </div>
-      </div>
-      <div class="projects-grid">
+    <!-- EMPTY -->
 
-        <div class="proj-card reveal" style="animation-delay:.05s" data-cat="portfolio">
-          <div class="card-visual cv-portfolio">
-            <div class="browser-chrome">
-              <div class="browser-dot bd-red"></div>
-              <div class="browser-dot bd-yel"></div>
-              <div class="browser-dot bd-grn"></div>
-              <div class="browser-bar"><span class="browser-url">creative-portfolio.lk</span></div>
-            </div>
-            <div class="visual-graphic">
-              <div class="vg-lines">
-                <div style="display:flex;gap:8px;margin-bottom:8px;">
-                  <div style="width:36px;height:36px;background:linear-gradient(135deg,rgba(124,58,237,.4),rgba(168,85,247,.2));border-radius:50%;border:1px solid rgba(124,58,237,.3);flex-shrink:0;"></div>
-                  <div style="flex:1;">
-                    <div class="vg-line highlight" style="margin-bottom:5px;"></div>
-                    <div class="vg-line med"></div>
-                  </div>
-                </div>
-                <div class="vg-line wide"></div>
-                <div class="vg-line short"></div>
-              </div>
-            </div>
-            <div class="proj-badge">Portfolio</div>
-            <div class="status-badge status-live">● Live</div>
-          </div>
-          <div class="card-body">
-            <h3>Creative Professional Portfolio</h3>
-            <p class="card-desc">Animated personal portfolio site with GSAP transitions, project gallery, and interactive contact section for a Software Engineer.</p>
-            <div class="card-tags">
-              <span class="tag">HTML/CSS</span>
-              <span class="tag">GSAP</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">Figma</span>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-meta">Delivered · 2024</span>
-            <a href="https://himazs.github.io/Himas/" class="btn-view-proj">View Site <span class="arr">→</span></a>
-          </div>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-badge">Coming Soon</div>
-          <p>More portfolio projects coming.<br>Need a portfolio that stands out?</p>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-badge">Your Project?</div>
-          <p>We'd love to build your portfolio.<br><a href="index.html#contact" style="color:var(--p4);text-decoration:none;">Get in touch →</a></p>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ══════════════════════ BUSINESS ══════════════════════ -->
-    <div class="cat-group" data-category="business" id="group-business">
-      <div class="cat-header">
-        <div class="cat-icon">🏢</div>
-        <div>
-          <span class="cat-title">Business Websites</span>
-          <span class="cat-count">1 project</span>
-        </div>
-      </div>
-      <div class="projects-grid">
-
-        <div class="proj-card reveal" style="animation-delay:.05s" data-cat="business">
-          <div class="card-visual cv-business">
-            <div class="browser-chrome">
-              <div class="browser-dot bd-red"></div>
-              <div class="browser-dot bd-yel"></div>
-              <div class="browser-dot bd-grn"></div>
-              <div class="browser-bar"><span class="browser-url"><menam class="co uk"></menam></span></div>
-            </div>
-            <div class="visual-graphic">
-              <div class="vg-lines">
-                <div class="vg-line highlight"></div>
-                <div class="vg-line wide"></div>
-                <div style="display:flex;gap:6px;margin-top:6px;">
-                  <div style="background:rgba(14,165,233,.12);border:1px solid rgba(14,165,233,.2);border-radius:6px;height:36px;flex:1;"></div>
-                  <div style="background:rgba(14,165,233,.12);border:1px solid rgba(14,165,233,.2);border-radius:6px;height:36px;flex:1;"></div>
-                  <div style="background:rgba(14,165,233,.12);border:1px solid rgba(14,165,233,.2);border-radius:6px;height:36px;flex:1;"></div>
-                </div>
-                <div class="vg-line med"></div>
-              </div>
-            </div>
-            <div class="proj-badge">Business</div>
-            <div class="status-badge status-live">● Live</div>
-          </div>
-          <div class="card-body">
-            <h3>Menam Financial Consulting</h3>
-            <p class="card-desc">Corporate website for a financial consultancy with service pages, SEO optimization, lead-capture forms, and client portal login.</p>
-            <div class="card-tags">
-              <span class="tag">WordPress</span>
-              <span class="tag">SEO</span>
-              <span class="tag">PHP</span>
-              <span class="tag">Analytics</span>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-meta">Delivered · 2024</span>
-            <a href="https://menam.co.uk/" class="btn-view-proj">View site <span class="arr">→</span></a>
-          </div>
-        </div>
-
-        <div class="proj-card reveal" style="animation-delay:.05s" data-cat="business">
-          <div class="card-visual cv-business">
-            <div class="browser-chrome">
-              <div class="browser-dot bd-red"></div>
-              <div class="browser-dot bd-yel"></div>
-              <div class="browser-dot bd-grn"></div>
-              <div class="browser-bar"><span class="browser-url"><menam class="co uk"></menam></span></div>
-            </div>
-            <div class="visual-graphic">
-              <div class="vg-lines">
-                <div class="vg-line highlight"></div>
-                <div class="vg-line wide"></div>
-                <div style="display:flex;gap:6px;margin-top:6px;">
-                  <div style="background:rgba(14,165,233,.12);border:1px solid rgba(14,165,233,.2);border-radius:6px;height:36px;flex:1;"></div>
-                  <div style="background:rgba(14,165,233,.12);border:1px solid rgba(14,165,233,.2);border-radius:6px;height:36px;flex:1;"></div>
-                  <div style="background:rgba(14,165,233,.12);border:1px solid rgba(14,165,233,.2);border-radius:6px;height:36px;flex:1;"></div>
-                </div>
-                <div class="vg-line med"></div>
-              </div>
-            </div>
-            <div class="proj-badge">Business</div>
-            <div class="status-badge status-live">● Live</div>
-          </div>
-          <div class="card-body">
-            <h3>Menam Financial Consulting</h3>
-            <p class="card-desc">Corporate website for a financial consultancy with service pages, SEO optimization, lead-capture forms, and client portal login.</p>
-            <div class="card-tags">
-              <span class="tag">WordPress</span>
-              <span class="tag">SEO</span>
-              <span class="tag">PHP</span>
-              <span class="tag">Analytics</span>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-meta">Delivered · 2024</span>
-            <a href="https://menam.co.uk/" class="btn-view-proj">View site <span class="arr">→</span></a>
-          </div>
-        </div>
-         
-
-        <div class="cs-card">
-          <div class="cs-badge">Coming Soon</div>
-          <p>More business websites coming.</p>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-badge">Your Project?</div>
-          <p>Launch your business online today.<br><a href="index.html#contact" style="color:var(--p4);text-decoration:none;">Start now →</a></p>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ══════════════════════ EDUCATION ══════════════════════ -->
-    <div class="cat-group" data-category="education" id="group-education">
-      <div class="cat-header">
-        <div class="cat-icon">📚</div>
-        <div>
-          <span class="cat-title">Education Websites</span>
-          <span class="cat-count">1 project</span>
-        </div>
-      </div>
-      <div class="projects-grid">
-
-        <div class="proj-card reveal" style="animation-delay:.05s" data-cat="education">
-          <div class="card-visual cv-education">
-            <div class="browser-chrome">
-              <div class="browser-dot bd-red"></div>
-              <div class="browser-dot bd-yel"></div>
-              <div class="browser-dot bd-grn"></div>
-              <div class="browser-bar"><span class="browser-url">masjidul-hassaniya.lk</span></div>
-            </div>
-            <div class="visual-graphic">
-              <div class="vg-lines">
-                <div class="vg-line highlight" style="background:rgba(34,197,94,.3);"></div>
-                <div class="vg-line wide"></div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
-                  <div style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:6px;height:40px;"></div>
-                  <div style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:6px;height:40px;"></div>
-                </div>
-                <div class="vg-line med"></div>
-              </div>
-            </div>
-            <div class="proj-badge">Education</div>
-            <div class="status-badge status-live">● Live</div>
-          </div>
-          <div class="card-body">
-            <h3>Masjidul Hassaniya Website</h3>
-            <p class="card-desc">Community and education hub for a mosque — prayer timetables, event calendar, donation gateway, and multilingual content support.</p>
-            <div class="card-tags">
-              <span class="tag">HTML/CSS</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">CMS</span>
-              <span class="tag">Multilingual</span>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-meta">Delivered · 2024</span>
-            <a href="https://masjidulhassaniya.lk/" class="btn-view-proj">View Site <span class="arr">→</span></a>
-          </div>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-badge">Coming Soon</div>
-          <p>More education platforms coming soon.</p>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-badge">Your Project?</div>
-          <p>Build a powerful learning platform.<br><a href="index.html#contact" style="color:var(--p4);text-decoration:none;">Talk to us →</a></p>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ══════════════════════ REAL ESTATE ══════════════════════ -->
-    <div class="cat-group" data-category="realestate" id="group-realestate">
-      <div class="cat-header">
-        <div class="cat-icon">🏠</div>
-        <div>
-          <span class="cat-title">Real Estate Websites</span>
-          <span class="cat-count">1 project</span>
-        </div>
-      </div>
-      <div class="projects-grid">
-
-        <div class="proj-card reveal" style="animation-delay:.05s" data-cat="realestate">
-          <div class="card-visual cv-realestate">
-            <div class="browser-chrome">
-              <div class="browser-dot bd-red"></div>
-              <div class="browser-dot bd-yel"></div>
-              <div class="browser-dot bd-grn"></div>
-              <div class="browser-bar"><span class="browser-url">reacha-nest.lk</span></div>
-            </div>
-            <div class="visual-graphic">
-              <div class="vg-lines">
-                <div style="background:rgba(249,115,22,.2);border:1px solid rgba(249,115,22,.25);border-radius:8px;height:50px;margin-bottom:8px;display:flex;align-items:center;justify-content:center;">
-                  <div style="width:60%;height:6px;background:rgba(249,115,22,.4);border-radius:3px;"></div>
-                </div>
-                <div class="vg-line highlight" style="background:rgba(249,115,22,.35);"></div>
-                <div class="vg-line wide"></div>
-                <div class="vg-line med"></div>
-              </div>
-            </div>
-            <div class="proj-badge">Real Estate</div>
-            <div class="status-badge status-live">● Live</div>
-          </div>
-          <div class="card-body">
-            <h3>Reacha Nest Property Platform</h3>
-            <p class="card-desc">Property listing site with advanced search filters, virtual tour integration, mortgage calculator, and agent management dashboard.</p>
-            <div class="card-tags">
-              <span class="tag">React</span>
-              <span class="tag">Laravel</span>
-              <span class="tag">MySQL</span>
-              <span class="tag">Maps API</span>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-meta">Delivered · 2025</span>
-            <a href="#" class="btn-view-proj">View Project <span class="arr">→</span></a>
-          </div>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-badge">Coming Soon</div>
-          <p>More real estate projects incoming.</p>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-badge">Your Project?</div>
-          <p>Showcase properties beautifully online.<br><a href="index.html#contact" style="color:var(--p4);text-decoration:none;">Get started →</a></p>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ══════════════════════ RESTAURANT ══════════════════════ -->
-    <div class="cat-group" data-category="restaurant" id="group-restaurant">
-      <div class="cat-header">
-        <div class="cat-icon">🍽️</div>
-        <div>
-          <span class="cat-title">Restaurant & Food Websites</span>
-          <span class="cat-count">1 project</span>
-        </div>
-      </div>
-      <div class="projects-grid">
-
-        <div class="proj-card reveal" style="animation-delay:.05s" data-cat="restaurant">
-          <div class="card-visual cv-restaurant">
-            <div class="browser-chrome">
-              <div class="browser-dot bd-red"></div>
-              <div class="browser-dot bd-yel"></div>
-              <div class="browser-dot bd-grn"></div>
-              <div class="browser-bar"><span class="browser-url">coco-nut.lk</span></div>
-            </div>
-            <div class="visual-graphic">
-              <div class="vg-lines">
-                <div class="vg-line highlight" style="background:rgba(220,38,38,.3);"></div>
-                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin:6px 0;">
-                  <div style="background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.2);border-radius:6px;height:35px;"></div>
-                  <div style="background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.2);border-radius:6px;height:35px;"></div>
-                  <div style="background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.2);border-radius:6px;height:35px;"></div>
-                </div>
-                <div class="vg-line wide"></div>
-                <div class="vg-line med"></div>
-              </div>
-            </div>
-            <div class="proj-badge">Restaurant</div>
-            <div class="status-badge status-live">● Live</div>
-          </div>
-          <div class="card-body">
-            <h3>Coco Nut Restaurant Website</h3>
-            <p class="card-desc">Vibrant restaurant website with digital menu, online table reservation system, food gallery, and WhatsApp order integration.</p>
-            <div class="card-tags">
-              <span class="tag">HTML/CSS</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">PHP</span>
-              <span class="tag">WhatsApp API</span>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-meta">Delivered · 2025</span>
-            <a href="#" class="btn-view-proj">View Project <span class="arr">→</span></a>
-          </div>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-badge">Coming Soon</div>
-          <p>More food & restaurant sites coming.</p>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-badge">Your Project?</div>
-          <p>Get your restaurant online today.<br><a href="index.html#contact" style="color:var(--p4);text-decoration:none;">Order now →</a></p>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ══════════════════════ TRAVEL ══════════════════════ -->
-    <div class="cat-group" data-category="travel" id="group-travel">
-      <div class="cat-header">
-        <div class="cat-icon">✈️</div>
-        <div>
-          <span class="cat-title">Travel & Tourism Websites</span>
-          <span class="cat-count">Coming soon</span>
-        </div>
-      </div>
-      <div class="projects-grid">
-
-        <div class="cs-card">
-          <div class="cs-badge">Coming Soon</div>
-          <p>Travel & tourism projects are on the way.<br>Working on something exciting.</p>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-badge">In Progress</div>
-          <p>A full travel booking platform with AI itinerary suggestions is currently in development.</p>
-        </div>
-
-        <div class="cs-card">
-          <div class="cs-badge">Your Project?</div>
-          <p>Build a stunning travel website.<br><a href="index.html#contact" style="color:var(--p4);text-decoration:none;">Let's explore →</a></p>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- EMPTY STATE (shown when filter has no results) -->
     <div id="emptyState" class="empty-state" style="display:none;">
-      <div class="empty-icon">🔍</div>
-      <h3>No projects found</h3>
-      <p>Try selecting a different category or check back soon as we add new work.</p>
+
+      <div class="empty-icon">
+        🔍
+      </div>
+
+      <h3>No Projects Found</h3>
+
+      <p>
+        Try another category.
+      </p>
+
     </div>
 
   </div>
+
 </div>
 
 <!-- FOOTER -->
+
 <footer>
+
   <div class="footer-grid">
+
     <div class="footer-brand">
-      <a href="index.html" class="logo">Axyntra<span class="logo-dot">.</span></a>
-      <p>Quick, affordable, trusted digital solutions — founded by Mohammed Himas & a passionate team.</p>
+
+      <a href="index.html" class="logo">
+        Axyntra<span class="logo-dot">.</span>
+      </a>
+
+      <p>
+        Quick, affordable and trusted digital solutions.
+      </p>
+
     </div>
+
     <div class="footer-col">
+
       <h5>Services</h5>
+
       <ul>
-        <li><a href="index.html#services">AI Integration</a></li>
-        <li><a href="index.html#services">Web Development</a></li>
-        <li><a href="index.html#services">UI/UX Design</a></li>
+
+        <li><a href="#">Web Development</a></li>
+        <li><a href="#">UI/UX Design</a></li>
+        <li><a href="#">SEO & Analytics</a></li>
+
       </ul>
+
     </div>
+
     <div class="footer-col">
-      <h5>Company</h5>
+
+      <h5>Social Media</h5>
+
       <ul>
-        <li><a href="index.html#about">About Us</a></li>
-        <li><a href="projects.html">Portfolio</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">LinkedIn</a></li>
+
       </ul>
+
     </div>
-    <div class="footer-col">
-      <h5>Contact</h5>
-      <ul>
-        <li><a href="mailto:hello.axyntra@gmail.com">hello.axyntra@gmail.com</a></li>
-        <li><a href="https://wa.me/94703883436" target="_blank">WhatsApp</a></li>
-      </ul>
-    </div>
+
   </div>
+
   <div class="footer-bottom">
-    <p>© 2026 Axyntra Digital Solutions. All rights reserved.</p>
-    <a href="https://himazs.github.io/Axyntra.lk/" style="color:white;text-decoration:none;">Axyntra.lk</a>
+
+    <div>
+      © 2026 Axyntra Digital Solutions
+    </div>
+
+    <a
+      href="https://axyntra.lk/"
+      style="
+        color:var(--p4);
+        text-decoration:none;
+      "
+    >
+      Axyntra.lk
+    </a>
+
   </div>
+
 </footer>
 
-<!-- WA FAB -->
-<a href="https://wa.me/94703883436" class="wa-fab" target="_blank" aria-label="Chat on WhatsApp">
-  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M15 2C7.82 2 2 7.82 2 15c0 2.3.62 4.45 1.7 6.3L2 28l6.9-1.8A13 13 0 0015 28c7.18 0 13-5.82 13-13S22.18 2 15 2z" fill="white"/>
-    <path d="M10.5 9.5c.3 0 .6.1.8.4l1.5 3.3c.1.3.1.6-.1.8l-1 1.1c.9 1.7 2.5 3.3 4.2 4.2l1.1-1c.2-.2.5-.3.8-.1l3.3 1.5c.3.1.4.4.4.7 0 1.7-1.4 3-3 3C12 23 7 18 7 12.5c0-1.6 1.3-3 3-3h.5z" fill="#25D366"/>
-  </svg>
+<!-- WHATSAPP -->
+
+<a
+  href="https://wa.me/94703883436"
+  class="wa-fab"
+  target="_blank"
+>
+
+  <i
+    class="fa-brands fa-whatsapp"
+    style="
+      color:white;
+      font-size:2rem;
+    "
+  ></i>
+
 </a>
 
 <script>
-  /* ── CANVAS PARTICLES ── */
-  const canvas = document.getElementById('bg-canvas'), ctx = canvas.getContext('2d');
-  let W, H, particles = [];
-  function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
-  function createParticles(){
-    particles = [];
-    for(let i=0; i<Math.min(70, Math.floor(W*H/18000)); i++){
-      particles.push({ x:Math.random()*W, y:Math.random()*H, r:Math.random()*1.5+.3, dx:(Math.random()-.5)*.3, dy:(Math.random()-.5)*.3, alpha:Math.random()*.5+.1, hue:Math.random()*40+250 });
+
+/* LOADER */
+
+window.addEventListener('load',()=>{
+
+  setTimeout(()=>{
+
+    document.body.classList.remove('loading');
+
+    document.getElementById('page-loader').style.display='none';
+
+  },1200);
+
+});
+
+/* CANVAS */
+
+(function(){
+
+  const canvas=document.getElementById('bg-canvas');
+  const ctx=canvas.getContext('2d');
+
+  let w,h,particles=[];
+
+  function resize(){
+
+    w=canvas.width=window.innerWidth;
+    h=canvas.height=window.innerHeight;
+
+  }
+
+  function init(){
+
+    particles=[];
+
+    for(let i=0;i<70;i++){
+
+      particles.push({
+
+        x:Math.random()*w,
+        y:Math.random()*h,
+
+        r:Math.random()*1.5+0.5,
+
+        dx:(Math.random()-.5)*0.3,
+        dy:(Math.random()-.5)*0.3
+
+      });
+
     }
+
   }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
+
+  function animate(){
+
+    ctx.clearRect(0,0,w,h);
+
     particles.forEach((p,i)=>{
-      p.x+=p.dx; p.y+=p.dy;
-      if(p.x<0)p.x=W; if(p.x>W)p.x=0; if(p.y<0)p.y=H; if(p.y>H)p.y=0;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`hsla(${p.hue},70%,70%,${p.alpha})`; ctx.fill();
+
+      p.x+=p.dx;
+      p.y+=p.dy;
+
+      if(p.x<0)p.x=w;
+      if(p.x>w)p.x=0;
+
+      if(p.y<0)p.y=h;
+      if(p.y>h)p.y=0;
+
+      ctx.beginPath();
+
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+
+      ctx.fillStyle='rgba(196,181,253,.5)';
+
+      ctx.fill();
+
       for(let j=i+1;j<particles.length;j++){
-        const q=particles[j], d=Math.hypot(p.x-q.x,p.y-q.y);
-        if(d<120){ ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle=`hsla(270,60%,65%,${.06*(1-d/120)})`; ctx.stroke(); }
+
+        const q=particles[j];
+
+        const d=Math.hypot(p.x-q.x,p.y-q.y);
+
+        if(d<100){
+
+          ctx.beginPath();
+
+          ctx.moveTo(p.x,p.y);
+          ctx.lineTo(q.x,q.y);
+
+          ctx.strokeStyle=`rgba(139,92,246,${0.08*(1-d/100)})`;
+
+          ctx.stroke();
+
+        }
+
       }
+
     });
-    requestAnimationFrame(draw);
-  }
-  resize(); createParticles(); draw();
-  window.addEventListener('resize', ()=>{ resize(); createParticles(); });
 
-  /* ── CUSTOM CURSOR ── */
-  const dot = document.getElementById('dot'), ring = document.getElementById('ring');
-  let mx=0, my=0, rx=0, ry=0;
-  document.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
-  (function animateCursor(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animateCursor); })();
-  document.querySelectorAll('a,button,.proj-card,.filter-btn').forEach(el=>{
-    el.addEventListener('mouseenter', ()=>ring.classList.add('hover'));
-    el.addEventListener('mouseleave', ()=>ring.classList.remove('hover'));
-  });
+    requestAnimationFrame(animate);
 
-  /* ── NAV HAMBURGER ── */
-  const ham = document.getElementById('ham'), navLinks = document.getElementById('navLinks');
-  ham.addEventListener('click', ()=>{ ham.classList.toggle('open'); navLinks.classList.toggle('open'); });
-  document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{ ham.classList.remove('open'); navLinks.classList.remove('open'); }));
-
-  /* ── SCROLL REVEAL ── */
-  const ro = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); } }); }, { threshold:.1 });
-  document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
-
-  /* ── CATEGORY FILTER ── */
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const catGroups  = document.querySelectorAll('.cat-group');
-  const emptyState = document.getElementById('emptyState');
-
-  // Read URL param on load
-  const urlParams = new URLSearchParams(window.location.search);
-  const initCat   = urlParams.get('category') || 'all';
-
-  function applyFilter(cat){
-    filterBtns.forEach(b=>b.classList.toggle('active', b.dataset.cat===cat));
-    let visibleGroups = 0;
-    catGroups.forEach(group=>{
-      const groupCat = group.dataset.category;
-      const show = (cat==='all') || (cat===groupCat);
-      group.style.display = show ? '' : 'none';
-      if(show) visibleGroups++;
-    });
-    emptyState.style.display = visibleGroups===0 ? '' : 'none';
-
-    // Update URL without reload
-    const url = new URL(window.location);
-    if(cat==='all') url.searchParams.delete('category');
-    else url.searchParams.set('category', cat);
-    history.replaceState(null,'', url);
   }
 
-  filterBtns.forEach(btn=>{
-    btn.addEventListener('click', ()=>applyFilter(btn.dataset.cat));
+  resize();
+  init();
+  animate();
+
+  window.addEventListener('resize',()=>{
+
+    resize();
+    init();
+
   });
 
-  // Apply initial filter
-  applyFilter(initCat);
+})();
 
-  /* ── CARD STAGGER ANIMATION ── */
-  document.querySelectorAll('.proj-card').forEach((card, idx)=>{
-    card.style.animationDelay = `${idx * 0.07}s`;
+/* CURSOR */
+
+if(window.innerWidth > 768){
+
+  const dot=document.getElementById('dot');
+  const ring=document.getElementById('ring');
+
+  let mx=0,my=0,rx=0,ry=0;
+
+  document.addEventListener('mousemove',e=>{
+
+    mx=e.clientX;
+    my=e.clientY;
+
+    dot.style.left=mx+'px';
+    dot.style.top=my+'px';
+
   });
+
+  function loop(){
+
+    rx+=(mx-rx)*0.12;
+    ry+=(my-ry)*0.12;
+
+    ring.style.left=rx+'px';
+    ring.style.top=ry+'px';
+
+    requestAnimationFrame(loop);
+
+  }
+
+  loop();
+
+  document.querySelectorAll('a,button,.proj-card,.cs-card')
+  .forEach(el=>{
+
+    el.addEventListener('mouseenter',()=>{
+      ring.classList.add('hover');
+    });
+
+    el.addEventListener('mouseleave',()=>{
+      ring.classList.remove('hover');
+    });
+
+  });
+
+}
+
+/* MOBILE NAV */
+
+const ham=document.getElementById('ham');
+const navLinks=document.getElementById('navLinks');
+
+ham.addEventListener('click',()=>{
+
+  ham.classList.toggle('open');
+  navLinks.classList.toggle('open');
+
+});
+
+/* REVEAL */
+
+const observer=new IntersectionObserver(entries=>{
+
+  entries.forEach(entry=>{
+
+    if(entry.isIntersecting){
+
+      entry.target.classList.add('visible');
+
+    }
+
+  });
+
+},{threshold:.1});
+
+document.querySelectorAll('.reveal').forEach(el=>{
+
+  observer.observe(el);
+
+});
+
+/* FILTER */
+
+const filterBtns=document.querySelectorAll('.filter-btn');
+const cards=document.querySelectorAll('[data-cat]');
+const emptyState=document.getElementById('emptyState');
+
+filterBtns.forEach(btn=>{
+
+  btn.addEventListener('click',()=>{
+
+    const selected=btn.dataset.cat;
+
+    filterBtns.forEach(b=>{
+
+      if(b.dataset.cat===selected){
+
+        b.classList.add('active');
+
+      }else{
+
+        b.classList.remove('active');
+
+      }
+
+    });
+
+    let visibleCount=0;
+
+    cards.forEach(card=>{
+
+      if(selected==='all' || card.dataset.cat===selected){
+
+        card.style.display='block';
+        visibleCount++;
+
+      }else{
+
+        card.style.display='none';
+
+      }
+
+    });
+
+    emptyState.style.display=
+      visibleCount===0 ? 'block' : 'none';
+
+  });
+
+});
+
 </script>
+
 </body>
 </html>
