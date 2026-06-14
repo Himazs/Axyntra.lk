@@ -60,6 +60,7 @@
       display: flex;
       align-items: center;
       gap: 1rem;
+      min-width: 0;
     }
 
     .back-btn {
@@ -74,6 +75,7 @@
       border-radius: 50px;
       border: 1px solid var(--border2);
       transition: all 0.2s;
+      flex-shrink: 0;
     }
     .back-btn:hover {
       color: var(--white);
@@ -89,6 +91,7 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      flex-shrink: 0;
     }
     .toolbar-brand span {
       background: linear-gradient(135deg, var(--p3), var(--p4));
@@ -107,6 +110,19 @@
       border: 1px solid var(--border2);
       border-radius: 50px;
       padding: 0.2rem 0.7rem;
+      flex-shrink: 0;
+    }
+
+    /* ── PROJECT NAME (current open project) ── */
+    .project-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text2);
+      padding-left: 0.5rem;
+      border-left: 1px solid var(--border2);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /* ── DEVICE SWITCHER ── */
@@ -467,14 +483,15 @@
       0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
       50%      { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
     }
-    .status-item { display: flex; align-items: center; gap: 0.45rem; }
-    .status-sep { width: 1px; height: 14px; background: var(--border2); }
+    .status-item { display: flex; align-items: center; gap: 0.45rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .status-sep { width: 1px; height: 14px; background: var(--border2); flex-shrink: 0; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .toolbar { padding: 0 1rem; }
       .toolbar-brand { display: none; }
       .preview-badge { display: none; }
+      .project-name { border-left: none; padding-left: 0; }
       .zoom-group { display: none; }
       .stage { padding: 1.2rem 0.75rem 3rem; }
     }
@@ -496,6 +513,7 @@
     </a>
     <div class="toolbar-brand">Axyntra<span>.</span></div>
     <div class="preview-badge">Client Preview</div>
+    <div class="project-name" id="projectName">Loading…</div>
   </div>
 
   <!-- DEVICE SWITCHER -->
@@ -533,7 +551,7 @@
     </div>
 
     <!-- OPEN IN NEW TAB -->
-    <a href="index.html" target="_blank" rel="noopener" class="open-btn">
+    <a href="#" target="_blank" rel="noopener" class="open-btn" id="openFullSiteBtn">
       <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
         <path d="M7.5 1H12M12 1V5.5M12 1L5.5 7.5" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
         <path d="M6 2.5H2a1 1 0 00-1 1V11a1 1 0 001 1h7.5a1 1 0 001-1V7.5" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
@@ -557,7 +575,7 @@
             <circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.1" opacity="0.5"/>
             <path d="M8.5 8.5l1.5 1.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity="0.5"/>
           </svg>
-          <span class="chrome-url">https://himazs.github.io/Himas/</span>
+          <span class="chrome-url" id="chromeUrl">Loading…</span>
         </div>
         <div class="chrome-actions">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
@@ -576,8 +594,8 @@
         <iframe
           id="previewFrame"
           class="preview-iframe"
-          src="index.html"
-          title="Axyntra website preview"
+          src=""
+          title="Client website preview"
           sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
           loading="eager"
         ></iframe>
@@ -599,17 +617,41 @@
     <span>Desktop · 1200px</span>
   </div>
   <div class="status-sep"></div>
-  <div class="status-item">
-    <span>https://himazs.github.io/Himas/</span>
+  <div class="status-item" id="status-url">
+    <span>Loading…</span>
   </div>
 </div>
 
 <script>
+/* ═══════════════════════════════════════════════
+   PROJECT REGISTRY
+   Add a new entry here every time you ship a new
+   client project. The `key` is the value used in
+   the URL, e.g. preview.html?project=KEY
+═══════════════════════════════════════════════ */
+const PROJECTS = {
+  himas: {
+    name: 'Mohammed Himas | Portfolio',
+    url: 'https://himazs.github.io/Himas/',
+  },
+  victoria: {
+    name: 'Victoria Shoes Sri Lanka — Crafted for Every Step',
+    url: 'https://himazs.github.io/Victoria_Shoes/',
+  },
+
+  // ── Add new projects below this line ──
+  // key: {
+  //   name: 'Client Project Name',
+  //   url: 'https://your-link-here/',
+  // },
+};
+
 /* ────────────────────────────
    STATE
 ──────────────────────────── */
 let currentDevice = 'desktop';
 let zoomLevel = 100;
+let currentProject = null;
 
 const frame        = document.getElementById('deviceFrame');
 const previewFrame = document.getElementById('previewFrame');
@@ -617,7 +659,36 @@ const iframeLoader = document.getElementById('iframeLoader');
 const topExtras    = document.getElementById('topExtras');
 const bottomExtras = document.getElementById('bottomExtras');
 const statusDevice = document.getElementById('status-device');
+const statusUrl    = document.getElementById('status-url');
 const zoomLabel    = document.getElementById('zoom-label');
+const projectNameEl = document.getElementById('projectName');
+const chromeUrlEl   = document.getElementById('chromeUrl');
+const openFullSiteBtn = document.getElementById('openFullSiteBtn');
+
+/* ────────────────────────────
+   LOAD PROJECT FROM URL
+──────────────────────────── */
+function loadProject() {
+  const params = new URLSearchParams(window.location.search);
+  const key = params.get('project');
+  const project = PROJECTS[key];
+
+  if (!project) {
+    projectNameEl.textContent = 'Project not found';
+    chromeUrlEl.textContent = 'No project specified';
+    statusUrl.querySelector('span').textContent = 'No project specified';
+    iframeLoader.querySelector('.loader-txt').textContent = 'Project not found — go back and choose a project';
+    openFullSiteBtn.removeAttribute('href');
+    return;
+  }
+
+  currentProject = project;
+  projectNameEl.textContent = project.name;
+  chromeUrlEl.textContent = project.url;
+  statusUrl.querySelector('span').textContent = project.url;
+  openFullSiteBtn.setAttribute('href', project.url);
+  previewFrame.src = project.url;
+}
 
 /* ────────────────────────────
    IFRAME LOAD
@@ -682,7 +753,6 @@ function setDevice(device) {
 function applyZoom() {
   zoomLabel.textContent = zoomLevel + '%';
   const scale = zoomLevel / 100;
-  const viewport = document.getElementById('viewport');
 
   // Scale the iframe inside viewport
   previewFrame.style.transform = `scale(${scale})`;
@@ -711,6 +781,7 @@ document.addEventListener('keydown', e => {
 /* ────────────────────────────
    INIT
 ──────────────────────────── */
+loadProject();
 applyZoom();
 </script>
 </body>
