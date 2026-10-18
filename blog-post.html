@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  < <title>Blog | Axyntra Digital Solutions</title>
+  <title>Axyntra Blog | Web Development, Design &amp; Digital Insights</title>
   <meta name="description" content="Read the latest insights, web development tips, SEO guides and digital trends from Axyntra." />
   <meta name="keywords" content="digital agency, web development, full stack developer, AI tools, Sri Lanka, Axyntra, project management, digital solutions" />
   <meta name="author" content="Axyntra Digital Solutions" />
@@ -15,10 +15,10 @@
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Axyntra" />
-<meta property="og:title" content="Axyntra Digital Solutions | Premium Digital Agency Sri Lanka" />
+<meta property="og:title" content="Axyntra Blog | Digital Strategy and Development" />
 <meta property="og:description" content="Smart digital solutions for modern businesses. Web development, UI/UX, SEO, AI tools & branding." />
-<meta property="og:url" content="https://axyntra.lk/" />
-<meta property="og:image" content="https://axyntra.lk/assets/og-image.jpg" />
+<meta property="og:url" content="https://axyntra.lk/blog-post.html" />
+<meta property="og:image" content="https://axyntra.lk/img/og-image.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Axyntra Digital Solutions — Premium Digital Agency Sri Lanka" />
@@ -26,17 +26,17 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@Axyntra" />
-<meta name="twitter:creator" content="@Axyntra" />
-<meta name="twitter:title" content="Axyntra Digital Solutions | Premium Digital Agency Sri Lanka" />
+<meta name="twitter:site" content="@AxyntraOfficial" />
+
+<meta name="twitter:title" content="Axyntra Blog | Digital Strategy and Development" />
 <meta name="twitter:description" content="Smart digital solutions for modern businesses. Web development, SEO, branding & AI tools." />
-<meta name="twitter:image" content="https://axyntra.lk/assets/og-image.jpg" />
+<meta name="twitter:image" content="https://axyntra.lk/img/og-image.jpg" />
 <meta name="twitter:image:alt" content="Axyntra Digital Solutions Banner" />
 
-  <link rel="icon" type="image/svg+xml" href="img/logo.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
   <meta name="theme-color" content="#6366f1" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -54,7 +54,7 @@
   "@type": "Organization",
   "name": "Axyntra Digital Solutions",
   "url": "https://axyntra.lk/",
-  "logo": "https://axyntra.lk/assets/logo.png",
+  "logo": "https://axyntra.lk/img/Axyntra-logo.png",
   "description": "Premium digital agency offering web development, branding, SEO, UI/UX and AI-driven digital solutions.",
   "address": {
     "@type": "PostalAddress",
@@ -65,7 +65,7 @@
     "name": "Mohammed Himas"
   },
   "sameAs": [
-    "https://x.com/Axyntra", "https://www.linkedin.com/company/axyntra/", "https://www.instagram.com/axyntra_/", "https://www.reddit.com/u/Axyntra/", "https://www.facebook.com/share/1B5AbsUJAs/", "https://www.threads.net/@axyntra_"
+    "https://x.com/AxyntraOfficial", "https://www.linkedin.com/company/axyntra/", "https://www.instagram.com/axyntra.lk/", "https://www.reddit.com/u/Axyntra/", "https://www.facebook.com/share/1B5AbsUJAs/", "https://www.threads.com/@axyntra.lk"
   ]
 }
 </script>
@@ -531,7 +531,16 @@
     @keyframes fadeIn { from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none} }
 
     .post-hero-content { animation:fadeIn .8s ease both; }
-  </style>
+  
+    :is(a, button, input, select, textarea, [role="button"]):focus-visible { outline: 3px solid #c4b5fd; outline-offset: 4px; }
+    @media (prefers-reduced-motion: reduce) {
+      *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      #bg-canvas, .cursor-dot, .cursor-ring, #page-loader { display: none !important; }
+      body.loading { overflow: auto !important; }
+    }
+    @media (hover: none), (pointer: coarse) { body { cursor: auto; } .cursor-dot, .cursor-ring { display: none !important; } }
+</style>
 </head>
 <body>
 
@@ -544,14 +553,14 @@
 <nav id="nav">
   <a href="index.html" class="logo">Axyntra<span class="logo-dot">.</span></a>
  <ul class="nav-links" id="navLinks">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="#blog">Blog</a></li>
+    <li><a href="index.html#home">Home</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#portfolio">Portfolio</a></li>
+    <li><a href="index.html#testimonials">Testimonials</a></li>
+    <li><a href="index.html#blog">Blog</a></li>
     <li><a href="preview.html">Preview</a></li>
-    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Contact Us</a></li>
   </ul>
   <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
 </nav>
@@ -563,7 +572,7 @@
   <div class="hero-overlay-side"></div>
   <div class="post-hero-content">
     <div class="post-eyebrow" id="postEyebrow">🤖 AI & Automation</div>
-    <h1 id="postTitle">How AI Chatbots <em>Boost Sales</em><br>by 45% — Real Strategies</h1>
+    <h1 id="postTitle">How AI Chatbots <em>Support Sales</em><br>and Customer Service</h1>
     <div class="post-meta">
       <div class="meta-author">
         <div class="meta-avatar">MH</div>
@@ -606,7 +615,7 @@
 
     <div class="sidebar-cta">
       <h4>Ready to Build Yours?</h4>
-      <p>Let Axyntra integrate a custom AI chatbot into your business today.</p>
+      <p>Discuss a website, automation or digital solution for your business.</p>
       <a href="index.html#contact" class="btn-cta">Start a Project →</a>
     </div>
 
@@ -669,36 +678,36 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <a href="#home" class="logo">Axyntra<span class="logo-dot">.</span></a>
+      <a href="index.html#home" class="logo">Axyntra<span class="logo-dot">.</span></a>
       <p>Quick, affordable, trusted digital solutions — founded by Mohammed Himas & a passionate team. Serving clients worldwide since 2023.</p>
     </div>
     <div class="footer-col">
       <h5>Services</h5>
       <ul>
-        <li><a href="#services">AI Integration</a></li>
-        <li><a href="#services">Web Development</a></li>
-        <li><a href="#services">UI/UX Design</a></li>
-        <li><a href="#services">SEO & Analytics</a></li>
+        <li><a href="index.html#services">AI Integration</a></li>
+        <li><a href="index.html#services">Web Development</a></li>
+        <li><a href="index.html#services">UI/UX Design</a></li>
+        <li><a href="index.html#services">SEO & Analytics</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5>Company</h5>
       <ul>
-        <li><a href="#about">About Us</a></li>
+        <li><a href="index.html#about">About Us</a></li>
         <li><a href="projects.html">Portfolio</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="index.html#blog">Blog</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5>Social Media</h5>
        <ul class="social-links">
-        <li><a href="https://www.threads.com/@axyntra.lk" target="_blank"><i class="fa-brands fa-threads"></i>Threads</a></li>
-        <li><a href="https://www.facebook.com/share/1B5AbsUJAs/" target="_blank"><i class="fa-brands fa-facebook-f"></i>Facebook</a></li>
-        <li><a href="https://www.reddit.com/u/Axyntra/" target="_blank"><i class="fa-brands fa-reddit-alien"></i>Reddit</a></li>
-        <li><a href="https://www.instagram.com/axyntra.lk/" target="_blank"><i class="fa-brands fa-instagram"></i>Instagram</a></li>
-        <li><a href="https://www.linkedin.com/company/axyntra/" target="_blank"><i class="fa-brands fa-linkedin-in"></i>LinkedIn</a></li>
-        <li><a href="https://x.com/AxyntraOfficial" target="_blank"><i class="fa-brands fa-x-twitter"></i>Twitter / X</a></li>
+        <li><a href="https://www.threads.com/@axyntra.lk" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-threads"></i>Threads</a></li>
+        <li><a href="https://www.facebook.com/share/1B5AbsUJAs/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i>Facebook</a></li>
+        <li><a href="https://www.reddit.com/u/Axyntra/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-reddit-alien"></i>Reddit</a></li>
+        <li><a href="https://www.instagram.com/axyntra.lk/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i>Instagram</a></li>
+        <li><a href="https://www.linkedin.com/company/axyntra/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i>LinkedIn</a></li>
+        <li><a href="https://x.com/AxyntraOfficial" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i>Twitter / X</a></li>
       </ul>
     </div>
    
@@ -710,7 +719,7 @@
 </footer>
 
 <!-- WA FAB -->
-<a href="https://wa.me/94703883436" class="wa-fab" target="_blank" aria-label="Chat on WhatsApp">
+<a href="https://wa.me/94703883436" class="wa-fab" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
   <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
     <path d="M15 2C7.82 2 2 7.82 2 15c0 2.3.62 4.45 1.7 6.3L2 28l6.9-1.8A13 13 0 0015 28c7.18 0 13-5.82 13-13S22.18 2 15 2z" fill="white"/>
     <path d="M10.5 9.5c.3 0 .6.1.8.4l1.5 3.3c.1.3.1.6-.1.8l-1 1.1c.9 1.7 2.5 3.3 4.2 4.2l1.1-1c.2-.2.5-.3.8-.1l3.3 1.5c.3.1.4.4.4.7 0 1.7-1.4 3-3 3C12 23 7 18 7 12.5c0-1.6 1.3-3 3-3h.5z" fill="#25D366"/>
@@ -724,137 +733,63 @@
 const POSTS = {
   'ai-chatbots': {
     category: '🤖 AI & Automation',
-    title: 'How AI Chatbots <em>Boost Sales</em><br>by 45% — Real Strategies',
+    title: 'How AI Chatbots <em>Support Sales</em><br>and Customer Service',
     date: 'March 12, 2025',
     readTime: '6 min read',
     heroImg: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1400&h=700&fit=crop',
     content: `
-      <p>Artificial intelligence has fundamentally reshaped how businesses interact with customers. Among the most impactful applications — <strong>AI-powered chatbots</strong> — businesses are seeing tangible results: reduced response times, higher conversion rates, and most notably, sales lifts averaging 45%.</p>
-      <p>This isn't hype. It's backed by data from our client deployments and industry research. In this article, we break down the exact strategies that make AI chatbots effective sales tools.</p>
+      <p>AI-powered chatbots can help businesses answer common questions, guide customers toward suitable products and route complex issues to a person. They work best when they solve a real customer problem rather than simply adding another widget to a website.</p>
+      <p>This guide covers practical implementation choices and the metrics businesses can measure to decide whether a chatbot is worthwhile. Actual results depend on customer needs, training data, traffic and ongoing management.</p>
 
-      <div class="stat-row">
-        <div class="stat-box"><div class="num">45%</div><div class="lbl">Average Sales Lift</div></div>
-        <div class="stat-box"><div class="num">60%</div><div class="lbl">Ticket Reduction</div></div>
-        <div class="stat-box"><div class="num">24/7</div><div class="lbl">Lead Capture</div></div>
-      </div>
-
-      <h2 id="why-chatbots">Why Chatbots Outperform Traditional Live Chat</h2>
-      <p>Traditional live chat has a fatal flaw: humans need sleep. A prospect visiting your website at 2 AM in a different timezone leaves empty-handed if no agent is available. AI chatbots eliminate this entirely. They engage every visitor, qualify leads, answer FAQs, and even complete transactions — around the clock.</p>
-      <p>Beyond availability, AI chatbots are <strong>consistent</strong>. They never have a bad day, never give outdated information, and never miss an upsell opportunity programmed into their flow.</p>
-
-      <div class="pull-quote">
-        <p>The question is no longer whether to deploy an AI chatbot — it's how quickly you can get one live before your competitors do.</p>
-      </div>
-
-      <h2 id="strategy-1">Strategy 1: Proactive Engagement Triggers</h2>
-      <p>The biggest mistake businesses make is waiting for users to initiate. Instead, configure your chatbot to trigger proactively based on behavior signals:</p>
+      <h2 id="why-chatbots">Where a Chatbot Can Help</h2>
+      <p>A useful assistant may answer frequently asked questions outside staffed hours, collect an initial project brief, suggest relevant product categories or direct someone to human support. It should clearly identify itself as automated and avoid making promises it cannot verify.</p>
       <ul>
-        <li><strong>Time on page:</strong> If a visitor spends 30+ seconds on a product page, trigger a "Can I help you decide?" message.</li>
-        <li><strong>Exit intent:</strong> Detect cursor movement toward the browser close button and offer a discount or answer objections.</li>
-        <li><strong>Cart abandonment:</strong> Trigger when items are in cart but no checkout action in 2+ minutes.</li>
-        <li><strong>Scroll depth:</strong> After a user reads 70% of a pricing page, proactively answer common questions.</li>
+        <li><strong>Customer support:</strong> Answer repetitive questions using current, approved content.</li>
+        <li><strong>Lead qualification:</strong> Ask permission to gather a name, project goal and contact preference.</li>
+        <li><strong>Product guidance:</strong> Help visitors filter options using their stated requirements.</li>
+        <li><strong>Human escalation:</strong> Hand over to a team member when confidence is low or a decision is sensitive.</li>
       </ul>
 
-      <div class="info-card">
-        <div class="info-card-title">⚡ Pro Tip from Axyntra</div>
+      <h2 id="strategy-1">Strategy 1: Start with the Right Questions</h2>
+      <p>Review recent customer enquiries and identify the questions your team answers most frequently. A focused assistant built around ten accurate answers can be more valuable than a large assistant that gives vague or incorrect information.</p>
+      <p>Use short, optional prompts. Do not repeatedly interrupt users who dismiss a chat invitation.</p>
+
+      <h2 id="strategy-2">Strategy 2: Design a Safe Conversation Flow</h2>
+      <p>Give customers clear choices such as viewing services, requesting a quote or contacting a person. Explain what happens to submitted contact details and avoid collecting sensitive credentials through chat. Ensure the bot can say it does not know an answer.</p>
+      <ol>
+        <li>Define the business goal and the audience.</li>
+        <li>Prepare approved answers and escalation rules.</li>
+        <li>Test the flow with real customer questions.</li>
+        <li>Offer a clear route to email or human support.</li>
+      </ol>
+
+      <h2 id="strategy-3">Strategy 3: Measure Meaningful Outcomes</h2>
+      <p>Before launch, record baseline customer service and conversion metrics. Afterwards, compare qualified enquiries, resolution times, user satisfaction and completion rates over comparable periods. Use proper A/B tests when traffic is sufficient.</p>
+      <div class="info-card"><div class="info-card-title">What to measure</div>
         <ul>
-          <li>A/B test trigger timings — 20 seconds vs. 45 seconds can shift conversion rates by 12%</li>
-          <li>Personalize greetings using UTM parameters to match the ad the user clicked</li>
-          <li>Always offer a human handoff option for high-value prospects</li>
+          <li>Useful conversations and successfully resolved requests</li>
+          <li>Qualified leads reaching the correct team</li>
+          <li>Human handoff rate and customer satisfaction</li>
+          <li>Unanswered questions and inaccurate responses</li>
         </ul>
       </div>
 
-      <h2 id="strategy-2">Strategy 2: Conversational Qualification Flows</h2>
-      <p>Instead of sending all leads to your CRM equally, use your chatbot to qualify them in real-time. Build a conversation flow that identifies:</p>
-      <ol>
-        <li>The prospect's primary challenge or need</li>
-        <li>Their budget range (approximate)</li>
-        <li>Their decision timeline</li>
-        <li>Who else is involved in the decision</li>
-      </ol>
-      <p>High-scoring leads get an immediate calendar booking link. Low-scoring leads get nurtured with content. This alone can <strong>triple your sales team's efficiency</strong> — they only speak with pre-qualified prospects.</p>
+      <h2 id="implementation">A Practical Launch Plan</h2>
+      <p>Begin with a small pilot, a maintained knowledge source and clear ownership. Test on mobile and desktop, review privacy requirements and monitor answers before expanding to more complex tasks or integrations.</p>
+      <div class="code-block"><span class="code-label">Example rollout stages</span><pre>Discover: Customer questions and goals
+Build: Approved answers and conversation design
+Test: Usability, accuracy and escalation
+Launch: Limited release and monitoring
+Improve: Review real feedback and update content</pre></div>
 
-      <h2 id="strategy-3">Strategy 3: Personalized Product Recommendations</h2>
-      <p>Using the conversation data collected, modern AI chatbots can recommend specific products or services. This mirrors the Amazon effect — personalized recommendations account for up to 35% of Amazon's revenue. The same principle applies to B2B and service businesses.</p>
-      <p>At Axyntra, we integrated a recommendation engine into a client's e-commerce chatbot. Within 60 days, average order value increased by 28% through intelligent cross-sell suggestions during the chat session.</p>
+      <h2 id="choosing-platform">Choosing the Right Approach</h2>
+      <p>A rule-based chatbot may be enough for structured FAQs. A generative-AI assistant can handle more varied questions, but it also needs stronger testing, guardrails and maintenance. Assess total operating costs, data handling, integration needs and your team's capacity to manage it.</p>
+      <p>Axyntra can help discuss web integration options and scope an assistant appropriate for your business. <a href="index.html#contact">Send a project enquiry</a> to describe the problem you want to solve.</p>
 
-      <div class="stat-row">
-        <div class="stat-box"><div class="num">28%</div><div class="lbl">Higher Order Value</div></div>
-        <div class="stat-box"><div class="num">3×</div><div class="lbl">Sales Team Efficiency</div></div>
-        <div class="stat-box"><div class="num">35%</div><div class="lbl">Revenue from Recs</div></div>
-      </div>
-
-      <h2 id="implementation">Implementing Your First AI Chatbot</h2>
-      <p>Getting started doesn't require a massive technical team. Here's the implementation roadmap we use at Axyntra:</p>
-
-      <div class="code-block">
-        <span class="code-label">// Implementation Phases</span>
-        <pre>Phase 1: Define Goals & User Journeys (Week 1)
-  → Map 3-5 primary conversation intents
-  → Identify top 20 FAQs from support tickets
-  → Define escalation triggers
-
-Phase 2: Build & Train (Weeks 2-3)
-  → Set up NLP model with intent classification
-  → Design conversation flows (happy path + fallbacks)
-  → Integrate with CRM & calendar tool
-
-Phase 3: Soft Launch & Optimize (Week 4+)
-  → Deploy to 20% of traffic
-  → Monitor drop-off points
-  → A/B test response variations</pre>
-      </div>
-
-      <h2 id="choosing-platform">Choosing the Right Platform</h2>
-      <p>Not all chatbot platforms are equal. The right choice depends on your technical resources, budget, and integration requirements:</p>
-      <ul>
-        <li><strong>No-code solutions</strong> (Intercom, Drift) — fast to launch, limited customization, higher monthly cost</li>
-        <li><strong>Custom LLM integration</strong> (OpenAI + custom UI) — maximum flexibility, requires development expertise, our recommended approach for serious businesses</li>
-        <li><strong>Hybrid approach</strong> — rule-based flows for predictable queries + LLM for open-ended conversations</li>
-      </ul>
-      <p>At Axyntra, we build fully custom AI chatbot solutions that integrate seamlessly with your existing stack — no monthly per-seat fees, full ownership of your data.</p>
-
-      <div class="pull-quote">
-        <p>The best chatbot is the one your customers don't realize is a bot — until they're already converted.</p>
-      </div>
-
-      <h2 id="results">Real Results from Our Clients</h2>
-      <p>The numbers above aren't theoretical. Here's what our clients have experienced after deploying Axyntra-built AI chatbots:</p>
-      <ul>
-        <li>A <strong>footwear e-commerce</strong> client saw a 42% increase in add-to-cart rate after deploying a size recommendation chatbot</li>
-        <li>A <strong>financial consulting firm</strong> reduced their inbound email volume by 60% — freeing consultants for billable hours</li>
-        <li>A <strong>real estate platform</strong> achieved 3× more qualified showings booked per month through automated pre-qualification</li>
-      </ul>
-
-      <div class="share-section">
-        <div class="share-label">Share This Article</div>
-        <div class="share-btns">
-          <a class="share-btn" href="#" onclick="navigator.clipboard.writeText(window.location.href);return false;">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5.5 3H3a1 1 0 00-1 1v7a1 1 0 001 1h7a1 1 0 001-1V9" stroke="currentColor" stroke-width="1.3"/><path d="M8 1h4v4M12 1L7 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-            Copy Link
-          </a>
-          <a class="share-btn" href="https://wa.me/?text=Check%20this%20out%3A%20AI%20Chatbots%20boosting%20sales%20by%2045%25%20by%20Axyntra" target="_blank">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1C3.68 1 1 3.68 1 7c0 1.05.28 2.04.77 2.88L1 13l3.2-.84A6 6 0 107 1z" stroke="currentColor" stroke-width="1.2"/></svg>
-            WhatsApp
-          </a>
-          <a class="share-btn" href="https://twitter.com/intent/tweet?text=AI+Chatbots+can+boost+sales+by+45%25+—+here's+how+via+@axyntra" target="_blank">
-            𝕏 Twitter/X
-          </a>
-          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https://axyntra.lk" target="_blank">
-            in LinkedIn
-          </a>
-        </div>
-      </div>
-
-      <!-- AUTHOR CARD -->
-      <div class="author-card">
-        <div class="author-img">MH</div>
-        <div>
-          <h4>Mohammed Himas</h4>
-          <div class="role">Founder & Lead Developer at Axyntra</div>
-          <p>Mohammed leads Axyntra's AI and full-stack development division, having delivered 100+ digital projects for clients across 10+ countries. He specialises in LLM fine-tuning, conversational AI, and scalable web architectures.</p>
-        </div>
-      </div>
+      <div class="share-section"><div class="share-label">Share This Article</div><div class="share-btns">
+        <a class="share-btn" href="https://wa.me/?text=AI%20Chatbots%20for%20Customer%20Service%20-%20https%3A%2F%2Faxyntra.lk%2Fblog-post.html%3Fpost%3Dai-chatbots" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Faxyntra.lk%2Fblog-post.html%3Fpost%3Dai-chatbots" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div></div>
     `
   },
 
@@ -934,7 +869,7 @@ Phase 3: Soft Launch & Optimize (Week 4+)
         <div class="share-label">Share This Article</div>
         <div class="share-btns">
           <a class="share-btn" href="#" onclick="navigator.clipboard.writeText(window.location.href);return false;">📋 Copy Link</a>
-          <a class="share-btn" href="https://wa.me/?text=Full-Stack+Performance+Best+Practices+2025+by+Axyntra" target="_blank">WhatsApp</a>
+          <a class="share-btn" href="https://wa.me/?text=Full-Stack+Performance+Best+Practices+2025+by+Axyntra" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
       </div>
     `
@@ -989,7 +924,7 @@ Phase 3: Soft Launch & Optimize (Week 4+)
         <div class="share-label">Share This Article</div>
         <div class="share-btns">
           <a class="share-btn" href="#" onclick="navigator.clipboard.writeText(window.location.href);return false;">📋 Copy Link</a>
-          <a class="share-btn" href="https://wa.me/?text=Brand+Identity+Psychology+by+Axyntra" target="_blank">WhatsApp</a>
+          <a class="share-btn" href="https://wa.me/?text=Brand+Identity+Psychology+by+Axyntra" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
       </div>
     `
@@ -1044,7 +979,7 @@ Phase 3: Soft Launch & Optimize (Week 4+)
         <div class="share-label">Share This Article</div>
         <div class="share-btns">
           <a class="share-btn" href="#" onclick="navigator.clipboard.writeText(window.location.href);return false;">📋 Copy Link</a>
-          <a class="share-btn" href="https://wa.me/?text=Voice+Search+SEO+2026+by+Axyntra" target="_blank">WhatsApp</a>
+          <a class="share-btn" href="https://wa.me/?text=Voice+Search+SEO+2026+by+Axyntra" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
       </div>
     `
@@ -1105,7 +1040,7 @@ Phase 3: Soft Launch & Optimize (Week 4+)
         <div class="share-label">Share This Article</div>
         <div class="share-btns">
           <a class="share-btn" href="#" onclick="navigator.clipboard.writeText(window.location.href);return false;">📋 Copy Link</a>
-          <a class="share-btn" href="https://wa.me/?text=LLM+Fine-Tuning+for+Business+by+Axyntra" target="_blank">WhatsApp</a>
+          <a class="share-btn" href="https://wa.me/?text=LLM+Fine-Tuning+for+Business+by+Axyntra" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
       </div>
     `
@@ -1116,7 +1051,7 @@ Phase 3: Soft Launch & Optimize (Week 4+)
    RELATED POSTS DATA
 ══════════════════════════════════════ */
 const RELATED_POSTS = [
-  { slug: 'ai-chatbots', cat: '🤖 AI', title: 'How AI Chatbots Boost Sales by 45%', desc: 'Real-world strategies to integrate AI assistants and increase conversions.', img: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop', read: '6 min' },
+  { slug: 'ai-chatbots', cat: '🤖 AI', title: 'How AI Chatbots Support Sales and Service', desc: 'Real-world strategies to integrate AI assistants and increase conversions.', img: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop', read: '6 min' },
   { slug: 'fullstack-tips', cat: '💻 Dev', title: 'Full-Stack Performance Best Practices 2025', desc: 'Speed, scalability, and modern architecture for blazing-fast apps.', img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=250&fit=crop', read: '8 min' },
   { slug: 'brand-identity', cat: '🎨 Brand', title: 'The Psychology of Modern Brand Identity', desc: 'How color psychology and typography define digital success.', img: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&h=250&fit=crop', read: '5 min' },
   { slug: 'voice-seo', cat: '📈 SEO', title: 'Voice Search SEO: Preparing for 2026', desc: 'Optimize for voice assistants and conversational queries.', img: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&h=250&fit=crop', read: '4 min' },
@@ -1132,7 +1067,9 @@ const RELATED_POSTS = [
   const post = POSTS[postSlug] || POSTS['ai-chatbots'];
 
   // Set meta
-  document.title = post.title.replace(/<[^>]+>/g,'') + ' | Axyntra Blog';
+  document.title = post.title.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim() + ' | Axyntra Blog';
+  const canonical = document.querySelector('link[rel=canonical]');
+  if (canonical) canonical.href = 'https://axyntra.lk/blog-post.html?post=' + encodeURIComponent(postSlug in POSTS ? postSlug : 'ai-chatbots');
   document.getElementById('postEyebrow').innerHTML = post.category;
   document.getElementById('postTitle').innerHTML = post.title;
   document.getElementById('postDate').textContent = post.date;
