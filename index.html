@@ -12,21 +12,21 @@
   <meta name="author" content="Axyntra Digital Solutions — axyntra.lk" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="googlebot" content="index, follow" />
-  <link rel="canonical" href="https://axyntra.lk/" />
+  <link rel="canonical" href="https://www.axyntra.lk/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Axyntra Digital Solutions" />
   <meta property="og:title" content="Axyntra Digital Solutions | Websites & Custom Software Worldwide" />
   <meta property="og:description" content="Web development, e-commerce, custom software, UX and digital growth solutions for ambitious businesses around the world." />
-  <meta property="og:url" content="https://axyntra.lk/" />
-  <meta property="og:image" content="https://axyntra.lk/img/og-image.jpg" />
+  <meta property="og:url" content="https://www.axyntra.lk/" />
+  <meta property="og:image" content="https://www.axyntra.lk/img/og-image.jpg" />
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@AxyntraOfficial" />
   <meta name="twitter:title" content="Axyntra Digital Solutions | Global Web Development" />
   <meta name="twitter:description" content="Websites, custom software and digital solutions, built in Sri Lanka for businesses worldwide." />
-  <meta name="twitter:image" content="https://axyntra.lk/img/og-image.jpg" />
+  <meta name="twitter:image" content="https://www.axyntra.lk/img/og-image.jpg" />
 
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
@@ -41,7 +41,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
   <!-- Schema JSON-LD blocks -->
-  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://axyntra.lk/#organization", "name": "Axyntra Digital Solutions", "alternateName": "Axyntra", "url": "https://axyntra.lk/", "logo": "https://axyntra.lk/img/Axyntra-logo.webp", "email": "info@axyntra.lk", "telephone": "+94703883436", "foundingDate": "2023-11", "description": "Sri Lanka-based web development and digital solutions agency serving businesses worldwide.", "founder": {"@id": "https://axyntra.lk/founder.html#person"}}, {"@type": "Person", "@id": "https://axyntra.lk/founder.html#person", "name": "Mohommad Himas", "url": "https://axyntra.lk/founder.html", "image": "https://axyntra.lk/mohommad-himas-founder.jpeg", "jobTitle": "Founder & Lead Developer", "worksFor": {"@id": "https://axyntra.lk/#organization"}, "sameAs": ["https://www.linkedin.com/in/mohammed-himas", "https://himazs.github.io/Himas/"]}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.axyntra.lk/#organization", "name": "Axyntra Digital Solutions", "alternateName": "Axyntra", "url": "https://www.axyntra.lk/", "logo": "https://www.axyntra.lk/img/Axyntra-logo.webp", "email": "info@axyntra.lk", "telephone": "+94703883436", "foundingDate": "2023-11", "description": "Sri Lanka-based web development and digital solutions agency serving businesses worldwide.", "founder": {"@id": "https://www.axyntra.lk/founder.html#person"}}, {"@type": "Person", "@id": "https://www.axyntra.lk/founder.html#person", "name": "Mohommad Himas", "url": "https://www.axyntra.lk/founder.html", "image": "https://www.axyntra.lk/mohommad-himas-founder.jpeg", "jobTitle": "Founder & Lead Developer", "worksFor": {"@id": "https://www.axyntra.lk/#organization"}, "sameAs": ["https://www.linkedin.com/in/mohammed-himas", "https://himazs.github.io/Himas/"]}]}</script>
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -183,7 +183,7 @@
       text-decoration: none;
     }
     .logo-dot { background: linear-gradient(135deg, var(--p3), var(--p4)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+    .nav-links { display: flex; gap: 1.35rem; list-style: none; align-items: center; }
     .nav-links a {
       text-decoration: none; font-size: 0.875rem; font-weight: 500;
       color: var(--text3); transition: color 0.2s; position: relative;
@@ -443,6 +443,11 @@
       .services-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
+    @media (max-width: 1100px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open { display:flex;flex-direction:column;position:fixed;inset:0;height:100dvh;background:#080412;padding:6rem 2rem 2rem;gap:1.5rem;z-index:1001;overflow:auto; }
+    }
     @media (max-width: 900px) {
       .hero-wrap { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
       .hero-visual { min-height: 320px; max-width: 380px; margin: 0 auto; }
@@ -590,7 +595,7 @@
   <a href="#home" class="logo">Axyntra<span class="logo-dot">.</span></a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="about.html">About</a></li><li><a href="founder.html">Founder</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#testimonials">Testimonials</a></li>
@@ -699,7 +704,7 @@
             <span class="company-logo-text">Axyntra</span>
           </div>
           <span class="company-est">✦ Est. 2023 · Sri Lanka &amp; Worldwide</span>
-          <p class="company-desc">A passionate collective of undergraduates turned digital experts — building world-class web, AI, and brand solutions at accessible price points. Every project receives our full commitment, from first line of code to final delivery and beyond.</p>
+          <p class="company-desc">Founded by Mohommad Himas, Axyntra builds custom websites and practical digital solutions for businesses in Sri Lanka and worldwide. Every project receives our full commitment, from first line of code to final delivery and beyond.</p>
           <div class="company-metric-row">
             <div class="metric-box"><h4>Web</h4><p>Development</p></div>
             <div class="metric-box"><h4>UI/UX</h4><p>Design</p></div>
@@ -960,7 +965,7 @@
 <!-- SEO FOOTER STRIP -->
 <div class="seo-footer-strip">
   <p>
-    <strong style="color:var(--text3);">Axyntra Digital Solutions</strong> (<a href="https://axyntra.lk">axyntra.lk</a>) is a Sri Lanka-based
+    <strong style="color:var(--text3);">Axyntra Digital Solutions</strong> (<a href="https://www.axyntra.lk">axyntra.lk</a>) is a Sri Lanka-based
     <a href="#services">web development and digital solutions agency</a> supporting online projects worldwide.
     Explore <a href="#services">website design</a>, e-commerce development, SEO, AI integration,
     UI/UX design and branding. We welcome enquiries from Europe, the Americas, the Middle East, Oceania, Asia and beyond.
@@ -1001,7 +1006,7 @@
         <li><a href="https://www.facebook.com/share/1B5AbsUJAs/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i>Facebook</a></li>
         <li><a href="https://www.reddit.com/u/Axyntra/" target="_blank" rel="noopener"><i class="fa-brands fa-reddit-alien"></i>Reddit</a></li>
         <li><a href="https://www.instagram.com/axyntra.lk/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>Instagram</a></li>
-        <li><a href="https://www.linkedin.com/company/axyntra/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i>LinkedIn</a></li>
+        <li><a href="https://www.linkedin.com/company/110794419/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i>LinkedIn</a></li>
         <li><a href="https://x.com/AxyntraOfficial" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i>Twitter / X</a></li>
       </ul>
     </div>
@@ -1015,8 +1020,8 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <div>© 2026 Axyntra Digital Solutions. All rights reserved. | <a href="https://axyntra.lk" style="color:var(--p4);text-decoration:none;">axyntra.lk</a></div>
-    <a href="https://axyntra.lk/" style="color:var(--p4);text-decoration:none;">Axyntra Digital Solutions — Worldwide</a>
+    <div>© 2026 Axyntra Digital Solutions. All rights reserved. | <a href="https://www.axyntra.lk" style="color:var(--p4);text-decoration:none;">axyntra.lk</a></div>
+    <a href="https://www.axyntra.lk/" style="color:var(--p4);text-decoration:none;">Axyntra Digital Solutions — Worldwide</a>
   </div>
 </footer>
 
@@ -1059,6 +1064,7 @@ document.querySelectorAll('.author-avatar').forEach(av => {
 (function () {
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
+  if (!ctx || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   let W, H, parts = [];
   function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
   function mkParts() {
@@ -1095,7 +1101,7 @@ document.querySelectorAll('.author-avatar').forEach(av => {
 /* ── 4. CURSOR (desktop only) ── */
 (function () {
   const dot = document.getElementById('dot'), ring = document.getElementById('ring');
-  if (!dot || !ring) return;
+  if (!dot || !ring || window.matchMedia('(prefers-reduced-motion: reduce), (pointer: coarse)').matches) return;
   let mx = 0, my = 0, rx = 0, ry = 0;
   document.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
@@ -1130,7 +1136,7 @@ document.querySelectorAll('.author-avatar').forEach(av => {
   }
 
   ham.addEventListener('click', toggleMenu);
-  ham.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); } });
+
 
   // Close on nav link click
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
@@ -1228,7 +1234,7 @@ function buildCarousel(cfg) {
   track.addEventListener('touchmove', e => {
     if (!isDragging) return;
     const dx = e.touches[0].clientX - touchStartX, dy = e.touches[0].clientY - touchStartY;
-    if (Math.abs(dy) > Math.abs(dx)) { isDragging = false; return; }
+    if (Math.abs(dy) > Math.abs(dx)) { isDragging = false; paused = false; track.style.transition = ''; goTo(cur, false); return; }
     track.style.transition = 'none';
     track.style.transform = `translateX(${-(dragStartOffset - dx)}px)`;
   }, { passive: true });
@@ -1292,8 +1298,7 @@ window.addEventListener('load', function () {
     const message = enquiry();
     if (!message) return;
     const url = 'https://wa.me/94703883436?text=' + encodeURIComponent(message);
-    const opened = window.open(url, '_blank', 'noopener,noreferrer');
-    if (!opened) window.location.href = url;
+    window.location.href = url;
     status.textContent = 'WhatsApp has been opened with a draft. Please review and press Send there.';
   });
   emailButton.addEventListener('click', () => {

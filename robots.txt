@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://axyntra.lk/sitemap.xml
+Sitemap: https://www.axyntra.lk/sitemap.xml
