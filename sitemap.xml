@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url><loc>https://www.axyntra.lk/</loc></url>
   <url><loc>https://www.axyntra.lk/projects.html</loc></url>
@@ -7,5 +7,5 @@
   <url><loc>https://www.axyntra.lk/blog-post.html?post=brand-identity</loc></url>
   <url><loc>https://www.axyntra.lk/blog-post.html?post=voice-seo</loc></url>
   <url><loc>https://www.axyntra.lk/blog-post.html?post=llm-finetuning</loc></url>
-<url><loc>https://www.axyntra.lk/about.html</loc><lastmod>2026-10-25</lastmod><image:image><image:loc>https://www.axyntra.lk/axyntra-digital-solutions-official-logo.jpg</image:loc></image:image><image:image><image:loc>https://www.axyntra.lk/himas-about.jpg</image:loc></image:image><image:image><image:loc>https://www.axyntra.lk/axyntra-digital-solutions-reception-concept.png</image:loc></image:image></url><url><loc>https://www.axyntra.lk/founder.html</loc><lastmod>2026-10-25</lastmod><image:image><image:loc>https://www.axyntra.lk/mohommad-himas-founder.jpeg</image:loc></image:image><image:image><image:loc>https://www.axyntra.lk/himas-about.jpg</image:loc></image:image></url><url><loc>https://www.axyntra.lk/services.html</loc></url><url><loc>https://www.axyntra.lk/privacy.html</loc></url>
+<url><loc>https://www.axyntra.lk/about.html</loc><lastmod>2026-10-25</lastmod><image:image><image:loc>https://www.axyntra.lk/axyntra-digital-solutions-official-logo.jpg</image:loc></image:image><image:image><image:loc>https://www.axyntra.lk/axyntra-digital-solutions-reception-concept.png</image:loc></image:image></url><url><loc>https://www.axyntra.lk/services.html</loc></url><url><loc>https://www.axyntra.lk/privacy.html</loc></url>
 </urlset>
