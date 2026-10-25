@@ -1,0 +1,2 @@
+# October 2026 update
+Added About, founder, services and privacy pages; reused the existing founder portrait; standardized Mohommad Himas; connected Organization and Person structured data without unverified legal-name or company-profile assertions; added founder section and company navigation; expanded sitemap. Existing design, project pages, enquiries and deployment workflow retained. Added business copy and account setup instructions in BUSINESS_LAUNCH_KIT.md. No deployment, Google account creation, security audit or ranking guarantee is included.
