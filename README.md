@@ -1,51 +1,44 @@
-# Axyntra Digital Solutions — Website
+# Axyntra Digital Solutions
 
-Official website source for **Axyntra Digital Solutions**, a Sri Lanka-based web development and digital solutions agency welcoming project enquiries from clients worldwide.
+Custom websites and practical digital solutions, built in Sri Lanka for businesses worldwide.
 
-- **Main website:** `index.html`
-- **Portfolio:** `projects.html`
-- **External demonstration gallery:** `preview.html` (excluded from search indexing)
-- **Articles:** `blog-post.html?post=<slug>`
-- **Deployment:** GitHub Pages (workflow at `.github/workflows/static.yml`)
+Founded by **Mohommad Himas** in **November 2023**, Axyntra works on business websites, responsive landing pages, e-commerce experiences and web applications. Supporting services include UI/UX design, technical SEO, website maintenance, branding and AI chatbot integration.
 
-## Viewing the site locally
+**[Explore Axyntra](https://www.axyntra.lk/) · [About](https://www.axyntra.lk/about.html) · [Services](https://www.axyntra.lk/services.html) · [Project showcase](https://www.axyntra.lk/preview.html)**
 
-The project is built with HTML, CSS and vanilla JavaScript. No build process is required. Extract the ZIP and run the following command from this folder:
+## How we approach a project
 
-```bash
-python -m http.server 8000
+Understand the audience and business requirement, agree the deliverables, develop the solution and review the agreed features before launch. Hosting, third-party costs, source-code handover and ongoing support are discussed within the project agreement.
+
+## Official profiles
+
+- [LinkedIn](https://www.linkedin.com/company/110794419/)
+- [Instagram](https://www.instagram.com/axyntra.lk/)
+- [Facebook](https://www.facebook.com/profile.php?id=61587014513038)
+- [Threads](https://www.threads.com/@axyntra.lk)
+- [X](https://x.com/AxyntraOfficial)
+- [Reddit](https://www.reddit.com/u/Axyntra/)
+
+## Contact
+
+Website: https://www.axyntra.lk/  
+Business email: info@axyntra.lk  
+Phone: +94 70 388 3436
+
+## Website source
+
+This repository contains Axyntra's static HTML, CSS and JavaScript website. The live custom domain is hosted on Vercel. An existing GitHub Pages workflow is also present; check deployment settings before changing hosting configuration.
+
+Run a local preview from the repository root:
+
+```sh
+python3 -m http.server 8000
 ```
 
-Then open `http://localhost:8000/` in your browser. A local HTTP server is preferable to double-clicking the HTML files when checking navigation and assets.
+Open `http://localhost:8000/`. Main pages include `index.html`, `about.html`, `services.html`, `projects.html`, `preview.html` and `privacy.html`.
 
-## Contact enquiries
+The enquiry interface prepares WhatsApp or email drafts. Visitors must send the message in the relevant application; this static source does not itself provide a server-side delivery service.
 
-The homepage's **Request a Project Quote** form supports both:
+When contributing, preserve canonical URLs, redirects, public contact details and accessible navigation. Check links, asset paths and the affected page before publishing. Keep credentials and private client information out of public source. Label demonstrations and concepts accurately, and obtain permission before publishing client names or testimonials.
 
-1. **Continue on WhatsApp:** Opens WhatsApp with a prefilled draft addressed to the company's published WhatsApp number.
-2. **Prepare an email enquiry:** Opens the visitor's mail application with a prepared message to `info@axyntra.lk`.
-
-**Important:** This is a static site. It has **no server-side form submission, database storage or automatic delivery**. The visitor needs to review and click **Send** in WhatsApp or their email client. If you need a traditional form that delivers and stores leads automatically, connect a secure server-side endpoint or an approved form provider and add the appropriate privacy notices and anti-spam safeguards.
-
-## How to publish with GitHub Pages
-
-1. Back up your current `main` branch and any custom domain settings.
-2. Copy the updated files **inside** this folder into the root of your Axyntra GitHub repository. Keep `.github/workflows/static.yml`.
-3. Review the changes and commit them to `main` (or use a branch/pull request first).
-4. In the repository, verify **Settings → Pages** uses **GitHub Actions**. The workflow deploys on pushes to `main`.
-5. Verify `axyntra.lk` is still configured as the custom domain and HTTPS is enforced. Domain/DNS settings are managed in GitHub and at the DNS provider, not by this ZIP.
-6. Test the published site on mobile and desktop; verify all third-party demos, social profiles, search previews and the WhatsApp/email workflows.
-
-**No live deployment, domain modification or third-party integration was performed as part of this ZIP update.**
-
-## Content verification before launch
-
-The repository includes testimonials, client names, project descriptions, technologies, a founding date and social media destinations supplied by the original codebase. These details were not independently verified: obtain permission to publish names/quotes and make sure all claims accurately describe completed work. Label prototypes and demonstrations clearly rather than describing them as production deployments.
-
-External blog photographs and external demonstration websites may become unavailable or block embedding. Host imagery with permission and use **Open Full Site** when iframe previews are unavailable.
-
-## Optimization and accessibility
-
-Commonly loaded large PNG images have been given smaller WebP alternatives; original PNG source assets remain in the repository. Reduced-motion accessibility styling, more usable navigation controls, missing favicon fixes and metadata corrections have also been included.
-
-See `AUDIT_AND_CHANGELOG.md` for a detailed breakdown, known limitations and post-deployment checks.
+**Think Forward. Build Smart.**
